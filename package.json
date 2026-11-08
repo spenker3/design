@@ -7,8 +7,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/skill.ts && tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build",
     "skill": "node scripts/skill.ts",
+    "prepare": "git config core.hooksPath .githooks",
     "preview": "vite preview"
   },
   "dependencies": {
