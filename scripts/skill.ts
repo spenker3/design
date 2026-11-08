@@ -8,7 +8,7 @@
 
   Generated: everything in skill/. skill/SKILL.md is rendered from the prose in
   src/design/skill.md with its {{placeholders}} filled in (see renderSkill).
-  Sources: tokens.css, each CSS file's header comment, the title/rules of every <Demo> in the
+  Sources: tokens.css, each CSS file's header comment, the title and spec (or rules) of every <Demo> in the
   showcase pages, writing.ts, routes.ts and the templates, and the comments in src/components.
 */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -141,13 +141,14 @@ function propText(v: string | undefined): string | undefined {
   return s.includes("\u0000") ? items.map((t) => `- ${t}`).join("\n") : items.join(" ");
 }
 
-/* Every element in a page that has both a title and rules (Demo, and wrappers like Example). */
+/* Every element in a page that has a title and rules or spec (Demo, and wrappers like Example).
+   spec is the full text for the skill, which can't see the demo. The site shows only the short rules. */
 function demos(src: string) {
   const out: { title: string; rules: string }[] = [];
   for (const m of src.matchAll(/<([A-Z]\w*)\b/g)) {
     const p = props(src, m.index! + m[0].length);
     const title = propText(p.title);
-    const rules = propText(p.rules);
+    const rules = propText(p.spec) ?? propText(p.rules);
     if (title && rules) out.push({ title, rules });
   }
   return out;

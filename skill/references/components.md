@@ -90,7 +90,7 @@ From the showcase pages (`#/<page>` on the dev site). Each rule says when and ho
 
 ### Controls
 
-Everything you press, type into, or pick from. Secondary is the default, and whatever is chosen or primary is the inverted block.
+Secondary is the default. Only the main action and whatever is chosen invert.
 
 - **Buttons**:
   - **Primary**: the one thing to do here. Inverted block, once per region, rightmost.
@@ -135,7 +135,7 @@ Where you are is always the inverted block: the current tab, page, workspace or 
 
 ### Content
 
-What a screen shows, in the flow of the page. Dense, aligned and quiet, with color only where it says something about the data.
+Color appears only where it says something about the data.
 
 - **Table**: Small, bold, muted headers in sentence case on a surface, 36px rows (28 compact), mono right-aligned numbers. Sortable headers show an arrow. The selected row inverts, like the TUI's reversed highlight.
 - **List**: Rows divided by lines. Title plus a muted sub-line, with meta on the right. The selected row inverts.
@@ -157,7 +157,7 @@ What a screen shows, in the flow of the page. Dense, aligned and quiet, with col
 
 ### Overlays
 
-Everything that floats above the page, with no shadow anywhere. Transient layers are bg with a 1px fg border, like the desktop's menus. Persistent chrome uses the strong line.
+Transient layers take an fg border, and chrome that stays on screen takes the strong line. No shadows.
 
 - **Menu**: Opens under its trigger. The hover or keyboard cursor is the inverted block. Shortcuts sit on the right, and destructive items go last, in red, under a rule.
 - **Dialog and sheet**:

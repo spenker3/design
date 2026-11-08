@@ -9,27 +9,29 @@ export function Documents() {
   return (
     <Page
       title="Documents"
-      lede="Long-form content: prose, code, figures, math and the parts of a paper. They reuse the prose type and add as little as possible."
+      lede="Long-form pieces reuse the prose type and add as little as possible."
     >
-      <Demo title="Prose" rules="Long text uses .prose: 16px, 1.65 leading, a 68ch measure. Links underline with a quiet line that darkens on hover. Quotes are marked with a solid fg rule, not italics.">
+      <Demo title="Prose" rules="Long text always sits in .prose. Quotes take a rule, not italics."
+        spec="Long text uses .prose: 16px, 1.65 leading, a 68ch measure. Links underline with a quiet line that darkens on hover. Quotes are marked with a solid fg rule, not italics.">
         <div className="prose">
-          <h2>Reading width matters</h2>
+          <h2>Planning the beta</h2>
           <p>
-            Long-form text is set larger and looser than the interface around it. Lines stay under about seventy characters so
-            the eye finds the next one. <a href="#/documents">Links</a> stay quiet until hovered.
+            The beta opens to forty teams on the first of the month. Each team gets a shared workspace, the import tool, and a
+            direct line to us through the <a href="#/documents">feedback board</a>.
           </p>
           <ul>
-            <li>Lists keep the same rhythm as paragraphs.</li>
+            <li>Invites go out a week before.</li>
             <li>
-              Inline <code>code</code> sits on a gray surface.
+              Run <code>atlas import</code> to bring in existing files.
             </li>
           </ul>
-          <blockquote>Color is free to mean something.</blockquote>
+          <blockquote>Ship the smallest thing that answers the question.</blockquote>
         </div>
       </Demo>
       <Demo
         title="Code"
-        rules={
+        rules="Long lines scroll, never wrap. Number lines only when the text refers to them."
+        spec={
           <ul>
             <li>13px Geist Mono at 1.65 leading on a surface, 1px line, never wrapped: long lines scroll.</li>
             <li>The head names the file when there is one, then the language, then Copy. A bare pre is for short output with nothing to name.</li>
@@ -59,7 +61,8 @@ impl<T: Ord> Heap<T> {
       </Demo>
       <Demo
         title="Diff and terminal"
-        rules="Added lines get the good tint and a + in the gutter, removed lines the bad tint and a −. A terminal block starts commands with a faint, unselectable $ and mutes the output. Copy takes the result: no removed lines, no output."
+        rules="Copy takes the result, leaving out removed lines and command output."
+        spec="Added lines get the good tint and a + in the gutter, removed lines the bad tint and a −. A terminal block starts commands with a faint, unselectable $ and mutes the output. Copy takes the result: no removed lines, no output."
         bare
       >
         <CodeBlock
@@ -81,7 +84,8 @@ $ git push`}
       </Demo>
       <Demo
         title="Figures"
-        rules={
+        rules="The caption says what to see, not what the image is. Refer to figures by number, never by position."
+        spec={
           <ul>
             <li>Caption below, never above. Start with the bold number, then one sentence on what the reader should see, not what the image is. Credit goes on its own faint line.</li>
             <li>Subfigures share one number. Label each (a), (b), (c) and keep the shared point in the figure's caption. Keep panels the same size so they compare.</li>
@@ -129,7 +133,8 @@ $ git push`}
       </Demo>
       <Demo
         title="Math"
-        rules={
+        rules="Anything with a fraction or a sum goes on its own line. Number only the equations the text refers to."
+        spec={
           <ul>
             <li>LaTeX rendered with KaTeX. Math keeps its own serif faces, the one place the system leaves Helvetica.</li>
             <li>Inline math sits on the baseline at 1.1em. Keep it short: anything with a fraction or a sum goes on its own line.</li>
@@ -152,7 +157,8 @@ $ git push`}
       </Demo>
       <Demo
         title="Papers"
-        rules={
+        rules="Theorems and lemmas take a strong rule, definitions and remarks a soft one."
+        spec={
           <ul>
             <li>An abstract is an h4 title on a surface, slightly smaller text with looser leading, one paragraph.</li>
             <li>Theorems and lemmas get a 2px fg rule, and definitions and remarks a soft one. The label is bold with an optional name in normal weight. A proof has no rule and ends with ∎ at the right.</li>

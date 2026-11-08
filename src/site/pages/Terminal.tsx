@@ -198,11 +198,12 @@ export function Terminal() {
   return (
     <Page
       title="Terminal"
-      lede="The same language on a grid of cells. Ink and paper become the terminal's own colors, selection becomes reverse video, and lines stay square and thin."
+      lede="Ink and paper are the terminal's own colors, and selection is reverse video."
     >
       <Demo
         title="Roles in a terminal"
-        rules={
+        rules="Use the 16 named colors, never RGB, so the app follows the terminal's theme in light and dark."
+        spec={
           <ul>
             <li><b>Paper and ink</b>: the terminal's default bg and fg (reset). Never paint a background on the screen or a pane.</li>
             <li><b>Surface</b>: none. Cells can't promise a gray, so group with a line or a blank row instead.</li>
@@ -222,7 +223,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Attributes and glyphs"
-        rules={
+        rules="Hierarchy comes from bold and dim, never color alone. No emoji or Nerd Font icons."
+        spec={
           <ul>
             <li>Hierarchy comes from bold and dim, never from color alone. One bold thing per line at most. No blink, no strikethrough except for removed items, and no ALL CAPS headers.</li>
             <li>A small fixed set of glyphs that every terminal font draws. Square single-line box drawing only. Words and these glyphs replace icons: no emoji, no Nerd Font icons, no rounded, double or heavy lines.</li>
@@ -234,7 +236,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Panes and lists"
-        rules={
+        rules="Space runs in whole cells. Only the focused pane has an fg edge and a reversed cursor row."
+        spec={
           <ul>
             <li>A cell is about twice as tall as it is wide, so space runs in whole cells: one cell of padding inside a box, two between columns, one blank row between groups and none inside a list.</li>
             <li>Titles sit in the top edge. The focused pane's edge is the default fg and its cursor row is reversed across the full width. Other panes keep dim edges and show their cursor in bold.</li>
@@ -247,7 +250,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Tabs and tables"
-        rules={
+        rules="Number keys switch tabs, and tab and shift-tab cycle."
+        spec={
           <ul>
             <li>The current tab is reversed with a space each side, the others plain with their number key dim in front, over a bright black rule. Number keys switch tabs, and tab and shift-tab cycle.</li>
             <li>Table headers are bold and dim, with no rules between rows. Numbers and dates are right-aligned, columns two cells apart, the cursor row reversed. Status is a colored dot plus a word.</li>
@@ -259,7 +263,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Fields and choices"
-        rules={
+        rules="Space toggles, enter confirms, and / opens search at the bottom."
+        spec={
           <ul>
             <li>A field is a box with its label in the top edge. The focused field's edge is the default fg and its cursor is a reversed block. Placeholders are bright black.</li>
             <li>[x] and [ ] for checkboxes, (•) and ( ) for radios, a bold label over each group. The focused option is reversed. Space toggles and enter confirms.</li>
@@ -272,7 +277,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Progress and messages"
-        rules={
+        rules="A message replaces the key hints for 4s, and errors stay until the next key. Offer undo instead of asking to confirm."
+        spec={
           <ul>
             <li>A progress bar is heavy lines in fg over a light-line track in bright black, the percent dim on the right. A braille spinner at 80ms sits before the label while work runs. It's the only motion a TUI has.</li>
             <li>Messages are the toast of a TUI: one replaces the key hints in the footer for 4s, led by a colored dot and written as a sentence. Errors stay until the next key. Offer undo with its key instead of asking to confirm.</li>
@@ -284,7 +290,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Menus and dialogs"
-        rules={
+        rules="Dialogs are only for what can't be undone. Apps with many actions get a palette on ctrl-k or :."
+        spec={
           <ul>
             <li>A menu opens under its trigger as a box with an fg edge. The cursor row is reversed and each key sits dim on the right. Destructive items go last in red, under a rule.</li>
             <li>Apps with many actions get a palette on ctrl-k or :, filtered as you type.</li>
@@ -297,14 +304,16 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Charts"
-        rules="One series is the default fg with no legend. Several series use blue, yellow, magenta, cyan in that order, each bar labeled on the left and valued on the right. Eighth blocks give partial cells. No axes unless the reader needs exact values."
+        rules="Eighth blocks give partial cells. No axes unless the reader needs exact values."
+        spec="One series is the default fg with no legend. Several series use blue, yellow, magenta, cyan in that order, each bar labeled on the left and valued on the right. Eighth blocks give partial cells. No axes unless the reader needs exact values."
         bare
       >
         <Tty label="A sparkline and a bar chart" lines={charts} />
       </Demo>
       <Demo
         title="App layout"
-        rules={
+        rules="Fill the terminal and redraw on resize, dropping the detail pane first as it narrows."
+        spec={
           <ul>
             <li>Top line: the app name in bold, then tabs, then status on the right (a colored dot and a word, then the time, dim).</li>
             <li>Middle: panes side by side, list on the left, detail on the right. Only the focused pane has an fg edge.</li>
@@ -321,7 +330,8 @@ export function Terminal() {
       </Demo>
       <Demo
         title="Keys"
-        rules={
+        rules="Every action has a key, arrows and vim keys both move, and ? lists them all."
+        spec={
           <ul>
             <li>Every action has a key, and the footer shows the ones that matter on this screen.</li>
             <li>Arrows and vim keys both move. Esc goes back or closes, q quits from the top level, / searches, ? lists every key.</li>

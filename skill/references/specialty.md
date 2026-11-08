@@ -55,7 +55,7 @@ From the showcase pages (`#/<page>` on the dev site). Each rule says when and ho
 
 ### Documents
 
-Long-form content: prose, code, figures, math and the parts of a paper. They reuse the prose type and add as little as possible.
+Long-form pieces reuse the prose type and add as little as possible.
 
 - **Prose**: Long text uses .prose: 16px, 1.65 leading, a 68ch measure. Links underline with a quiet line that darkens on hover. Quotes are marked with a solid fg rule, not italics.
 - **Code**:
@@ -83,7 +83,7 @@ Long-form content: prose, code, figures, math and the parts of a paper. They reu
 
 ### Charts & graphs
 
-Data drawn as marks, and things drawn as nodes and links. Thin marks, quiet axes, and color only to tell series or groups apart.
+Color only tells series or groups apart.
 
 - **Lines**:
   - One series is fg with no legend, since the title names it. 2px line, mono axis labels in faint, gridlines in line. Hover shows a crosshair and the value. The points carry no numbers.
@@ -93,13 +93,13 @@ Data drawn as marks, and things drawn as nodes and links. Thin marks, quiet axes
 - **Small charts**:
   - A sparkline is a trend without axes, inline at text height next to the number it explains. fg by default, colored only when the trend itself is a status.
   - Simple bars are one series in fg with 2px gaps and a flat baseline. Hover shows the value.
-- **Heatmap**: One hue, fg mixed into the surface by value. Never a rainbow. With one variable darker already reads as more, so it needs no scale; hover names the cell's value.
+- **Heatmap**: One hue, fg mixed into the surface by value. Never a rainbow. With one variable darker already reads as more, so it needs no scale. Hover names the cell's value.
 - **Note graph**: Obsidian-style: a force layout where dots grow with their link count and unlinked notes are faint. Gray by default, colored only for a group the reader chose (folder, tag). Hover lights a note's neighborhood and dims the rest. The selected label inverts. Hubs are always labeled, and other labels appear on hover or once zoomed in.
 - **Node editor**: Cards on a dotted canvas, dragged by the header. Drag the background to pan and scroll to zoom, as in the note graph, so a large graph fits a small window. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor.
 - **Diagrams**:
   - Write diagrams in Mermaid syntax, rendered by Pele. Its --pele-* colors map onto the tokens, so diagrams follow the theme. Never set colors with style or classDef.
   - Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted and labels mono. Subgraphs get a quiet line and a surface fill.
-  - Flow left to right, loops below. Color only marks an outcome, and a dead end is dashed. Trees go top down; networks use round nodes.
+  - Flow left to right, loops below. Color only marks an outcome, and a dead end is dashed. Trees go top down, and networks use round nodes.
   - Sequences run top to bottom, replies dashed, notes on a surface. State transitions are labeled with their action, lowercase.
   - Class and ER members are mono so types line up. Label each relation with a verb.
   - Gantt: done work recedes, the active task is fg, critical work is --bad. Git graphs and mind maps take the series colors in order.

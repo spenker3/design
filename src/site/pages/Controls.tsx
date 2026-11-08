@@ -15,10 +15,11 @@ export function Controls() {
   const [swatch, setSwatch] = useState(1);
   const [over, setOver] = useState(false);
   return (
-    <Page title="Controls" lede="Everything you press, type into, or pick from. Secondary is the default, and whatever is chosen or primary is the inverted block.">
+    <Page title="Controls" lede="Secondary is the default. Only the main action and whatever is chosen invert.">
       <Demo
         title="Buttons"
-        rules={
+        rules="One primary per region, rightmost. Never disable a button without saying why nearby."
+        spec={
           <ul>
             <li>
               <b>Primary</b>: the one thing to do here. Inverted block, once per region, rightmost.
@@ -57,7 +58,8 @@ export function Controls() {
       </Demo>
       <Demo
         title="Sizes, icons and busy"
-        rules={
+        rules="Large only for page-level calls to action. Icon-only buttons need an aria-label and a tooltip."
+        spec={
           <ul>
             <li>sm in dense rows and toolbars, default everywhere else, lg for page-level calls to action. Touch screens raise all of them.</li>
             <li>Icons are 16px lucide at 1.75 stroke, before the label. The shortcut sits in a kbd after it. Icon-only buttons need aria-label and a tooltip.</li>
@@ -92,7 +94,8 @@ export function Controls() {
       </Demo>
       <Demo
         title="Groups, toggles and links"
-        rules="Joined buttons sit flush, edge to edge. A pressed ghost toggle inverts, like any selection. Text links underline with a quiet line that darkens on hover, and .link makes a button look like one."
+        rules="Use .link for a button that should read as a text link."
+        spec="Joined buttons sit flush, edge to edge. A pressed ghost toggle inverts, like any selection. Text links underline with a quiet line that darkens on hover, and .link makes a button look like one."
       >
         <div className="row wrap" style={gap("16px")}>
           <div className="btn-group">
@@ -126,7 +129,8 @@ export function Controls() {
       </Demo>
       <Demo
         title="Text fields"
-        rules={
+        rules="Mark optional fields, not required ones. An error replaces the help text."
+        spec={
           <ul>
             <li>Fields sit on a surface fill and turn bg with a fg border when focused.</li>
             <li>Bold label above, help below, and an error replaces the help in red. Mark optional fields, not required ones.</li>
@@ -178,7 +182,8 @@ export function Controls() {
       </Demo>
       <Demo
         title="Checks, radios, switches"
-        rules="Checked is the inverted block. Use a switch for settings that apply at once, a checkbox for choices submitted with a form, and radios for one of a few options with room to explain each."
+        rules="A switch applies at once, a checkbox is submitted with a form, and radios pick one of a few options that need explaining."
+        spec="Checked is the inverted block. Use a switch for settings that apply at once, a checkbox for choices submitted with a form, and radios for one of a few options with room to explain each."
       >
         <div className="grid" style={{ "--min": "200px" } as React.CSSProperties}>
           <fieldset className="stack" style={gap("10px")}>
@@ -221,7 +226,8 @@ export function Controls() {
       </Demo>
       <Demo
         title="Picking a value"
-        rules={
+        rules="Segmented for 2–5 options that change a view, range for continuous values, cells for discrete ones like sizes or dates."
+        spec={
           <ul>
             <li>Segmented for 2–5 exclusive options that change a view.</li>
             <li>Range for continuous values, with the number beside it in mono.</li>
@@ -277,7 +283,8 @@ export function Controls() {
       </Demo>
       <Demo
         title="Special inputs"
-        rules={
+        rules="Always pair a drop zone with a button."
+        spec={
           <ul>
             <li>A drop zone is a dashed line that turns fg while a file is over it. Always offer a button too.</li>
             <li>A one-time code is one box per digit, in mono.</li>
@@ -325,7 +332,8 @@ export function Controls() {
           </div>
         </div>
       </Demo>
-      <Demo title="Form layout" rules="On wide screens, a label column beside the controls, stacked on phones. One primary action, rightmost, at the end.">
+      <Demo title="Form layout" rules="Labels stack above their controls on phones. One primary action, at the end."
+        spec="On wide screens, a label column beside the controls, stacked on phones. One primary action, rightmost, at the end.">
         <div className="form-grid">
           <span className="label">Display name</span>
           <input className="input" defaultValue="mira" />

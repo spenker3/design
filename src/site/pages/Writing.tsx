@@ -90,7 +90,7 @@ export function Writing() {
   return (
     <Page
       title="Writing"
-      lede="Plain, short, sentence case. Every kind of text has a length limit and a style, kept in src/design/writing.ts and checked on this page."
+      lede="Every kind of text has a length limit and a style, kept in src/design/writing.ts."
     >
       <Demo title="Voice" bare>
         <ol className="principles">
@@ -108,7 +108,7 @@ export function Writing() {
 
       <Demo
         title="Text elements"
-        rules="The limit for each kind of text. Lengths are maximums, and shorter is better."
+        rules="Lengths are maximums, and shorter is better."
         bare
       >
         <div className="table-wrap">
@@ -146,11 +146,11 @@ export function Writing() {
         </div>
       </Demo>
 
-      <Demo title="Check a string" rules="Pick an element and type. The checks cover length, case, ending punctuation, exclamation marks and filler words.">
+      <Demo title="Check a string" rules="Checks length, case, ending punctuation, exclamation marks and filler words.">
         <Checker />
       </Demo>
 
-      <Demo title="Examples" rules="Every good and bad example is measured against its element's limit. A good example that fails its own check shows a warning." bare>
+      <Demo title="Examples" rules="A good example that fails its own check shows a warning." bare>
         <div className="w-elements">
           {elements.map((e) => (
             <section className="w-element" id={`w-${e.id}`} key={e.id}>
@@ -184,7 +184,7 @@ export function Writing() {
         </div>
       </Demo>
 
-      <Demo title="Mechanics" rules="Small choices made once, so text reads the same everywhere." bare>
+      <Demo title="Mechanics" rules="Decided once, so text reads the same everywhere." bare>
         <div className="table-wrap">
           <table className="table">
             <tbody>
@@ -202,7 +202,7 @@ export function Writing() {
         </div>
       </Demo>
 
-      <Demo title="Typography in use" rules="Every text element in one document, written in the house style. Long text always sits in .prose.">
+      <Demo title="Typography in use" rules="Long text always sits in .prose.">
         <div className="prose">
           <p className="eyebrow">Guide · 4 min read</p>
           <h2 style={{ marginTop: 0 }}>Writing for the inverted block</h2>

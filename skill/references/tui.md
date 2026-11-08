@@ -10,7 +10,7 @@ From the showcase pages (`#/<page>` on the dev site). Each rule says when and ho
 
 ### Terminal
 
-The same language on a grid of cells. Ink and paper become the terminal's own colors, selection becomes reverse video, and lines stay square and thin.
+Ink and paper are the terminal's own colors, and selection is reverse video.
 
 - **Roles in a terminal**:
   - **Paper and ink**: the terminal's default bg and fg (reset). Never paint a background on the screen or a pane.

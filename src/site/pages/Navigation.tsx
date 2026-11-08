@@ -14,7 +14,8 @@ export function Navigation() {
     <Page title="Navigation" lede="Where you are is always the inverted block: the current tab, page, workspace or step.">
       <Demo
         title="Tabs"
-        rules={
+        rules="Arrow keys move between tabs. Lined tabs split a page into sections, and a strip holds document or window tabs."
+        spec={
           <ul>
             <li>Cells with no gaps, and the selected cell inverts. Left and right arrows move between them. Counts sit in mono after the label.</li>
             <li>Lined tabs sit on a rule, for sections within a page.</li>
@@ -66,7 +67,8 @@ export function Navigation() {
       </Demo>
       <Demo
         title="Sidebar"
-        rules="Icon, label, and a count pushed right. Group labels outrank their items: same size, bold, full text color, sentence case. Never small, gray or uppercase. In an app shell the sidebar sits on a surface beside the main column and slides over the page on phones."
+        rules="Group labels outrank their items, so they're never small, gray or uppercase. On phones the sidebar slides over the page."
+        spec="Icon, label, and a count pushed right. Group labels outrank their items: same size, bold, full text color, sentence case. Never small, gray or uppercase. In an app shell the sidebar sits on a surface beside the main column and slides over the page on phones."
       >
         <nav className="nav" style={{ width: 240 }}>
           {(
@@ -87,7 +89,7 @@ export function Navigation() {
           </button>
         </nav>
       </Demo>
-      <Demo title="Top bar" rules="Wordmark, primary tabs, then a spacer, status text and ghost icon actions on the right. One line under it." pad={false}>
+      <Demo title="Top bar" spec="Wordmark, primary tabs, then a spacer, status text and ghost icon actions on the right. One line under it." pad={false}>
         <header className="topbar">
           <span className="wordmark">atlas</span>
           <Tabs
@@ -111,7 +113,8 @@ export function Navigation() {
       </Demo>
       <Demo
         title="Breadcrumbs, pagination, steps"
-        rules="Breadcrumbs end on the current page, unlinked. Pagination is flush numbered cells with the current one inverted, and an ellipsis for gaps. Steps show done, current and upcoming through a flow."
+        rules="The last breadcrumb is the current page and isn't a link."
+        spec="Breadcrumbs end on the current page, unlinked. Pagination is flush numbered cells with the current one inverted, and an ellipsis for gaps. Steps show done, current and upcoming through a flow."
       >
         <ol className="breadcrumbs">
           <li>

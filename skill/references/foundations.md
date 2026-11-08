@@ -31,7 +31,7 @@ From the showcase pages (`#/<page>` on the dev site). Each rule says when and ho
 
 ### Foundations
 
-Color, type and space. Every value is a token in tokens.css, set for light and dark together. Switch the theme in the top bar to check both.
+Every value is a token in tokens.css, set for light and dark together.
 
 - **Ground and text**:
   - bg and fg are pure white and black. Surfaces step toward fg for raised or grouped areas, one step per level.

@@ -38,9 +38,10 @@ export function Overlays() {
   return (
     <Page
       title="Overlays"
-      lede="Everything that floats above the page, with no shadow anywhere. Transient layers are bg with a 1px fg border, like the desktop's menus. Persistent chrome uses the strong line."
+      lede="Transient layers take an fg border, and chrome that stays on screen takes the strong line. No shadows."
     >
-      <Demo title="Menu" rules="Opens under its trigger. The hover or keyboard cursor is the inverted block. Shortcuts sit on the right, and destructive items go last, in red, under a rule.">
+      <Demo title="Menu" rules="Destructive items go last, under a rule."
+        spec="Opens under its trigger. The hover or keyboard cursor is the inverted block. Shortcuts sit on the right, and destructive items go last, in red, under a rule.">
         <div className="row wrap">
           <Menu
             trigger={(p) => (
@@ -68,7 +69,8 @@ export function Overlays() {
       </Demo>
       <Demo
         title="Dialog and sheet"
-        rules={
+        rules="Confirm only what can't be undone, and focus the safe choice. Otherwise act and offer Undo. A sheet keeps the list behind it in place."
+        spec={
           <ul>
             <li>A dialog has a title, a body, and actions on a line at the bottom with the primary rightmost. Esc or a click outside closes.</li>
             <li>Confirm only what can't be undone, and focus the safe choice. Otherwise act and offer Undo.</li>
@@ -135,7 +137,8 @@ export function Overlays() {
           </dl>
         </Dialog>
       </Demo>
-      <Demo title="Command palette" rules="Ctrl/⌘+K anywhere. Search field on top, results below with the cursor inverted, key hints in the footer.">
+      <Demo title="Command palette" rules="Opens with Ctrl/⌘ K from anywhere."
+        spec="Ctrl/⌘+K anywhere. Search field on top, results below with the cursor inverted, key hints in the footer.">
         <div>
           <button className="btn" onClick={() => setPalette(true)}>
             <Search /> Open palette <kbd>Ctrl K</kbd>
@@ -182,7 +185,8 @@ export function Overlays() {
       </Demo>
       <Demo
         title="Toasts and tooltips"
-        rules={
+        rules="Toasts leave after 4s and offer Undo instead of asking to confirm. Never put anything needed only in a tooltip."
+        spec={
           <ul>
             <li>Toasts sit bottom right (full width on phones), four at most, gone after 4s. A dot gives the tone. Offer Undo instead of asking to confirm.</li>
             <li>Tooltips are for icon-only buttons and truncated text. Inverted, small, after a short delay. Never put anything needed only in a tooltip.</li>
@@ -206,7 +210,8 @@ export function Overlays() {
       </Demo>
       <Demo
         title="Floating chrome"
-        rules={
+        rules="For work surfaces. The canvas dots pan and zoom with the content."
+        spec={
           <ul>
             <li>Work surfaces put their chrome over a dotted canvas, whose dots pan and zoom with the content: a tool rail, an inspector panel and a page dock. All are bg with line-strong, since they stay on screen.</li>
             <li>The pressed tool and the current page invert. The panel splits into labeled sections divided by lines.</li>

@@ -18,10 +18,11 @@ export function Content() {
   const [pick, setPick] = useState(1);
   const [tags, setTags] = useState(["Outerwear", "Size M", "Under $200"]);
   return (
-    <Page title="Content" lede="What a screen shows, in the flow of the page. Dense, aligned and quiet, with color only where it says something about the data.">
+    <Page title="Content" lede="Color appears only where it says something about the data.">
       <Demo
         title="Table"
-        rules="Small, bold, muted headers in sentence case on a surface, 36px rows (28 compact), mono right-aligned numbers. Sortable headers show an arrow. The selected row inverts, like the TUI's reversed highlight."
+        rules="Numbers are mono and right-aligned so they compare down a column. Compact tables use 28px rows."
+        spec="Small, bold, muted headers in sentence case on a surface, 36px rows (28 compact), mono right-aligned numbers. Sortable headers show an arrow. The selected row inverts, like the TUI's reversed highlight."
         bare
       >
         <div className="table-wrap">
@@ -55,7 +56,7 @@ export function Content() {
           </table>
         </div>
       </Demo>
-      <Demo title="List" rules="Rows divided by lines. Title plus a muted sub-line, with meta on the right. The selected row inverts.">
+      <Demo title="List" spec="Rows divided by lines. Title plus a muted sub-line, with meta on the right. The selected row inverts.">
         <div className="list">
           {["Launch plan", "Pricing brief", "Q3 roadmap"].map((t, i) => (
             <button key={t} aria-selected={pick === i} onClick={() => setPick(i)}>
@@ -74,7 +75,8 @@ export function Content() {
       </Demo>
       <Demo
         title="Cards and stats"
-        rules={
+        rules="Invert a card only for the one thing on a page that must stand apart. A card that is one link outlines in fg on hover."
+        spec={
           <ul>
             <li>Cards are a surface fill, 1px line and 16px padding. A card that is one link outlines in fg on hover. Footer actions sit behind a line.</li>
             <li>An inverted card is for the one thing on a page that must stand apart.</li>
@@ -113,18 +115,19 @@ export function Content() {
             </div>
           </div>
           <a className="card plain" href="#/content">
-            <h3>Clickable card</h3>
-            <p className="muted">The whole card is the target. The border goes fg on hover.</p>
+            <h3>Onboarding guide</h3>
+            <p className="muted">12 pages · updated Nov 4</p>
           </a>
           <div className="card inverted">
-            <h3>Inverted card</h3>
-            <p className="muted">For the one thing that must stand apart.</p>
+            <h3>Launch day</h3>
+            <p className="muted">Nov 14. Every beta team gets access at 9:00.</p>
           </div>
         </div>
       </Demo>
       <Demo
         title="Badges, tags, dots, avatars"
-        rules="Badges are outlined by default and solid for emphasis. A solid badge with no color is the inverted block, and a palette color via --c marks a category. Tags are removable filters. A dot gives status next to a word, never alone. Avatars are round initials."
+        rules="A palette color marks a category and a status color marks state. A dot always sits next to a word."
+        spec="Badges are outlined by default and solid for emphasis. A solid badge with no color is the inverted block, and a palette color via --c marks a category. Tags are removable filters. A dot gives status next to a word, never alone. Avatars are round initials."
       >
         <div className="row wrap">
           <span className="badge">draft</span>
@@ -162,7 +165,8 @@ export function Content() {
       </Demo>
       <Demo
         title="Progress, loading, empty"
-        rules={
+        rules="Color a progress bar only when its value has a status. An empty state offers one action at most."
+        spec={
           <ul>
             <li>Progress is a 4px square bar, colored only when the value has a status. Meters are segmented, like a battery.</li>
             <li>Skeletons match the shape of what's coming, with a slow pulse at most.</li>
@@ -197,7 +201,8 @@ export function Content() {
       </Demo>
       <Demo
         title="Details"
-        rules="Key/value lists have muted keys and plain values, for detail panes and metadata. An accordion is details rows divided by lines. A divider can carry a short label."
+        rules="Key/value lists are for detail panes and metadata."
+        spec="Key/value lists have muted keys and plain values, for detail panes and metadata. An accordion is details rows divided by lines. A divider can carry a short label."
       >
         <div className="grid" style={{ "--min": "240px" } as React.CSSProperties}>
           <dl className="dl" style={{ alignContent: "start" }}>
@@ -225,7 +230,8 @@ export function Content() {
       </Demo>
       <Demo
         title="Messages in the flow"
-        rules={
+        rules="Callouts sit inline next to what they're about. Banners carry app-wide state under the top bar."
+        spec={
           <ul>
             <li>Callouts sit inline: a colored rule and tint, a bold first line for the point, muted detail after. Neutral when nothing is wrong.</li>
             <li>Banners run full width under the top bar, for app-wide state. Inverted for notices, red for problems.</li>
@@ -279,7 +285,8 @@ export function Content() {
       </Demo>
       <Demo
         title="Chat"
-        rules="The user's messages sit right on a surface, and replies sit left on bg, as plain prose. The composer is an autosizing field with its actions on a row inside the border, send rightmost as the primary."
+        rules="Replies are plain prose, not bubbles. The composer grows with its text."
+        spec="The user's messages sit right on a surface, and replies sit left on bg, as plain prose. The composer is an autosizing field with its actions on a row inside the border, send rightmost as the primary."
       >
         <div className="stack" style={{ ...gap("10px"), maxWidth: 560 }}>
           <div className="msg user">How fast is heap insert?</div>

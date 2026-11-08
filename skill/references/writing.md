@@ -30,6 +30,7 @@ The house style for every kind of text, from [`src/design/writing.ts`](https://g
 | Ellipsis | The single character …, for work in progress and for actions that ask for more input. | Uploading… · Share… |
 | Quotes | Curly quotes and apostrophes in prose, straight in code. | “Saved” · it's |
 | Lists | Fragments without periods, full sentences with them. Don't mix in one list. |  |
+| Semicolons | Rarely. Use a period, or join with a comma and and. Keep one only when the two halves mean little apart. | Toasts leave after 4s. Errors stay. |
 | Abbreviations | Avoid them. Spell out on first use if they must appear. | Single sign-on (SSO) |
 | Emphasis | Bold for the one thing to notice. No italics for emphasis, no underlines except links. |  |
 

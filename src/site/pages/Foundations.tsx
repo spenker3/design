@@ -32,11 +32,12 @@ export function Foundations() {
   return (
     <Page
       title="Foundations"
-      lede="Color, type and space. Every value is a token in tokens.css, set for light and dark together. Switch the theme in the top bar to check both."
+      lede="Every value is a token in tokens.css, set for light and dark together."
     >
       <Demo
         title="Ground and text"
-        rules={
+        rules="Surfaces step toward fg one level per depth. Use line-strong where an edge meets a surface, and faint for disabled text, placeholders and labels that recede."
+        spec={
           <ul>
             <li>bg and fg are pure white and black. Surfaces step toward fg for raised or grouped areas, one step per level.</li>
             <li>line for edges, line-strong for edges that must hold up next to a surface.</li>
@@ -53,7 +54,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Selection"
-        rules="sel-bg and sel-fg are fg and bg swapped. Anything current or chosen uses them instead of an accent color. Empty or unused items drop to 50%."
+        rules="Anything current or chosen uses sel-bg and sel-fg instead of an accent color."
+        spec="sel-bg and sel-fg are fg and bg swapped. Anything current or chosen uses them instead of an accent color. Empty or unused items drop to 50%."
       >
         <div className="row wrap">
           <span className="sel-sample">Selected</span>
@@ -63,7 +65,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Meaning and palette"
-        rules={
+        rules="Status colors carry state, each with a tint for backgrounds. The palette marks categories in a fixed order, so a category keeps its color across views."
+        spec={
           <ul>
             <li>good, warn, bad and info carry status. Each has a tint for the background behind it. Dark values are lighter so they hold contrast on black.</li>
             <li>The palette is for categories and tags, always in this order so a category keeps its color across views. Chart series use their own order.</li>
@@ -75,7 +78,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Type"
-        rules={
+        rules="14px for UI, 16px for reading. Hierarchy comes from size and weight, never color alone."
+        spec={
           <ul>
             <li>Helvetica (Nimbus Sans or TeX Gyre Heros on Linux) for everything. 14px is the UI base and 16px is for reading.</li>
             <li>Large sizes tighten their tracking. Hierarchy comes from size and weight, never color alone.</li>
@@ -95,7 +99,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Mono"
-        rules="Geist Mono for anything typed or read by a machine: commands, file names, tokens, values. Keys are kbd, joined by a space. Numbers that must line up are mono and tabular. Paths can drop the background with code.path."
+        rules="Geist Mono for anything typed or read by a machine, and for numbers that must line up."
+        spec="Geist Mono for anything typed or read by a machine: commands, file names, tokens, values. Keys are kbd, joined by a space. Numbers that must line up are mono and tabular. Paths can drop the background with code.path."
       >
         <div className="stack" style={gap("10px")}>
           <p>
@@ -116,7 +121,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Space and size"
-        rules={
+        rules="Components carry no outer margin, so layouts set --gap. 8–12px inside a group, 16–24 between groups, 48+ between sections."
+        spec={
           <ul>
             <li>A 4px rhythm, with 2 and 6 for tight UI. Components carry no outer margin, and layouts (.stack, .row, .grid) set --gap.</li>
             <li>Use 8–12 inside controls and groups, 16–24 between groups, 48+ between page sections.</li>
@@ -137,7 +143,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Shape and elevation"
-        rules={
+        rules="No shadows anywhere. Only avatars, dots and radios are round."
+        spec={
           <ul>
             <li>4px corners everywhere, 2px for small parts inside controls (checkboxes, badges, kbd). Round only for avatars, dots and radios.</li>
             <li>No shadows. Raised areas use a surface fill. Overlays get a 1px fg border, and modals add a light scrim.</li>

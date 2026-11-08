@@ -223,11 +223,12 @@ export function Charts() {
   return (
     <Page
       title="Charts & graphs"
-      lede="Data drawn as marks, and things drawn as nodes and links. Thin marks, quiet axes, and color only to tell series or groups apart."
+      lede="Color only tells series or groups apart."
     >
       <Demo
         title="Lines"
-        rules={
+        rules="Two to four series use the series colors in order, and more fold into Other or split into small multiples. Never a second y-axis."
+        spec={
           <ul>
             <li>One series is fg with no legend, since the title names it. 2px line, mono axis labels in faint, gridlines in line. Hover shows a crosshair and the value. The points carry no numbers.</li>
             <li>Two to four series use --series-1 to 4 in order, which stay distinct under color blindness, with a legend above and a label at each line's end so identity never rests on color alone.</li>
@@ -240,7 +241,8 @@ export function Charts() {
       </Demo>
       <Demo
         title="Scatter"
-        rules="8px dots with a 2px bg ring so overlaps stay readable. A highlighted group uses a series color, and the rest stay fg at reduced opacity."
+        rules="Each dot has a bg ring so overlaps stay readable."
+        spec="8px dots with a 2px bg ring so overlaps stay readable. A highlighted group uses a series color, and the rest stay fg at reduced opacity."
       >
         <div className="stack" style={gap("var(--space-3)")}>
           <div className="legend">
@@ -252,7 +254,8 @@ export function Charts() {
       </Demo>
       <Demo
         title="Small charts"
-        rules={
+        rules="A sparkline sits next to the number it explains, colored only when the trend is itself a status."
+        spec={
           <ul>
             <li>A sparkline is a trend without axes, inline at text height next to the number it explains. fg by default, colored only when the trend itself is a status.</li>
             <li>Simple bars are one series in fg with 2px gaps and a flat baseline. Hover shows the value.</li>
@@ -281,7 +284,8 @@ export function Charts() {
       </Demo>
       <Demo
         title="Heatmap"
-        rules="One hue, fg mixed into the surface by value. Never a rainbow. With one variable darker already reads as more, so it needs no scale; hover names the cell's value."
+        rules="One hue, never a rainbow. Darker reads as more, so it needs no scale."
+        spec="One hue, fg mixed into the surface by value. Never a rainbow. With one variable darker already reads as more, so it needs no scale. Hover names the cell's value."
       >
         <div className="heat" style={{ "--cols": 26 } as React.CSSProperties}>
           {days.map((v, i) => (
@@ -291,7 +295,8 @@ export function Charts() {
       </Demo>
       <Demo
         title="Note graph"
-        rules="Obsidian-style: a force layout where dots grow with their link count and unlinked notes are faint. Gray by default, colored only for a group the reader chose (folder, tag). Hover lights a note's neighborhood and dims the rest. The selected label inverts. Hubs are always labeled, and other labels appear on hover or once zoomed in."
+        rules="Gray until the reader picks a group to color. Hubs are always labeled, other notes on hover or zoom."
+        spec="Obsidian-style: a force layout where dots grow with their link count and unlinked notes are faint. Gray by default, colored only for a group the reader chose (folder, tag). Hover lights a note's neighborhood and dims the rest. The selected label inverts. Hubs are always labeled, and other labels appear on hover or once zoomed in."
         bare
       >
         <ForceGraph label="Notes and the links between them" nodes={vaultNodes} links={vaultLinks} groups={vaultGroups} />
@@ -304,7 +309,8 @@ export function Charts() {
       </Demo>
       <Demo
         title="Node editor"
-        rules="Cards on a dotted canvas, dragged by the header. Drag the background to pan and scroll to zoom, as in the note graph, so a large graph fits a small window. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor."
+        rules="Drag a header to move a node, the background to pan, and scroll to zoom. Port and wire color is the data type."
+        spec="Cards on a dotted canvas, dragged by the header. Drag the background to pan and scroll to zoom, as in the note graph, so a large graph fits a small window. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor."
         bare
       >
         <NodeEditor label="Material nodes" nodes={editorNodes} wires={editorWires} types={types} />
@@ -318,11 +324,12 @@ export function Charts() {
       </Demo>
       <Demo
         title="Diagrams"
-        rules={
+        rules="Written in Mermaid syntax and rendered by Pele, whose colors map to the tokens. Never set colors in the diagram."
+        spec={
           <ul>
             <li>Write diagrams in Mermaid syntax, rendered by Pele. Its --pele-* colors map onto the tokens, so diagrams follow the theme. Never set colors with style or classDef.</li>
             <li>Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted and labels mono. Subgraphs get a quiet line and a surface fill.</li>
-            <li>Flow left to right, loops below. Color only marks an outcome, and a dead end is dashed. Trees go top down; networks use round nodes.</li>
+            <li>Flow left to right, loops below. Color only marks an outcome, and a dead end is dashed. Trees go top down, and networks use round nodes.</li>
             <li>Sequences run top to bottom, replies dashed, notes on a surface. State transitions are labeled with their action, lowercase.</li>
             <li>Class and ER members are mono so types line up. Label each relation with a verb.</li>
             <li>Gantt: done work recedes, the active task is fg, critical work is --bad. Git graphs and mind maps take the series colors in order.</li>

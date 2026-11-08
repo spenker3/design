@@ -13,7 +13,9 @@ export function Page({ title, lede, children }: { title: string; lede?: ReactNod
   );
 }
 
-/* One example: name, the rules for using it, and the live preview. */
+/* One example: name, a short rule, and the live preview. rules is what the site shows: only what the
+   preview can't. spec is never rendered. It's the full text for the skill, which can't see the preview,
+   and replaces rules there. */
 export function Demo({
   title,
   rules,
@@ -23,6 +25,7 @@ export function Demo({
 }: {
   title: string;
   rules?: ReactNode;
+  spec?: ReactNode;
   children: ReactNode;
   bare?: boolean;
   pad?: boolean;

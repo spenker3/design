@@ -39,7 +39,7 @@ export function Skill() {
   const [path, setPath] = useState(files[0]?.path ?? "");
   const file = files.find((f) => f.path === path) ?? files[0];
   return (
-    <Page title="Skill" lede="The generated files in skill/, as Claude reads them. They update as the generator rewrites them.">
+    <Page title="Skill" lede="The generated files in skill/, as Claude reads them. They change only at commit.">
       <Tabs variant="lined" value={file.path} onChange={setPath} options={files.map((f) => ({ value: f.path, label: f.path.replace("references/", "") }))} />
       {file.path.endsWith(".md") ? <Markdown text={file.text} /> : <CodeBlock code={file.text} lang="json" file={file.path} lines />}
     </Page>
