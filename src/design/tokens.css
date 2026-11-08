@@ -79,7 +79,7 @@
   --scrim: light-dark(rgb(255 255 255 / 0.6), rgb(0 0 0 / 0.6));
   --overlay-border: var(--fg);
 
-  /* Type: Helvetica for everything, Geist Mono for code, numbers in tables, keys. */
+  /* Type: Helvetica for everything, Geist Mono for code, keys, and numbers in table columns. */
   --font-ui: Helvetica, "Helvetica Neue", "Nimbus Sans", "TeX Gyre Heros", Arial, sans-serif;
   --font-mono: "Geist Mono Variable", "GeistMono Nerd Font", ui-monospace, monospace;
 

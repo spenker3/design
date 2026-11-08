@@ -99,8 +99,8 @@ export function Foundations() {
       </Demo>
       <Demo
         title="Mono"
-        rules="Geist Mono for anything typed or read by a machine, and for numbers that must line up."
-        spec="Geist Mono for anything typed or read by a machine: commands, file names, tokens, values. Keys are kbd, joined by a space. Numbers that must line up are mono and tabular. Paths can drop the background with code.path."
+        rules="Geist Mono for anything typed or read by a machine, and for numbers compared down a column, like prices in a table."
+        spec="Geist Mono for anything typed or read by a machine: commands, file names, tokens, values. Keys are kbd, joined by a space. Numbers compared down a column (table figures, prices, IDs) are mono and tabular. Every other number stays in the sans, with tabular figures when it changes in place: counts, page and step numbers, axis labels, deltas, citations, zoom levels. Never pad them with leading zeros. Paths can drop the background with code.path."
       >
         <div className="stack" style={gap("10px")}>
           <p>
@@ -134,7 +134,7 @@ export function Foundations() {
           {space.map((px) => (
             <div className="stack" style={{ ...gap("6px"), alignItems: "center" }} key={px}>
               <span style={{ width: Math.min(px, 48), height: px, background: "var(--fg)" }} />
-              <span className="mono faint" style={{ fontSize: 11 }}>
+              <span className="faint num" style={{ fontSize: 11 }}>
                 {px}
               </span>
             </div>

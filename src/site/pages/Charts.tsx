@@ -230,7 +230,7 @@ export function Charts() {
         rules="Two to four series use the series colors in order, and more fold into Other or split into small multiples. Never a second y-axis."
         spec={
           <ul>
-            <li>One series is fg with no legend, since the title names it. 2px line, mono axis labels in faint, gridlines in line. Hover shows a crosshair and the value. The points carry no numbers.</li>
+            <li>One series is fg with no legend, since the title names it. 2px line, faint axis labels in tabular figures, gridlines in line. Hover shows a crosshair and the value. The points carry no numbers.</li>
             <li>Two to four series use --series-1 to 4 in order, which stay distinct under color blindness, with a legend above and a label at each line's end so identity never rests on color alone.</li>
             <li>A fifth series folds into Other, or the chart splits into small multiples. Never a second y-axis.</li>
           </ul>
@@ -264,15 +264,15 @@ export function Charts() {
       >
         <div className="row wrap" style={{ ...gap("var(--space-7)"), justifyContent: "space-between" }}>
           <span className="row" style={gap("var(--space-3)")}>
-            <span className="mono">3,120</span>
+            <span className="num">3,120</span>
             <Spark values={visits} />
           </span>
           <span className="row" style={gap("var(--space-3)")}>
-            <span className="mono">99.2%</span>
+            <span className="num">99.2%</span>
             <Spark values={[99.9, 99.8, 99.9, 99.7, 99.1, 98.6, 99.2]} color="var(--bad)" />
           </span>
           <span className="row" style={gap("var(--space-3)")}>
-            <span className="mono">48 ms</span>
+            <span className="num">48 ms</span>
             <Spark values={[62, 58, 60, 55, 53, 50, 51, 48]} />
           </span>
         </div>
@@ -328,7 +328,7 @@ export function Charts() {
         spec={
           <ul>
             <li>Write diagrams in Mermaid syntax, rendered by Pele. Its --pele-* colors map onto the tokens, so diagrams follow the theme. Never set colors with style or classDef.</li>
-            <li>Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted and labels mono. Subgraphs get a quiet line and a surface fill.</li>
+            <li>Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted. Subgraphs get a quiet line and a surface fill.</li>
             <li>Flow left to right, loops below. Color only marks an outcome, and a dead end is dashed. Trees go top down, and networks use round nodes.</li>
             <li>Sequences run top to bottom, replies dashed, notes on a surface. State transitions are labeled with their action, lowercase.</li>
             <li>Class and ER members are mono so types line up. Label each relation with a verb.</li>

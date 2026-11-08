@@ -712,8 +712,8 @@ legend {
   background: none;
   border: none;
   outline: none;
-  font-family: var(--font-mono);
   font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 
 .dock {
@@ -733,7 +733,8 @@ legend {
   border: none;
   border-radius: var(--radius-sm);
   color: var(--muted);
-  font: 500 12px/1 var(--font-mono);
+  font: 500 12px/1 var(--font-ui);
+  font-variant-numeric: tabular-nums;
 }
 
 .dock-page:hover:not([aria-pressed="true"]) {

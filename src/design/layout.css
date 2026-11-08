@@ -154,7 +154,6 @@
 /* Footnotes */
 .prose sup a {
   text-decoration: none;
-  font-family: var(--font-mono);
   color: var(--muted);
 }
 

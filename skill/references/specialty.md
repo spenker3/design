@@ -73,20 +73,20 @@ Long-form pieces reuse the prose type and add as little as possible.
 - **Math**:
   - LaTeX rendered with KaTeX. Math keeps its own serif faces, the one place the system leaves Helvetica.
   - Inline math sits on the baseline at 1.1em. Keep it short: anything with a fraction or a sum goes on its own line.
-  - Display math is centered with its number at the right in mono. Number only what you refer to, as Equation (1).
+  - Display math is centered with its number at the right. Number only what you refer to, as Equation (1).
   - Align derivations on the relation sign, one step per line, and say what changed in the text.
   - Math inherits the text color, so it inverts with a selected row. Bad TeX shows its source in mono and --bad instead of breaking the page.
 - **Papers**:
   - An abstract is an h4 title on a surface, slightly smaller text with looser leading, one paragraph.
   - Theorems and lemmas get a 2px fg rule, and definitions and remarks a soft one. The label is bold with an optional name in normal weight. A proof has no rule and ends with ∎ at the right.
-  - Citations are numbered, in mono brackets, muted until hovered. Each links to its reference, whose number inverts when targeted. Titles in italics, everything else plain.
+  - Citations are numbered in brackets, muted until hovered. Each links to its reference, whose number inverts when targeted. Titles in italics, everything else plain.
 
 ### Charts & graphs
 
 Color only tells series or groups apart.
 
 - **Lines**:
-  - One series is fg with no legend, since the title names it. 2px line, mono axis labels in faint, gridlines in line. Hover shows a crosshair and the value. The points carry no numbers.
+  - One series is fg with no legend, since the title names it. 2px line, faint axis labels in tabular figures, gridlines in line. Hover shows a crosshair and the value. The points carry no numbers.
   - Two to four series use --series-1 to 4 in order, which stay distinct under color blindness, with a legend above and a label at each line's end so identity never rests on color alone.
   - A fifth series folds into Other, or the chart splits into small multiples. Never a second y-axis.
 - **Scatter**: 8px dots with a 2px bg ring so overlaps stay readable. A highlighted group uses a series color, and the rest stay fg at reduced opacity.
@@ -98,7 +98,7 @@ Color only tells series or groups apart.
 - **Node editor**: Cards on a dotted canvas, dragged by the header. Drag the background to pan and scroll to zoom, as in the note graph, so a large graph fits a small window. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor.
 - **Diagrams**:
   - Write diagrams in Mermaid syntax, rendered by Pele. Its --pele-* colors map onto the tokens, so diagrams follow the theme. Never set colors with style or classDef.
-  - Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted and labels mono. Subgraphs get a quiet line and a surface fill.
+  - Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted. Subgraphs get a quiet line and a surface fill.
   - Flow left to right, loops below. Color only marks an outcome, and a dead end is dashed. Trees go top down, and networks use round nodes.
   - Sequences run top to bottom, replies dashed, notes on a surface. State transitions are labeled with their action, lowercase.
   - Class and ER members are mono so types line up. Label each relation with a verb.

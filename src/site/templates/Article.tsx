@@ -92,8 +92,8 @@ export function Article() {
           <div className="grid" style={{ "--min": "220px" } as React.CSSProperties}>
             {["Lines instead of shadows", "One typeface is enough", "Dense and calm"].map((t, i) => (
               <a key={t} className="card plain" href="#/t/article">
-                <span className="muted mono" style={{ fontSize: 11 }}>
-                  0{i + 2}
+                <span className="muted" style={{ fontSize: 12 }}>
+                  {i + 2}
                 </span>
                 <h3>{t}</h3>
                 <span className="muted" style={{ fontSize: "var(--text-sm)" }}>

@@ -22,7 +22,7 @@ Everything else follows from keeping those four jobs apart. The interface stays 
 3. **Gray for structure, color for meaning.** Surfaces, lines and muted text are gray. Color marks status, data and emphasis, and is used anywhere it helps, buttons included.
 4. **Nearly square.** Corners are 4px (2px on small parts). Only round things are round: avatars, dots, radios.
 5. **Lines instead of shadows.** Edges are 1px lines. Overlays get a fg border and a light scrim instead of a drop shadow.
-6. **One typeface, plus mono.** Helvetica for everything, and Geist Mono for code, keys and numbers that line up. Hierarchy comes from size and weight, never from more fonts.
+6. **One typeface, plus mono.** Helvetica for everything, and Geist Mono for code, keys, and numbers compared down a column. Hierarchy comes from size and weight, never from more fonts.
 7. **Dense and calm.** 14px base, 32px controls (44px on touch), tight spacing and no decoration.
 8. **Almost no motion.** Short fades and nudges of 80–140ms at most, and none with reduced motion.
 9. **Keyboard first.** Everything is reachable by keyboard and shows its shortcut. Key hints hide on touch.
@@ -54,7 +54,7 @@ The catalog won't cover everything. For a new element, answer these in order and
 3. **Does it float above the page?** A transient layer (menu, dialog, toast, popover, chart tooltip) is bg with a 1px fg border, plus `--scrim` when modal. A persistent one (toolbar, inspector, dock) is bg with `line-strong`.
 4. **Is it grouped or raised content?** Step to the next surface. Don't add a shadow or a colored panel.
 5. **Does color say something true about it?** For status, use a meaning color with its tint. For a category, use the palette in order. For a data series, use the series order. Otherwise it's gray. Color never identifies something alone, so pair it with a label, icon, position or end label.
-6. **Is it read by a machine, a key, or a number that has to line up?** Set it in mono. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
+6. **Is it read by a machine, a key, or a number compared down a column (a table figure, a price)?** Set it in mono. Other numbers (counts, page and step numbers, axis labels, deltas, citations) stay in the sans with tabular figures and no leading zeros. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
 7. **Is it unavailable or empty?** Disabled drops to about 45% opacity, and empty or unused items to 50%. Don't use a new color.
 8. **Is it round by nature?** Avatars, status dots, radios and data points are round. Everything else gets 4px corners, or 2px for small parts inside a control.
 9. **How big is it?** Snap to the control sizes (32px, 26px small, 40px large, 44px on touch) and the spacing scale. Use 8px–12px inside groups, 16px–24px between groups, and 48px+ between page sections. Default to dense.
@@ -70,6 +70,7 @@ If the answers leave two options, pick the plainer one.
 - Drop shadows, glows, blur, or decorative gradients.
 - Pills or large radii on rectangular things.
 - A second sans or mono, or a display face. The one exception is math, which keeps KaTeX's own faces.
+- Mono as decoration: on step, list or page numbers, counts, dates, or labels, and numbers padded with leading zeros (01, 02).
 - Color that carries no meaning: tinted section backgrounds, rainbow icons, a brand hue on every heading.
 - Rainbow scales, a second y-axis, or a legend that relies on color alone.
 - Title Case, ALL CAPS in source text, exclamation marks, cheer, filler, or emoji as decoration. Small labels are sentence case, bold and muted, never uppercase or letter-spaced.
@@ -101,9 +102,9 @@ Values as light / dark where they differ. Full tables with notes: `references/to
 
 Screens repeat a few arrangements. `references/screens.md` lists 6 full examples, one per arrangement, with their source files. Read the closest one before building a new screen.
 
-- **App shell.** A sidebar on `--surface` (nav with the current item inverted, small faint group labels, counts in mono on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
+- **App shell.** A sidebar on `--surface` (nav with the current item inverted, small faint group labels, counts on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
 - **Reading.** One column at 68ch, 16px at 1.65 leading (`.prose`). A heavy, tightly tracked title, a muted dek, and figures captioned below with a bold number.
-- **Data.** A grid of stat cards (label, big tabular number, mono delta colored by direction), then a chart, then a dense table. Color appears only in badges, deltas and status dots.
+- **Data.** A grid of stat cards (label, big tabular number, delta colored by direction), then a chart, then a dense table. Color appears only in badges, deltas and status dots.
 - **Work surface.** A dotted canvas with floating chrome: a tool rail, an inspector panel, and a page dock, all bg with `line-strong`. The pressed tool and the current page invert.
 - **Settings and forms.** A label column beside the controls, stacked on phones. Bold labels above fields, help text below, and errors in red that replace the help. One primary action per region, rightmost. A danger zone goes last, with danger buttons.
 - **Overlays.** A menu opens under its trigger, and its cursor is the inverted block. A dialog has a title, body, and actions on a line at the bottom with the primary rightmost. A sheet is a side panel. Apps get a Ctrl/⌘K palette.

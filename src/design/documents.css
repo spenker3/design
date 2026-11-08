@@ -262,7 +262,6 @@ code.token {
   grid-column: 3;
   justify-self: end;
   color: var(--muted);
-  font-family: var(--font-mono);
   font-size: var(--text-sm);
 }
 
@@ -314,7 +313,6 @@ code.token {
 /* Citations and references */
 .cite {
   color: var(--muted);
-  font-family: var(--font-mono);
   font-size: 0.85em;
   text-decoration: none;
 }
@@ -348,7 +346,7 @@ code.token {
   padding: 0 var(--space-0);
   border-radius: var(--radius-sm);
   color: var(--muted);
-  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 .refs > li:target::before {

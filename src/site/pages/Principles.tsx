@@ -23,7 +23,7 @@ const rules: [string, string][] = [
   ],
   [
     "One typeface, plus mono",
-    "Helvetica for everything, and Geist Mono for code, keys and numbers that line up. Hierarchy comes from size and weight, never from more fonts.",
+    "Helvetica for everything, and Geist Mono for code, keys, and numbers compared down a column. Hierarchy comes from size and weight, never from more fonts.",
   ],
   [
     "Dense and calm",
@@ -52,7 +52,7 @@ export function Principles() {
       <ol className="principles">
         {rules.map(([title, body], i) => (
           <li key={title}>
-            <span className="mono faint">{String(i + 1).padStart(2, "0")}</span>
+            <span className="n faint num">{i + 1}</span>
             <div className="stack" style={{ "--gap": "4px" } as React.CSSProperties}>
               <h3>{title}</h3>
               <p className="muted">{body}</p>

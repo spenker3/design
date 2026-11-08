@@ -46,7 +46,7 @@ Every value is a token in tokens.css, set for light and dark together.
   - Large sizes tighten their tracking. Hierarchy comes from size and weight, never color alone.
   - h1–h3 step down by size, and h4 is the small muted section label.
   - 400 for body, 500 for controls, 600 for emphasis and headings, 700 for display.
-- **Mono**: Geist Mono for anything typed or read by a machine: commands, file names, tokens, values. Keys are kbd, joined by a space. Numbers that must line up are mono and tabular. Paths can drop the background with code.path.
+- **Mono**: Geist Mono for anything typed or read by a machine: commands, file names, tokens, values. Keys are kbd, joined by a space. Numbers compared down a column (table figures, prices, IDs) are mono and tabular. Every other number stays in the sans, with tabular figures when it changes in place: counts, page and step numbers, axis labels, deltas, citations, zoom levels. Never pad them with leading zeros. Paths can drop the background with code.path.
 - **Space and size**:
   - A 4px rhythm, with 2 and 6 for tight UI. Components carry no outer margin, and layouts (.stack, .row, .grid) set --gap.
   - Use 8–12 inside controls and groups, 16–24 between groups, 48+ between page sections.

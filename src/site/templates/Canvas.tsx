@@ -175,7 +175,7 @@ export function Canvas() {
           <button className="btn ghost icon sm" aria-label="Zoom out" onClick={() => setZoom(Math.max(25, zoom - 25))}>
             <Minus />
           </button>
-          <span className="mono num" style={{ width: 44, textAlign: "center", fontSize: 12 }}>
+          <span className="num" style={{ width: 44, textAlign: "center", fontSize: 12 }}>
             {zoom}%
           </span>
           <button className="btn ghost icon sm" aria-label="Zoom in" onClick={() => setZoom(Math.min(400, zoom + 25))}>

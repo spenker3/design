@@ -118,7 +118,7 @@ monochrome first. Keywords get weight, and color marks literals and names.
 
 ## Type
 
-Helvetica for everything, Geist Mono for code, numbers in tables, keys.
+Helvetica for everything, Geist Mono for code, keys, and numbers in table columns.
 
 | Token | Value |
 | --- | --- |

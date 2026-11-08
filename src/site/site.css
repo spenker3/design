@@ -191,7 +191,7 @@
   border-bottom: var(--border) solid var(--line);
 }
 
-.principles li > .mono {
+.principles li > .n {
   padding-top: 3px;
 }
 
@@ -321,7 +321,8 @@ body:has(.template-bar) .settings-save {
 
 .ex-n {
   color: var(--faint);
-  font: 500 11px/1 var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 
 .ex-n.over {

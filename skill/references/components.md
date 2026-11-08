@@ -111,7 +111,7 @@ Secondary is the default. Only the main action and whatever is chosen invert.
 - **Checks, radios, switches**: Checked is the inverted block. Use a switch for settings that apply at once, a checkbox for choices submitted with a form, and radios for one of a few options with room to explain each.
 - **Picking a value**:
   - Segmented for 2–5 exclusive options that change a view.
-  - Range for continuous values, with the number beside it in mono.
+  - Range for continuous values, with the number beside it in tabular figures.
   - Cells for a grid of discrete options like sizes or dates. The chosen cell inverts and unavailable ones are disabled.
   - Swatches pick a color. The chosen one gets an fg ring, since its fill is already the color.
 - **Special inputs**:
@@ -125,7 +125,7 @@ Secondary is the default. Only the main action and whatever is chosen invert.
 Where you are is always the inverted block: the current tab, page, workspace or step.
 
 - **Tabs**:
-  - Cells with no gaps, and the selected cell inverts. Left and right arrows move between them. Counts sit in mono after the label.
+  - Cells with no gaps, and the selected cell inverts. Left and right arrows move between them. Counts sit after the label in tabular figures.
   - Lined tabs sit on a rule, for sections within a page.
   - A strip is full width and flush, and its tabs share the width equally up to half each. For document or window tabs.
   - Workspace cells are numbered squares. The current one inverts and empty ones drop to 50%.
@@ -142,7 +142,7 @@ Color appears only where it says something about the data.
 - **Cards and stats**:
   - Cards are a surface fill, 1px line and 16px padding. A card that is one link outlines in fg on hover. Footer actions sit behind a line.
   - An inverted card is for the one thing on a page that must stand apart.
-  - A stat is a label, a big tabular number, and a mono delta colored by direction.
+  - A stat is a label, a big tabular number, and a delta colored by direction.
 - **Badges, tags, dots, avatars**: Badges are outlined by default and solid for emphasis. A solid badge with no color is the inverted block, and a palette color via --c marks a category. Tags are removable filters. A dot gives status next to a word, never alone. Avatars are round initials.
 - **Progress, loading, empty**:
   - Progress is a 4px square bar, colored only when the value has a status. Meters are segmented, like a battery.

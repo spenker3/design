@@ -17,7 +17,7 @@ export function Navigation() {
         rules="Arrow keys move between tabs. Lined tabs split a page into sections, and a strip holds document or window tabs."
         spec={
           <ul>
-            <li>Cells with no gaps, and the selected cell inverts. Left and right arrows move between them. Counts sit in mono after the label.</li>
+            <li>Cells with no gaps, and the selected cell inverts. Left and right arrows move between them. Counts sit after the label in tabular figures.</li>
             <li>Lined tabs sit on a rule, for sections within a page.</li>
             <li>A strip is full width and flush, and its tabs share the width equally up to half each. For document or window tabs.</li>
             <li>Workspace cells are numbered squares. The current one inverts and empty ones drop to 50%.</li>

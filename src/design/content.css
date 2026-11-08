@@ -434,7 +434,10 @@ button.card:hover {
 }
 
 .stat .delta {
-  font: 500 12px/1 var(--font-mono);
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
   color: var(--muted);
 }
 
@@ -749,7 +752,7 @@ blockquote {
 
 .accordion summary::after {
   content: "+";
-  font: 400 18px/1 var(--font-mono);
+  font: 400 18px/1 var(--font-ui);
   color: var(--muted);
 }
 

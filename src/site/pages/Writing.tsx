@@ -48,7 +48,7 @@ function Checker() {
       </div>
       <div className="stack" style={{ "--gap": "8px" } as React.CSSProperties}>
         <div className="row between">
-          <span className="mono num" style={{ fontSize: 12 }}>
+          <span className="num" style={{ fontSize: 12 }}>
             {n} / {el.max} {el.unit}
           </span>
           <span className="muted" style={{ fontSize: "var(--text-sm)" }}>
@@ -96,7 +96,7 @@ export function Writing() {
         <ol className="principles">
           {voice.map(([t, b], i) => (
             <li key={t}>
-              <span className="mono faint">{String(i + 1).padStart(2, "0")}</span>
+              <span className="faint num">{i + 1}</span>
               <div className="stack" style={{ "--gap": "4px" } as React.CSSProperties}>
                 <h3>{t}</h3>
                 <p className="muted">{b}</p>
@@ -192,7 +192,7 @@ export function Writing() {
                 <tr key={k}>
                   <td style={{ fontWeight: 600, width: 1 }}>{k}</td>
                   <td style={{ whiteSpace: "normal" }}>{rule}</td>
-                  <td className="mono muted" style={{ fontSize: 12 }}>
+                  <td className="muted">
                     {ex}
                   </td>
                 </tr>

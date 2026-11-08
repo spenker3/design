@@ -97,7 +97,7 @@ export function Dashboard() {
             <section className="card">
               <div className="card-head">
                 <h3>Revenue per day</h3>
-                <span className="muted mono" style={{ fontSize: 12 }}>
+                <span className="muted num" style={{ fontSize: 12 }}>
                   peak ${max * 10}
                 </span>
               </div>

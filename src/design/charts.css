@@ -48,7 +48,9 @@
   justify-content: space-between;
   margin-top: var(--space-2);
   color: var(--faint);
-  font: 500 11px/1 var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Node editor */
@@ -181,7 +183,7 @@
 .node-value {
   margin-left: auto;
   color: var(--text);
-  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Charts (SVG) */
@@ -209,7 +211,8 @@
 
 .chart-axis {
   fill: var(--faint);
-  font: 500 11px var(--font-mono);
+  font: 11px var(--font-ui);
+  font-variant-numeric: tabular-nums;
 }
 
 .chart-line {
@@ -448,5 +451,5 @@
 
 .diagram .pele-edge-label,
 .diagram .pele-cluster-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
 }

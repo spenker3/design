@@ -65,7 +65,7 @@ export function Content() {
                 <div className="title">{t}</div>
                 <div className="sub muted">{["24 pages · slides", "18 pages · notes", "4 pages · doc"][i]}</div>
               </span>
-              <span className="muted mono" style={{ fontSize: 12 }}>
+              <span className="muted" style={{ fontSize: 12 }}>
                 {["Oct 28", "Oct 30", "Nov 2"][i]}
               </span>
               <ChevronRight size={16} className="muted" />
@@ -80,7 +80,7 @@ export function Content() {
           <ul>
             <li>Cards are a surface fill, 1px line and 16px padding. A card that is one link outlines in fg on hover. Footer actions sit behind a line.</li>
             <li>An inverted card is for the one thing on a page that must stand apart.</li>
-            <li>A stat is a label, a big tabular number, and a mono delta colored by direction.</li>
+            <li>A stat is a label, a big tabular number, and a delta colored by direction.</li>
           </ul>
         }
       >
@@ -211,7 +211,7 @@ export function Content() {
             <dt>Owner</dt>
             <dd>Mira Chen</dd>
             <dt>Pages</dt>
-            <dd className="mono">24</dd>
+            <dd>24</dd>
           </dl>
           <div className="stack">
             <div className="accordion">

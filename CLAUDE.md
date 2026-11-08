@@ -27,7 +27,7 @@ The user's personal design language, worked out as a demo site and component lib
 - Chart series use `--series-1..4` (blue, orange, violet, yellow), an order validated for color blindness in both themes; the palette order itself puts red next to orange. One series is fg.
 - Radius 4px (`--radius`), 2px for small parts; round only for avatars, dots, radios. Chosen over 0px and 8px.
 - No shadows. 1px lines; overlays are bg with a 1px fg border, plus a light scrim when modal.
-- Helvetica everywhere, Geist Mono for code, keys, and aligned numbers. 14px base, 32px controls (44px on touch). Almost no motion (80–140ms).
+- Helvetica everywhere, Geist Mono only for code, keys, and numbers compared down a column (table figures, prices, IDs). Other numbers (counts, page/step numbers, axes, citations) stay Helvetica with tabular figures, never zero-padded. 14px base, 32px controls (44px on touch). Almost no motion (80–140ms).
 - The user's own native apps, Omarchy apps included, use this design rather than the Omarchy theme: token colors, no theme accent, 4px radius regardless of Hyprland. Only the theme's light/dark `mode` is followed.
 - Colors use `light-dark(LIGHT, DARK)` in `tokens.css`, so every token is set for both themes on one line. Theme follows the system; `data-theme="light"|"dark"` on `<html>` forces one.
 

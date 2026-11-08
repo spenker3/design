@@ -230,7 +230,7 @@ export function Controls() {
         spec={
           <ul>
             <li>Segmented for 2–5 exclusive options that change a view.</li>
-            <li>Range for continuous values, with the number beside it in mono.</li>
+            <li>Range for continuous values, with the number beside it in tabular figures.</li>
             <li>Cells for a grid of discrete options like sizes or dates. The chosen cell inverts and unavailable ones are disabled.</li>
             <li>Swatches pick a color. The chosen one gets an fg ring, since its fill is already the color.</li>
           </ul>
@@ -256,7 +256,7 @@ export function Controls() {
               style={{ "--fill": `${range}%` } as React.CSSProperties}
               onChange={(e) => setRange(+e.target.value)}
             />
-            <span className="mono num" style={{ width: 28, textAlign: "right" }}>
+            <span className="num" style={{ width: 28, textAlign: "right" }}>
               {range}
             </span>
           </div>

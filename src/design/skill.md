@@ -43,7 +43,7 @@ The catalog won't cover everything. For a new element, answer these in order and
 3. **Does it float above the page?** A transient layer (menu, dialog, toast, popover, chart tooltip) is bg with a {{border}} fg border, plus `--scrim` when modal. A persistent one (toolbar, inspector, dock) is bg with `line-strong`.
 4. **Is it grouped or raised content?** Step to the next surface. Don't add a shadow or a colored panel.
 5. **Does color say something true about it?** For status, use a meaning color with its tint. For a category, use the palette in order. For a data series, use the series order. Otherwise it's gray. Color never identifies something alone, so pair it with a label, icon, position or end label.
-6. **Is it read by a machine, a key, or a number that has to line up?** Set it in mono. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
+6. **Is it read by a machine, a key, or a number compared down a column (a table figure, a price)?** Set it in mono. Other numbers (counts, page and step numbers, axis labels, deltas, citations) stay in the sans with tabular figures and no leading zeros. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
 7. **Is it unavailable or empty?** Disabled drops to about 45% opacity, and empty or unused items to 50%. Don't use a new color.
 8. **Is it round by nature?** Avatars, status dots, radios and data points are round. Everything else gets {{radius}} corners, or {{radius-sm}} for small parts inside a control.
 9. **How big is it?** Snap to the control sizes ({{control}}, {{control-sm}} small, {{control-lg}} large, {{touch.control}} on touch) and the spacing scale. Use {{space-3}}–{{space-4}} inside groups, {{space-5}}–{{space-6}} between groups, and {{space-8}}+ between page sections. Default to dense.
@@ -59,6 +59,7 @@ If the answers leave two options, pick the plainer one.
 - Drop shadows, glows, blur, or decorative gradients.
 - Pills or large radii on rectangular things.
 - A second sans or mono, or a display face. The one exception is math, which keeps KaTeX's own faces.
+- Mono as decoration: on step, list or page numbers, counts, dates, or labels, and numbers padded with leading zeros (01, 02).
 - Color that carries no meaning: tinted section backgrounds, rainbow icons, a brand hue on every heading.
 - Rainbow scales, a second y-axis, or a legend that relies on color alone.
 - Title Case, ALL CAPS in source text, exclamation marks, cheer, filler, or emoji as decoration. Small labels are sentence case, bold and muted, never uppercase or letter-spaced.
@@ -73,9 +74,9 @@ If the answers leave two options, pick the plainer one.
 
 Screens repeat a few arrangements. `references/screens.md` lists {{screens}} full examples, one per arrangement, with their source files. Read the closest one before building a new screen.
 
-- **App shell.** A sidebar on `--surface` (nav with the current item inverted, small faint group labels, counts in mono on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
+- **App shell.** A sidebar on `--surface` (nav with the current item inverted, small faint group labels, counts on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
 - **Reading.** One column at {{measure}}, {{text-md}} at {{leading-loose}} leading (`.prose`). A heavy, tightly tracked title, a muted dek, and figures captioned below with a bold number.
-- **Data.** A grid of stat cards (label, big tabular number, mono delta colored by direction), then a chart, then a dense table. Color appears only in badges, deltas and status dots.
+- **Data.** A grid of stat cards (label, big tabular number, delta colored by direction), then a chart, then a dense table. Color appears only in badges, deltas and status dots.
 - **Work surface.** A dotted canvas with floating chrome: a tool rail, an inspector panel, and a page dock, all bg with `line-strong`. The pressed tool and the current page invert.
 - **Settings and forms.** A label column beside the controls, stacked on phones. Bold labels above fields, help text below, and errors in red that replace the help. One primary action per region, rightmost. A danger zone goes last, with danger buttons.
 - **Overlays.** A menu opens under its trigger, and its cursor is the inverted block. A dialog has a title, body, and actions on a line at the bottom with the primary rightmost. A sheet is a side panel. Apps get a Ctrl/⌘K palette.

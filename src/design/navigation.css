@@ -51,7 +51,8 @@
 }
 
 .tabs .count {
-  font: 500 11px/1 var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
   opacity: 0.7;
 }
 
@@ -110,7 +111,8 @@
 
 .nav .count {
   margin-left: auto;
-  font: 500 11px/1 var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
   opacity: 0.7;
 }
 
@@ -219,7 +221,8 @@
   border: none;
   border-radius: var(--radius);
   color: var(--muted);
-  font: 500 var(--text-sm) / 1 var(--font-mono);
+  font: 500 var(--text-sm) / 1 var(--font-ui);
+  font-variant-numeric: tabular-nums;
 }
 
 .pagination > button:hover:not(:disabled, [aria-current="page"]) {
@@ -262,8 +265,8 @@
 }
 
 .steps li::before {
-  content: counter(step, decimal-leading-zero);
-  font: 500 11px/1 var(--font-mono);
+  content: counter(step);
+  font-weight: var(--weight-medium);
 }
 
 .steps li[data-state="done"] {
