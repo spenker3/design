@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, FileText, Menu as MenuIcon, Monitor, Moon, Sun } from "lucide-react";
 import { Segmented } from "../components/Choice";
-import { routes, templates, useRoute } from "./routes";
+import { leaveScreen, routes, templates, useRoute } from "./routes";
 import { templatePages } from "./templates";
 import { Principles } from "./pages/Principles";
 import { Foundations } from "./pages/Foundations";
@@ -52,8 +52,7 @@ function useTheme() {
   return [theme, setTheme] as const;
 }
 
-function ThemeSwitch() {
-  const [theme, setTheme] = useTheme();
+function ThemeSwitch({ theme, setTheme }: { theme: Theme; setTheme: (t: Theme) => void }) {
   return (
     <Segmented
       label="Theme"
@@ -70,77 +69,88 @@ function ThemeSwitch() {
 
 export function App() {
   const path = useRoute();
+  const [theme, setTheme] = useTheme();
   const [navOpen, setNavOpen] = useState(false);
   useEffect(() => setNavOpen(false), [path]);
 
   const Template = templatePages[path];
-  /* Back to wherever the screen was opened from, or home on a fresh load. */
-  const back = (e: React.MouseEvent) => {
-    if (history.length > 1) {
-      e.preventDefault();
-      history.back();
-    }
-  };
-  if (Template) {
-    const t = templates.find((x) => x.path === path)!;
-    return (
-      <>
-        <Template />
-        <div className="template-bar">
-          <a className="btn ghost sm" href="#/principles" onClick={back}>
-            <ArrowLeft /> {t.label}
-          </a>
-          <ThemeSwitch />
-        </div>
-      </>
-    );
-  }
+  const screen = templates.find((x) => x.path === path);
+  /* The showcase stays mounted under a screen, so the nav and page come back as they were. */
+  const sitePath = useRef(path);
+  if (!Template) sitePath.current = path;
 
-  const Page = pages[path] ?? Principles;
+  /* Esc leaves a screen, unless it closes something open first or the cursor is in a field. */
+  useEffect(() => {
+    if (!Template) return;
+    const on = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || e.defaultPrevented) return;
+      if (document.querySelector("dialog[open], :popover-open")) return;
+      const field = (e.target as HTMLElement).closest?.("input, textarea, select, [contenteditable]");
+      if (field) (field as HTMLElement).blur();
+      else leaveScreen();
+    };
+    addEventListener("keydown", on);
+    return () => removeEventListener("keydown", on);
+  }, [Template]);
+
+  const Page = pages[sitePath.current] ?? Principles;
   const groups = [...new Set(routes.map((r) => r.group))];
 
   return (
-    <div className="site">
-      <header className="topbar site-top">
-        <button className="btn ghost icon site-menu" aria-label="Menu" onClick={() => setNavOpen(!navOpen)}>
-          <MenuIcon />
-        </button>
-        <a className="wordmark" href="#/principles">
-          design
-        </a>
-        <span className="spacer" />
-        <ThemeSwitch />
-      </header>
-      <aside className={navOpen ? "site-side open" : "site-side"}>
-        <nav className="nav site-pin" aria-label="Skill">
-          <a href="#/skill" aria-current={path === "skill" ? "page" : undefined}>
-            <FileText /> Skill
+    <>
+      {Template && screen && (
+        <>
+          <Template />
+          <div className="template-bar">
+            <button className="btn ghost sm" onClick={leaveScreen}>
+              <ArrowLeft /> {screen.label} <kbd>Esc</kbd>
+            </button>
+            <ThemeSwitch theme={theme} setTheme={setTheme} />
+          </div>
+        </>
+      )}
+      <div className="site" hidden={!!Template}>
+        <header className="topbar site-top">
+          <button className="btn ghost icon site-menu" aria-label="Menu" onClick={() => setNavOpen(!navOpen)}>
+            <MenuIcon />
+          </button>
+          <a className="wordmark" href="#/principles">
+            design
           </a>
-        </nav>
-        {groups.map((g) => (
-          <nav className="nav" key={g} aria-label={g}>
-            <div className="nav-label">{g}</div>
-            {routes
-              .filter((r) => r.group === g)
-              .map((r) => (
-                <a key={r.path} href={`#/${r.path}`} aria-current={r.path === path ? "page" : undefined}>
-                  {r.label}
-                </a>
-              ))}
-          </nav>
-        ))}
-        <nav className="nav" aria-label="Screens">
-          <div className="nav-label">Screens</div>
-          {templates.map((t) => (
-            <a key={t.path} href={`#/${t.path}`}>
-              {t.label}
+          <span className="spacer" />
+          <ThemeSwitch theme={theme} setTheme={setTheme} />
+        </header>
+        <aside className={navOpen ? "site-side open" : "site-side"}>
+          <nav className="nav site-pin" aria-label="Skill">
+            <a href="#/skill" aria-current={sitePath.current === "skill" ? "page" : undefined}>
+              <FileText /> Skill
             </a>
+          </nav>
+          {groups.map((g) => (
+            <nav className="nav" key={g} aria-label={g}>
+              <div className="nav-label">{g}</div>
+              {routes
+                .filter((r) => r.group === g)
+                .map((r) => (
+                  <a key={r.path} href={`#/${r.path}`} aria-current={r.path === sitePath.current ? "page" : undefined}>
+                    {r.label}
+                  </a>
+                ))}
+            </nav>
           ))}
-        </nav>
-      </aside>
-      <main className="site-main">
-        <Page />
-      </main>
-    </div>
+          <nav className="nav" aria-label="Screens">
+            <div className="nav-label">Screens</div>
+            {templates.map((t) => (
+              <a key={t.path} href={`#/${t.path}`}>
+                {t.label}
+              </a>
+            ))}
+          </nav>
+        </aside>
+        <main className="site-main">
+          <Page />
+        </main>
+      </div>
+    </>
   );
 }

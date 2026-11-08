@@ -301,12 +301,10 @@ body:has(.template-bar) .settings-save {
   gap: var(--space-1) var(--space-3);
   padding: var(--space-2) var(--space-3);
   background: var(--surface);
-  border-left: 2px solid var(--good);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
 }
 
 .ex.bad {
-  border-left-color: var(--bad);
   color: var(--muted);
 }
 
@@ -412,3 +410,7 @@ body:has(.template-bar) .settings-save {
 .tty .rev.green { background: var(--c-green); }
 .tty .rev.yellow { background: var(--c-yellow); }
 .tty .rev.blue { background: var(--c-blue); }
+
+.site[hidden] {
+  display: none;
+}

@@ -4,7 +4,7 @@ export function Article() {
   return (
     <div className="tpl-article">
       <header className="topbar">
-        <a className="wordmark" href="#/t/article">
+        <a className="wordmark" href="#/">
           margin
         </a>
         <nav className="tabs">

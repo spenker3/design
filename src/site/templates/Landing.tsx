@@ -13,7 +13,7 @@ export function Landing() {
   return (
     <div className="tpl-landing">
       <header className="topbar landing-nav">
-        <span className="wordmark">mono</span>
+        <a className="wordmark" href="#/">mono</a>
         <nav className="row landing-links">
           <a href="#/t/landing">Product</a>
           <a href="#/t/landing">Pricing</a>
@@ -30,7 +30,6 @@ export function Landing() {
       </header>
 
       <section className="landing-hero container">
-        <span className="badge">New · Templates for every kind of UI</span>
         <h1 className="landing-title">
           Black, white,
           <br />
@@ -150,7 +149,7 @@ export function Landing() {
       </section>
 
       <footer className="container landing-foot">
-        <span className="wordmark">mono</span>
+        <a className="wordmark" href="#/">mono</a>
         {[
           ["Product", "Components", "Templates", "Changelog"],
           ["Resources", "Docs", "Native", "Figma"],

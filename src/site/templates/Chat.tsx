@@ -69,9 +69,9 @@ export function Chat() {
     <div className="shell tpl-chat">
       <aside className={side ? "shell-side open" : "shell-side"}>
         <div className="row between">
-          <span className="wordmark" style={{ paddingLeft: 6 }}>
+          <a className="wordmark" href="#/" style={{ paddingLeft: 6 }}>
             ask
-          </span>
+          </a>
           <button
             className="btn ghost icon"
             aria-label="New chat"

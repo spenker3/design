@@ -11,9 +11,9 @@ export function Settings() {
   return (
     <div className="shell">
       <aside className={side ? "shell-side open" : "shell-side"}>
-        <span className="wordmark" style={{ padding: "8px 8px 12px" }}>
+        <a className="wordmark" href="#/" style={{ padding: "8px 8px 12px" }}>
           Settings
-        </span>
+        </a>
         <nav className="nav">
           <a href="#/t/settings" aria-current="page">
             <User /> Profile

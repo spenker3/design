@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 export type Route = { path: string; label: string; group: string };
 
@@ -25,13 +26,34 @@ export const templates: { path: string; label: string; about: string }[] = [
   { path: "t/landing", label: "Landing", about: "Marketing: hero, features, pricing, FAQ, footer." },
 ];
 
+const isScreen = (path: string) => path.startsWith("t/");
+const read = () => location.hash.replace(/^#\/?/, "") || routes[0].path;
+
+/* The showcase page a screen was opened from, and where it was scrolled to. */
+let opener: { path: string; scroll: number } | null = null;
+
+/* Leave a screen: back through history when it was opened from the showcase, else home. */
+export function leaveScreen() {
+  if (opener) history.back();
+  else location.hash = `#/${routes[0].path}`;
+}
+
 export function useRoute() {
-  const read = () => location.hash.replace(/^#\/?/, "") || routes[0].path;
   const [path, setPath] = useState(read);
+  const current = useRef(path);
   useEffect(() => {
+    history.scrollRestoration = "manual";
     const on = () => {
-      setPath(read());
-      window.scrollTo(0, 0);
+      const prev = current.current;
+      const next = read();
+      current.current = next;
+      const entering = !isScreen(prev) && isScreen(next);
+      const leaving = isScreen(prev) && !isScreen(next);
+      if (entering) opener = { path: prev, scroll: scrollY };
+      const top = leaving && opener?.path === next ? opener.scroll : 0;
+      if (leaving) opener = null;
+      flushSync(() => setPath(next));
+      window.scrollTo(0, top);
     };
     addEventListener("hashchange", on);
     return () => removeEventListener("hashchange", on);

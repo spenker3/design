@@ -60,7 +60,7 @@ Content: what a screen shows, in the flow of the page.
 .stat           big number with label and delta.
 .progress / .meter / .spinner / .skeleton / .empty / .dl / .divider
 .accordion      <details> rows separated by lines.
-.callout        inline message in the flow; colored left rule + tint.
+.callout        inline message in the flow; tinted block, colored icon.
 .banner         full-width message under a topbar.
 .msg            chat message; .msg.user sits right on a surface. .composer is the message input.
 ```
@@ -150,7 +150,7 @@ Color appears only where it says something about the data.
   - Empty states are muted and centered, with one action at most.
 - **Details**: Key/value lists have muted keys and plain values, for detail panes and metadata. An accordion is details rows divided by lines. A divider can carry a short label.
 - **Messages in the flow**:
-  - Callouts sit inline: a colored rule and tint, a bold first line for the point, muted detail after. Neutral when nothing is wrong.
+  - Callouts sit inline: one tinted block with a colored icon, a bold first line for the point, muted detail after. Neutral when nothing is wrong.
   - Banners run full width under the top bar, for app-wide state. Inverted for notices, red for problems.
   - Inline status is small and muted, next to the thing it describes. Color only for warnings and errors.
 - **Chat**: The user's messages sit right on a surface, and replies sit left on bg, as plain prose. The composer is an autosizing field with its actions on a row inside the border, send rightmost as the primary.

@@ -8,7 +8,7 @@
   .stat           big number with label and delta.
   .progress / .meter / .spinner / .skeleton / .empty / .dl / .divider
   .accordion      <details> rows separated by lines.
-  .callout        inline message in the flow; colored left rule + tint.
+  .callout        inline message in the flow; tinted block, colored icon.
   .banner         full-width message under a topbar.
   .msg            chat message; .msg.user sits right on a surface. .composer is the message input.
 */
@@ -603,8 +603,7 @@ blockquote {
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   background: var(--tint);
-  border-left: 2px solid var(--c);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
   font-size: var(--text-sm);
 }
 

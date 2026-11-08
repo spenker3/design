@@ -233,7 +233,7 @@ export function Content() {
         rules="Callouts sit inline next to what they're about. Banners carry app-wide state under the top bar."
         spec={
           <ul>
-            <li>Callouts sit inline: a colored rule and tint, a bold first line for the point, muted detail after. Neutral when nothing is wrong.</li>
+            <li>Callouts sit inline: one tinted block with a colored icon, a bold first line for the point, muted detail after. Neutral when nothing is wrong.</li>
             <li>Banners run full width under the top bar, for app-wide state. Inverted for notices, red for problems.</li>
             <li>Inline status is small and muted, next to the thing it describes. Color only for warnings and errors.</li>
           </ul>

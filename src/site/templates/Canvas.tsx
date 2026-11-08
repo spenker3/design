@@ -49,9 +49,9 @@ export function Canvas() {
     <div className="tpl-canvas canvas">
       <header className="canvas-top">
         <div className="toolbar">
-          <span className="wordmark" style={{ padding: "0 8px", fontSize: 15 }}>
+          <a className="wordmark" href="#/" style={{ padding: "0 8px", fontSize: 15 }}>
             frame
-          </span>
+          </a>
           <hr />
           <button className="btn ghost sm">
             Onboarding v3 <ChevronDown />

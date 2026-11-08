@@ -68,7 +68,6 @@
 .codeblock .line {
   display: block;
   padding: 0 var(--space-5);
-  border-left: 2px solid transparent;
 }
 
 .codeblock .lines {
@@ -93,7 +92,6 @@
 
 .codeblock .line.hl {
   background: var(--code-hl);
-  border-left-color: var(--fg);
 }
 
 .codeblock .line.add {
