@@ -14,7 +14,7 @@ The house style for every kind of text, from [`src/design/writing.ts`](https://g
 5. **Lead with the point.** Put the outcome or the action first, the explanation after.
 6. **No filler or cheer.** No please, simply, just, easily, oops or exclamation marks.
 7. **Don't blame.** Errors say what happened and how to fix it, never what the reader did wrong.
-8. **No slogans.** State each rule plainly, in one sentence. Avoid punchy two-part lines such as X, not Y or It's X; Y.
+8. **No slogans.** State each rule plainly, in one sentence. Avoid punchy two-part lines such as X, not Y or It's X; Y. A headline says what the product does, since Launch faster or Build without limits could sell anything.
 9. **Let the UI carry structure.** If a heading or label already says it, the body doesn't repeat it.
 
 ## Mechanics

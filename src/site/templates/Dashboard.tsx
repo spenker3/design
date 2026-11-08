@@ -84,7 +84,7 @@ export function Dashboard() {
               ["Revenue", "$12,480", "+8.2%", "up"],
               ["Orders", "312", "+24", "up"],
               ["Refund rate", "2.1%", "+0.4%", "down"],
-              ["Avg. order", "$40.00", "±0", ""],
+              ["Average order", "$40.00", "±0", ""],
             ].map(([l, v, d, dir]) => (
               <div className="card stat" key={l}>
                 <span className="label">{l}</span>
@@ -97,7 +97,7 @@ export function Dashboard() {
             <section className="card">
               <div className="card-head">
                 <h3>Revenue per day</h3>
-                <span className="muted num" style={{ fontSize: 12 }}>
+                <span className="muted num" style={{ fontSize: "var(--text-sm)" }}>
                   peak ${max * 10}
                 </span>
               </div>

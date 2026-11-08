@@ -26,7 +26,7 @@ Every visual decision fills one of these roles. Learn the roles rather than the 
 | Paper and ink | `--bg`, `--fg` | Pure white and black, the two poles. Everything else sits between them. |
 | Surface | `--surface`, `--surface-2`, `--surface-3` | A step toward ink for areas that are grouped, raised or nested: fields, cards, sidebars, code. One step per level. |
 | Edge | `--line`, `--line-strong` | {{border}} boundaries. `line-strong` when the edge must hold up beside a surface, for persistent floating chrome, and for the secondary button. |
-| Text | `--text`, `--muted`, `--faint` | Three levels of importance: content, secondary, and receding (placeholders, axis labels, group labels, disabled). |
+| Text | `--text`, `--muted`, `--faint` | Three levels of importance: content, secondary, and receding (placeholders, axis labels, disabled). |
 | Selection | `--sel-bg`, `--sel-fg` | The inverted block. Never an accent color. |
 | Interaction | `--hover`, `--press` | Faint gray fills. Things with a border darken the border to fg on hover instead. |
 | Meaning | `--good`, `--warn`, `--bad`, `--info`, each with `-tint` | Status. The tint is the background behind it. |
@@ -46,7 +46,7 @@ The catalog won't cover everything. For a new element, answer these in order and
 6. **Is it read by a machine, a key, or a number compared down a column (a table figure, a price)?** Set it in mono. Other numbers (counts, page and step numbers, axis labels, deltas, citations) stay in the sans with tabular figures and no leading zeros. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
 7. **Is it unavailable or empty?** Disabled drops to about 45% opacity, and empty or unused items to 50%. Don't use a new color.
 8. **Is it round by nature?** Avatars, status dots, radios and data points are round. Everything else gets {{radius}} corners, or {{radius-sm}} for small parts inside a control.
-9. **How big is it?** Snap to the control sizes ({{control}}, {{control-sm}} small, {{control-lg}} large, {{touch.control}} on touch) and the spacing scale. Use {{space-3}}–{{space-4}} inside groups, {{space-5}}–{{space-6}} between groups, and {{space-8}}+ between page sections. Default to dense.
+9. **How big is it?** Snap to the control sizes ({{control}}, {{control-sm}} small, {{control-lg}} large, {{touch.control}} on touch), the type scale and the spacing scale. A value between two steps is a guess, so pick a step. Use {{space-3}}–{{space-4}} inside groups, {{space-5}}–{{space-6}} between groups, and {{space-8}}+ between page sections. Default to dense.
 10. **Does it move?** Only to show a change of state, in {{dur-fast}}–{{dur}}, and not at all under reduced motion.
 11. **Where does its state live?** In the component's state: selected, current, pressed, checked, invalid, busy, sorted. The style follows from that state and never comes from a separate styled variant. (On the web: `aria-*` and native attributes, not modifier classes.)
 12. **Who spaces it?** The parent does. Components carry no outer margin, and layouts set the gap.
@@ -66,6 +66,16 @@ If the answers leave two options, pick the plainer one.
 - Motion for its own sake: bouncing, sliding pages, skeleton shimmer beyond a slow pulse.
 - Confirmation dialogs for actions that can be undone. Act, then offer Undo.
 
+## Signs of a rushed build
+
+Quickly made interfaces share a few tells that the rules above don't already prevent. Check for them before calling a screen done.
+
+- **Nothing fake ships.** No invented testimonials, customer logos, user counts or ratings, and no link or control that does nothing, like a social icon pointing at `#` or a theme switch with no effect. Leave a visible placeholder and tell the user what's missing.
+- **Waiting shows where you acted.** Anything slower than a moment marks it in place: the busy button, a skeleton shaped like what's coming, or inline status. Never a frozen screen or a blank gap.
+- **One left edge.** Every section of a screen starts on the same edge, top bar and footer included. Left-align by default and center only a short block that stands alone, like an empty state. Never alternate centered and left sections down a page.
+- **Icons do a job.** An icon helps find or recognize something: a nav item, a tool, a file type, a status. Don't put one over every feature card or heading, and never use a sparkle to mean AI.
+- **Nothing hides content.** A sticky or fixed bar takes its own space, so nothing scrolls out of reach under it. At phone width (390px) nothing overflows or gets cut off, and links that don't fit go into a menu.
+
 ## Scale
 
 {{scale}}
@@ -74,7 +84,7 @@ If the answers leave two options, pick the plainer one.
 
 Screens repeat a few arrangements. `references/screens.md` lists {{screens}} full examples, one per arrangement, with their source files. Read the closest one before building a new screen.
 
-- **App shell.** A sidebar on `--surface` (nav with the current item inverted, small faint group labels, counts on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
+- **App shell.** A sidebar on `--surface` (nav with the current item inverted, bold group labels in the text color, counts on the right) beside a main column. The main column starts with a {{topbar}} top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
 - **Reading.** One column at {{measure}}, {{text-md}} at {{leading-loose}} leading (`.prose`). A heavy, tightly tracked title, a muted dek, and figures captioned below with a bold number.
 - **Data.** A grid of stat cards (label, big tabular number, delta colored by direction), then a chart, then a dense table. Color appears only in badges, deltas and status dots.
 - **Work surface.** A dotted canvas with floating chrome: a tool rail, an inspector panel, and a page dock, all bg with `line-strong`. The pressed tool and the current page invert.
@@ -117,6 +127,7 @@ The CSS in {{repo:src/design/}} is a ready-made implementation, so on the web yo
 - **A project with its own styling approach** (Tailwind, CSS-in-JS, a component library): don't paste a second system on top. Put the tokens in its theme, using `references/tokens.json` for resolved light and dark values, and rebuild the roles and rules with its tools.
 - **A single-file page** (an HTML artifact, a quick prototype): inline `tokens.css` and only the component CSS the page uses. Load {{mono}} from Google Fonts, and keep the system `--font-ui` stack for the sans.
 - **Theme**: colors use `light-dark()`, so the page follows the system. Set `data-theme="light"` or `"dark"` on `<html>` to force one, and offer a System / Light / Dark segmented control when the app has settings.
+- **Page basics**: every page gets its own title and a favicon, and public pages a description and a share image.
 - **Check both themes** before calling a page done. With a server running, use `chromium --headless=new --blink-settings=preferredColorScheme=1 --window-size=1440,900 --screenshot=out.png <url>` (`=0` for dark).
 
 ### Charts, diagrams, math and papers

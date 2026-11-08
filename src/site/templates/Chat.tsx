@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, Copy, Menu as MenuIcon, Paperclip, Plus, RotateCcw, Search, SquarePen, ThumbsUp } from "lucide-react";
+import { ArrowUp, Copy, Menu as MenuIcon, Paperclip, RotateCcw, Search, SquarePen, ThumbsUp } from "lucide-react";
 
 type Msg = { role: "user" | "assistant"; text: string };
 
@@ -112,7 +112,7 @@ export function Chat() {
         <div className="row" style={{ padding: "8px 6px" }}>
           <span className="avatar">mc</span>
           <span className="grow">mira</span>
-          <span className="badge">Pro</span>
+          <span className="badge">pro</span>
         </div>
       </aside>
 
@@ -132,12 +132,12 @@ export function Chat() {
 
         {msgs.length === 0 ? (
           <div className="chat-empty">
-            <h1>What are we working on?</h1>
+            <h1>New chat</h1>
             {composer}
             <div className="row wrap" style={{ justifyContent: "center" }}>
               {["Explain a concept", "Review my code", "Plan a trip", "Draft an email"].map((s) => (
                 <button key={s} className="btn sm" onClick={() => setDraft(s + ": ")}>
-                  <Plus /> {s}
+                  {s}
                 </button>
               ))}
             </div>

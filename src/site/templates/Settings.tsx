@@ -77,29 +77,32 @@ export function Settings() {
               <h3>Appearance</h3>
               <p className="muted">Applies on this device.</p>
             </div>
-            <div className="form-grid">
-              <span className="label">Theme</span>
-              <Segmented
-                label="Theme"
-                value={theme}
-                onChange={setTheme}
-                options={[
-                  { value: "system", label: "System" },
-                  { value: "light", label: "Light" },
-                  { value: "dark", label: "Dark" },
-                ]}
-              />
-              <span className="label">Density</span>
-              <Segmented
-                label="Density"
-                value={density}
-                onChange={setDensity}
-                options={[
-                  { value: "compact", label: "Compact" },
-                  { value: "comfortable", label: "Comfortable" },
-                ]}
-              />
-              <span className="label">Motion</span>
+            <div className="stack" style={{ "--gap": "var(--space-5)", alignItems: "flex-start" } as React.CSSProperties}>
+              <div className="field">
+                <span className="label">Theme</span>
+                <Segmented
+                  label="Theme"
+                  value={theme}
+                  onChange={setTheme}
+                  options={[
+                    { value: "system", label: "System" },
+                    { value: "light", label: "Light" },
+                    { value: "dark", label: "Dark" },
+                  ]}
+                />
+              </div>
+              <div className="field">
+                <span className="label">Density</span>
+                <Segmented
+                  label="Density"
+                  value={density}
+                  onChange={setDensity}
+                  options={[
+                    { value: "compact", label: "Compact" },
+                    { value: "comfortable", label: "Comfortable" },
+                  ]}
+                />
+              </div>
               <label className="choice">
                 <input type="checkbox" role="switch" className="switch" /> Reduce motion
               </label>
@@ -110,7 +113,7 @@ export function Settings() {
               <h3>Notifications</h3>
               <p className="muted">Email and desktop.</p>
             </div>
-            <div className="stack" style={{ "--gap": "14px" } as React.CSSProperties}>
+            <div className="stack" style={{ "--gap": "var(--space-5)" } as React.CSSProperties}>
               {[
                 ["Mentions", "When someone @mentions you.", true],
                 ["Weekly summary", "A digest every Monday.", true],
@@ -144,7 +147,7 @@ export function Settings() {
               <div className="table-wrap">
                 <table className="table compact">
                   <tbody>
-                    {["Nov 5, 2026", "Oct 5, 2026", "Sep 5, 2026"].map((d) => (
+                    {["Nov 5", "Oct 5", "Sep 5"].map((d) => (
                       <tr key={d}>
                         <td>{d}</td>
                         <td>

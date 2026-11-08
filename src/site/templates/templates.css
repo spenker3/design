@@ -11,15 +11,15 @@
 }
 
 .article-title {
-  font-size: clamp(36px, 6vw, 52px);
-  letter-spacing: -0.035em;
-  line-height: 1.02;
+  font-size: clamp(var(--text-2xl), 6vw, var(--text-3xl));
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
 }
 
 .article-dek {
   color: var(--muted);
   font-size: var(--text-lg);
-  line-height: 1.4;
+  line-height: var(--leading-snug);
 }
 
 .article-hero {
@@ -33,6 +33,20 @@
 @media (max-width: 860px) {
   .article-hero {
     margin: 0;
+  }
+}
+
+.article-menu {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .article-tabs {
+    display: none;
+  }
+
+  .article-menu {
+    display: inline-flex;
   }
 }
 
@@ -75,7 +89,7 @@
 /* Canvas */
 .tpl-canvas {
   position: relative;
-  height: 100dvh;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -191,11 +205,11 @@
   left: 50%;
   top: calc(100% + 8px);
   transform: translateX(-50%);
-  padding: 2px 6px;
+  padding: var(--space-0) var(--space-2);
   background: var(--info);
   color: var(--bg);
   border-radius: var(--radius-sm);
-  font: 500 11px/1.3 var(--font-ui);
+  font: var(--weight-medium) var(--text-xs) / var(--leading-snug) var(--font-ui);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -360,58 +374,57 @@
   }
 
   .settings-save {
-    padding: var(--space-3) var(--space-4) var(--space-3) 150px;
+    padding: var(--space-3) var(--space-4);
   }
 }
 
-/* Landing */
+/* Landing. One left edge for every section. */
 .landing-nav {
   position: sticky;
   top: 0;
   z-index: 10;
+  /* Same left and right edges as .container below it. */
+  padding-inline: max(var(--space-5), (100% - var(--page)) / 2 + var(--space-5));
 }
 
 .landing-links {
-  --gap: var(--space-1);
+  --gap: var(--space-0);
 }
 
-.landing-links a {
-  padding: 6px 10px;
-  border-radius: var(--radius);
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.landing-links a:hover {
-  background: var(--hover);
-  color: var(--text);
+.landing-menu {
+  display: none;
 }
 
 @media (max-width: 760px) {
   .landing-links {
     display: none;
   }
+
+  .landing-menu {
+    display: inline-flex;
+  }
 }
 
 .landing-hero {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-6);
   padding-top: var(--space-10);
-  text-align: center;
 }
 
 .landing-title {
-  font-size: clamp(44px, 9vw, 96px);
-  letter-spacing: -0.045em;
-  line-height: 0.95;
+  max-width: 16em;
+  font-size: clamp(var(--text-2xl), 6vw, var(--text-3xl));
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
 }
 
 .landing-lede {
   max-width: 56ch;
   color: var(--muted);
-  font-size: 18px;
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
 }
 
 .landing-shot {
@@ -425,17 +438,16 @@
 .landing-logos {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  align-items: baseline;
   gap: var(--space-4) var(--space-8);
   padding-block: var(--space-8);
 }
 
 .landing-logo {
   color: var(--faint);
-  font-size: 22px;
+  font-size: var(--text-lg);
   font-weight: var(--weight-heavy);
-  letter-spacing: -0.03em;
+  letter-spacing: var(--tracking-display);
 }
 
 .landing-section {
@@ -446,10 +458,10 @@
 }
 
 .landing-h2 {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(var(--text-xl), 4vw, var(--text-2xl));
   font-weight: var(--weight-heavy);
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
 }
 
 .landing-section > .grid:has(.landing-feature) {
@@ -467,11 +479,8 @@
   background: var(--bg);
 }
 
-.landing-feature > svg {
-  width: 20px;
-  height: 20px;
-  margin-bottom: var(--space-3);
-  stroke-width: 1.5;
+.landing-faq {
+  max-width: var(--measure);
 }
 
 .pricing {
@@ -480,20 +489,19 @@
 }
 
 .pricing-amount {
-  font-size: 44px;
+  font-size: var(--text-2xl);
   font-weight: var(--weight-heavy);
-  letter-spacing: -0.03em;
+  letter-spacing: var(--tracking-display);
 }
 
 .landing-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-6);
-  padding: var(--space-10) var(--space-5);
+  padding-block: var(--space-10);
   background: var(--fg);
   color: var(--bg);
-  text-align: center;
+}
+
+.landing-cta .landing-lede {
+  color: color-mix(in srgb, var(--bg) 65%, var(--fg));
 }
 
 .landing-foot {

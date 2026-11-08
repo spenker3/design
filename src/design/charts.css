@@ -33,7 +33,7 @@
 }
 
 .bars > span:hover {
-  opacity: 0.7;
+  opacity: var(--opacity-quiet);
 }
 
 .bars > span::before {
@@ -48,7 +48,7 @@
   justify-content: space-between;
   margin-top: var(--space-2);
   color: var(--faint);
-  font-size: 11px;
+  font-size: var(--text-xs);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -360,7 +360,7 @@
 }
 
 .force-link[data-dim] {
-  opacity: 0.25;
+  opacity: var(--opacity-dim);
 }
 
 .force-node {
@@ -387,7 +387,7 @@
 }
 
 .force-node[data-dim] {
-  opacity: 0.2;
+  opacity: var(--opacity-dim);
 }
 
 .force-node > text {

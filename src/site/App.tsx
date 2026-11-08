@@ -93,6 +93,11 @@ export function App() {
     return () => removeEventListener("keydown", on);
   }, [Template]);
 
+  useEffect(() => {
+    const name = screen?.label ?? routes.find((r) => r.path === sitePath.current)?.label ?? (sitePath.current === "skill" ? "Skill" : routes[0].label);
+    document.title = `${name} · design`;
+  }, [path, screen]);
+
   const Page = pages[sitePath.current] ?? Principles;
   const groups = [...new Set(routes.map((r) => r.group))];
 
@@ -100,7 +105,9 @@ export function App() {
     <>
       {Template && screen && (
         <>
-          <Template />
+          <div className="screen" key={path}>
+            <Template />
+          </div>
           <div className="template-bar">
             <button className="btn ghost sm" onClick={leaveScreen}>
               <ArrowLeft /> {screen.label} <kbd>Esc</kbd>

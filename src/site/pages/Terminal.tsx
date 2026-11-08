@@ -72,10 +72,10 @@ const table: Line[] = [
   [[" 1 Services ", "rev"], "  ", ["2 ", "dim"], "Deploys  ", ["3 ", "dim"], "Logs"],
   [["─".repeat(W), "dark"]],
   row(["Service".padEnd(24), "Status".padEnd(16), "Deployed".padStart(8), "  ", "p50".padStart(8)], W, "b dim"),
-  fit(cells("api-gateway", [["● ", "green"], "running"], "14 Oct", "38 ms"), W),
-  row(cells("billing", ["● deploying"], "12 Oct", "61 ms", " "), W, "rev"),
-  fit(cells("search", [["● ", "yellow"], "degraded"], "11 Oct", "412 ms"), W),
-  fit(cells("legacy-sync", [["○ stopped", "dark"]], "09 Oct", "—", "dark"), W),
+  fit(cells("api-gateway", [["● ", "green"], "running"], "Oct 14", "38 ms"), W),
+  row(cells("billing", ["● deploying"], "Oct 12", "61 ms", " "), W, "rev"),
+  fit(cells("search", [["● ", "yellow"], "degraded"], "Oct 11", "412 ms"), W),
+  fit(cells("legacy-sync", [["○ stopped", "dark"]], "Oct 9", "—", "dark"), W),
 ];
 
 const fields = beside(

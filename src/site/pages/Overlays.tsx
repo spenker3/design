@@ -262,7 +262,7 @@ export function Overlays() {
             <button className="btn ghost icon sm" aria-label="Zoom out">
               <Minus />
             </button>
-            <span className="num" style={{ fontSize: 12 }}>
+            <span className="num" style={{ fontSize: "var(--text-sm)" }}>
               100%
             </span>
             <button className="btn ghost icon sm" aria-label="Zoom in">

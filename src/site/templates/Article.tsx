@@ -1,4 +1,5 @@
-import { Bookmark, Share } from "lucide-react";
+import { Bookmark, Menu as MenuIcon, Share } from "lucide-react";
+import { Menu } from "../../components/Menu";
 
 export function Article() {
   return (
@@ -7,7 +8,7 @@ export function Article() {
         <a className="wordmark" href="#/">
           margin
         </a>
-        <nav className="tabs">
+        <nav className="tabs article-tabs">
           <a href="#/t/article" aria-current="page">
             Essays
           </a>
@@ -16,6 +17,20 @@ export function Article() {
         </nav>
         <span className="spacer" />
         <button className="btn primary sm">Subscribe</button>
+        <Menu
+          align="end"
+          trigger={(p) => (
+            <button className="btn ghost icon sm article-menu" aria-label="Sections" {...p}>
+              <MenuIcon />
+            </button>
+          )}
+        >
+          {["Essays", "Notes", "Archive"].map((l) => (
+            <a key={l} href="#/t/article">
+              {l}
+            </a>
+          ))}
+        </Menu>
       </header>
 
       <article className="article">
@@ -24,11 +39,11 @@ export function Article() {
             <li>
               <a href="#/t/article">Essays</a>
             </li>
-            <li aria-current="page">Design</li>
+            <li aria-current="page">Planning</li>
           </ol>
-          <h1 className="article-title">The inverted block</h1>
+          <h1 className="article-title">Smaller milestones</h1>
           <p className="article-dek">
-            Why a single rule for selection does more for an interface than any accent color could.
+            What happened when we split every long deadline into two-week pieces.
           </p>
           <div className="row between wrap">
             <div className="row">
@@ -36,7 +51,7 @@ export function Article() {
               <div>
                 <div style={{ fontWeight: 600 }}>Mira Chen</div>
                 <div className="muted" style={{ fontSize: "var(--text-sm)" }}>
-                  Nov 5, 2026 · 6 min read
+                  Nov 5 · 6 min read
                 </div>
               </div>
             </div>
@@ -55,44 +70,40 @@ export function Article() {
           <div className="media" style={{ "--ratio": "16/9" } as React.CSSProperties}>
             <span className="media-label">hero 16:9</span>
           </div>
-          <figcaption className="muted">The workspace bar: five cells, one inverted.</figcaption>
+          <figcaption className="muted">Open tasks per milestone over one year. The count drops once milestones shrink to two weeks.</figcaption>
         </figure>
 
         <div className="prose">
           <p>
-            Most interfaces mark the current thing with a color: a blue tab, a tinted row, an outline in the brand's
-            accent. It works, but every surface ends up inventing its own version, and the accent stops meaning anything
-            in particular.
+            A milestone is a date with a list of tasks under it. When the list is long, the date stops meaning much. Work
+            slips a little at a time, and nobody notices until the last week.
           </p>
           <p>
-            Swapping foreground and background is the oldest selection there is. Terminals have done it for fifty years.
-            It needs no new color, it reads in both themes, and it survives a grayscale print.
+            Last year we split every milestone longer than a month into pieces of about two weeks. The total work stayed the
+            same. What changed was how early we saw a problem.
           </p>
-          <h2>One rule, everywhere</h2>
+          <h2>What changed</h2>
           <p>
-            Once selection is the inverted block, the same rule covers tabs, sidebar items, table rows, the menu cursor,
-            checked boxes and selected text. A new component follows the same rule without a new decision.
+            Each short milestone ended with a review. Late tasks moved to the next milestone or were cut, and we made that
+            call every two weeks instead of once a quarter.
           </p>
-          <blockquote>Color is then free to mean something: paid, failed, due, live.</blockquote>
+          <blockquote>Most of the late work was visible a month before the old deadlines.</blockquote>
           <h2>What it costs</h2>
           <p>
-            Inverted blocks are loud, so there can only be one or two per region. A list with ten selected rows becomes
-            a wall. Multi-select uses checkboxes instead and leaves the block for the cursor.
+            More milestones mean more reviews. We kept each one to fifteen minutes and three questions: what's done, what's
+            late, and what moves.
           </p>
-          <pre>{`.tabs > [aria-selected="true"] {\n  background: var(--sel-bg);\n  color: var(--sel-fg);\n}`}</pre>
-          <p>
-            That's the whole implementation. The rest is grays for structure, a 4px corner, and nothing
-            that moves unless it has to.
-          </p>
+          <pre>{`$ atlas milestone split "Beta" --every 2w\nCreated Beta 1 (Nov 3–14) and Beta 2 (Nov 17–28)`}</pre>
+          <p>Splitting a milestone takes a minute. Keeping the review short takes longer to learn.</p>
         </div>
 
         <hr />
         <section className="stack">
           <h4>Read next</h4>
           <div className="grid" style={{ "--min": "220px" } as React.CSSProperties}>
-            {["Lines instead of shadows", "One typeface is enough", "Dense and calm"].map((t, i) => (
+            {["Writing a project brief", "Naming tasks well", "Planning a launch week"].map((t, i) => (
               <a key={t} className="card plain" href="#/t/article">
-                <span className="muted" style={{ fontSize: 12 }}>
+                <span className="muted" style={{ fontSize: "var(--text-sm)" }}>
                   {i + 2}
                 </span>
                 <h3>{t}</h3>

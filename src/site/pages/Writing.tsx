@@ -48,7 +48,7 @@ function Checker() {
       </div>
       <div className="stack" style={{ "--gap": "8px" } as React.CSSProperties}>
         <div className="row between">
-          <span className="num" style={{ fontSize: 12 }}>
+          <span className="num" style={{ fontSize: "var(--text-sm)" }}>
             {n} / {el.max} {el.unit}
           </span>
           <span className="muted" style={{ fontSize: "var(--text-sm)" }}>

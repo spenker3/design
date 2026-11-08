@@ -16,14 +16,15 @@ function Swatches({ names }: { names: string[] }) {
 }
 
 const scale: [string, React.CSSProperties][] = [
-  ["3xl / 56", { fontSize: "var(--text-3xl)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05 }],
-  ["2xl / 36", { fontSize: "var(--text-2xl)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1 }],
-  ["xl / 26", { fontSize: "var(--text-xl)", fontWeight: 700, letterSpacing: "-0.02em" }],
-  ["lg / 20", { fontSize: "var(--text-lg)", fontWeight: 600 }],
+  ["3xl / 56", { fontSize: "var(--text-3xl)", fontWeight: "var(--weight-heavy)", letterSpacing: "var(--tracking-display)", lineHeight: "var(--leading-display)" }],
+  ["2xl / 36", { fontSize: "var(--text-2xl)", fontWeight: "var(--weight-heavy)", letterSpacing: "var(--tracking-display)", lineHeight: "var(--leading-display)" }],
+  ["xl / 26", { fontSize: "var(--text-xl)", fontWeight: "var(--weight-heavy)", letterSpacing: "var(--tracking-tight)" }],
+  ["lg / 20", { fontSize: "var(--text-lg)", fontWeight: "var(--weight-bold)" }],
   ["md / 16", { fontSize: "var(--text-md)" }],
   ["base / 14", { fontSize: "var(--text-base)" }],
   ["sm / 12.5", { fontSize: "var(--text-sm)" }],
   ["xs / 11", { fontSize: "var(--text-xs)" }],
+  ["code / 13", { fontSize: "var(--text-code)", fontFamily: "var(--font-mono)" }],
 ];
 
 const space = [2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96];
@@ -60,7 +61,7 @@ export function Foundations() {
         <div className="row wrap">
           <span className="sel-sample">Selected</span>
           <span className="muted">Not selected</span>
-          <span style={{ opacity: 0.5 }}>Empty / unused (50%)</span>
+          <span style={{ opacity: "var(--opacity-empty)" }}>Empty / unused (50%)</span>
         </div>
       </Demo>
       <Demo
@@ -134,7 +135,7 @@ export function Foundations() {
           {space.map((px) => (
             <div className="stack" style={{ ...gap("6px"), alignItems: "center" }} key={px}>
               <span style={{ width: Math.min(px, 48), height: px, background: "var(--fg)" }} />
-              <span className="faint num" style={{ fontSize: 11 }}>
+              <span className="faint num" style={{ fontSize: "var(--text-xs)" }}>
                 {px}
               </span>
             </div>

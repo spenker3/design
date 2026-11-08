@@ -34,7 +34,7 @@ export const voice: [string, string][] = [
   ["Lead with the point", "Put the outcome or the action first, the explanation after."],
   ["No filler or cheer", "No please, simply, just, easily, oops or exclamation marks."],
   ["Don't blame", "Errors say what happened and how to fix it, never what the reader did wrong."],
-  ["No slogans", "State each rule plainly, in one sentence. Avoid punchy two-part lines such as X, not Y or It's X; Y."],
+  ["No slogans", "State each rule plainly, in one sentence. Avoid punchy two-part lines such as X, not Y or It's X; Y. A headline says what the product does, since Launch faster or Build without limits could sell anything."],
   ["Let the UI carry structure", "If a heading or label already says it, the body doesn't repeat it."],
 ];
 

@@ -64,7 +64,7 @@ function Scatter() {
             cx={px(p.x)}
             cy={py(p.y)}
             r={4}
-            style={(p.group ? swatch("var(--series-1)") : { opacity: 0.4 }) as React.CSSProperties}
+            style={(p.group ? swatch("var(--series-1)") : { opacity: "var(--opacity-empty)" }) as React.CSSProperties}
           >
             <title>{`${p.x.toFixed(0)} pages, ${p.y.toFixed(0)} min`}</title>
           </circle>
@@ -247,7 +247,7 @@ export function Charts() {
         <div className="stack" style={gap("var(--space-3)")}>
           <div className="legend">
             <span style={swatch("var(--series-1)")}>Returning</span>
-            <span style={swatch("color-mix(in srgb, var(--fg) 40%, transparent)")}>New</span>
+            <span style={swatch("color-mix(in srgb, var(--fg) 50%, transparent)")}>New</span>
           </div>
           <Scatter />
         </div>

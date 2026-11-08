@@ -57,7 +57,7 @@ The catalog won't cover everything. For a new element, answer these in order and
 6. **Is it read by a machine, a key, or a number compared down a column (a table figure, a price)?** Set it in mono. Other numbers (counts, page and step numbers, axis labels, deltas, citations) stay in the sans with tabular figures and no leading zeros. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
 7. **Is it unavailable or empty?** Disabled drops to about 45% opacity, and empty or unused items to 50%. Don't use a new color.
 8. **Is it round by nature?** Avatars, status dots, radios and data points are round. Everything else gets 4px corners, or 2px for small parts inside a control.
-9. **How big is it?** Snap to the control sizes (32px, 26px small, 40px large, 44px on touch) and the spacing scale. Use 8px–12px inside groups, 16px–24px between groups, and 48px+ between page sections. Default to dense.
+9. **How big is it?** Snap to the control sizes (32px, 26px small, 40px large, 44px on touch), the type scale and the spacing scale. A value between two steps is a guess, so pick a step. Use 8px–12px inside groups, 16px–24px between groups, and 48px+ between page sections. Default to dense.
 10. **Does it move?** Only to show a change of state, in 80ms–140ms, and not at all under reduced motion.
 11. **Where does its state live?** In the component's state: selected, current, pressed, checked, invalid, busy, sorted. The style follows from that state and never comes from a separate styled variant. (On the web: `aria-*` and native attributes, not modifier classes.)
 12. **Who spaces it?** The parent does. Components carry no outer margin, and layouts set the gap.
@@ -76,6 +76,16 @@ If the answers leave two options, pick the plainer one.
 - Title Case, ALL CAPS in source text, exclamation marks, cheer, filler, or emoji as decoration. Small labels are sentence case, bold and muted, never uppercase or letter-spaced.
 - Motion for its own sake: bouncing, sliding pages, skeleton shimmer beyond a slow pulse.
 - Confirmation dialogs for actions that can be undone. Act, then offer Undo.
+
+## Signs of a rushed build
+
+Quickly made interfaces share a few tells that the rules above don't already prevent. Check for them before calling a screen done.
+
+- **Nothing fake ships.** No invented testimonials, customer logos, user counts or ratings, and no link or control that does nothing, like a social icon pointing at `#` or a theme switch with no effect. Leave a visible placeholder and tell the user what's missing.
+- **Waiting shows where you acted.** Anything slower than a moment marks it in place: the busy button, a skeleton shaped like what's coming, or inline status. Never a frozen screen or a blank gap.
+- **One left edge.** Every section of a screen starts on the same edge, top bar and footer included. Left-align by default and center only a short block that stands alone, like an empty state. Never alternate centered and left sections down a page.
+- **Icons do a job.** An icon helps find or recognize something: a nav item, a tool, a file type, a status. Don't put one over every feature card or heading, and never use a sparkle to mean AI.
+- **Nothing hides content.** A sticky or fixed bar takes its own space, so nothing scrolls out of reach under it. At phone width (390px) nothing overflows or gets cut off, and links that don't fit go into a menu.
 
 ## Scale
 
@@ -124,7 +134,7 @@ Interface text follows the same restraint as the visuals. Full rules, mechanics 
 5. **Lead with the point.** Put the outcome or the action first, the explanation after.
 6. **No filler or cheer.** No please, simply, just, easily, oops or exclamation marks.
 7. **Don't blame.** Errors say what happened and how to fix it, never what the reader did wrong.
-8. **No slogans.** State each rule plainly, in one sentence. Avoid punchy two-part lines such as X, not Y or It's X; Y.
+8. **No slogans.** State each rule plainly, in one sentence. Avoid punchy two-part lines such as X, not Y or It's X; Y. A headline says what the product does, since Launch faster or Build without limits could sell anything.
 9. **Let the UI carry structure.** If a heading or label already says it, the body doesn't repeat it.
 
 | Element | Max | Case | Ends |
@@ -181,6 +191,7 @@ The CSS in [`src/design/`](https://github.com/spenker3/design/tree/main/src/desi
 - **A project with its own styling approach** (Tailwind, CSS-in-JS, a component library): don't paste a second system on top. Put the tokens in its theme, using `references/tokens.json` for resolved light and dark values, and rebuild the roles and rules with its tools.
 - **A single-file page** (an HTML artifact, a quick prototype): inline `tokens.css` and only the component CSS the page uses. Load Geist Mono from Google Fonts, and keep the system `--font-ui` stack for the sans.
 - **Theme**: colors use `light-dark()`, so the page follows the system. Set `data-theme="light"` or `"dark"` on `<html>` to force one, and offer a System / Light / Dark segmented control when the app has settings.
+- **Page basics**: every page gets its own title and a favicon, and public pages a description and a share image.
 - **Check both themes** before calling a page done. With a server running, use `chromium --headless=new --blink-settings=preferredColorScheme=1 --window-size=1440,900 --screenshot=out.png <url>` (`=0` for dark).
 
 ### Charts, diagrams, math and papers

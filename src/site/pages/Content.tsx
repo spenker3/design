@@ -65,7 +65,7 @@ export function Content() {
                 <div className="title">{t}</div>
                 <div className="sub muted">{["24 pages · slides", "18 pages · notes", "4 pages · doc"][i]}</div>
               </span>
-              <span className="muted" style={{ fontSize: 12 }}>
+              <span className="muted" style={{ fontSize: "var(--text-sm)" }}>
                 {["Oct 28", "Oct 30", "Nov 2"][i]}
               </span>
               <ChevronRight size={16} className="muted" />

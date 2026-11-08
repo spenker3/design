@@ -51,9 +51,9 @@
 }
 
 .tabs .count {
-  font-size: 12px;
+  font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
-  opacity: 0.7;
+  opacity: var(--opacity-quiet);
 }
 
 /* Tabs that sit on a line, for in-page sections. */
@@ -111,9 +111,9 @@
 
 .nav .count {
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
-  opacity: 0.7;
+  opacity: var(--opacity-quiet);
 }
 
 .nav-label {
@@ -127,14 +127,14 @@
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  min-height: 48px;
+  min-height: var(--topbar);
   padding: 0 var(--space-5);
   background: var(--bg);
   border-bottom: var(--border) solid var(--line);
 }
 
 .wordmark {
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: var(--weight-heavy);
   letter-spacing: var(--tracking-tight);
   color: var(--fg);
@@ -163,7 +163,7 @@
 }
 
 .workspaces > [data-empty] {
-  opacity: 0.5;
+  opacity: var(--opacity-empty);
 }
 
 .workspaces > button:hover:not([aria-current="true"]) {
@@ -236,7 +236,7 @@
 }
 
 .pagination > button:disabled {
-  opacity: 0.35;
+  opacity: var(--opacity-disabled);
 }
 
 .pagination svg {

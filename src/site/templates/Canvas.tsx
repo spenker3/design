@@ -49,7 +49,7 @@ export function Canvas() {
     <div className="tpl-canvas canvas">
       <header className="canvas-top">
         <div className="toolbar">
-          <a className="wordmark" href="#/" style={{ padding: "0 8px", fontSize: 15 }}>
+          <a className="wordmark" href="#/" style={{ padding: "0 8px", fontSize: "var(--text-md)" }}>
             frame
           </a>
           <hr />
@@ -108,7 +108,7 @@ export function Canvas() {
         <div className="panel-section">
           <div className="row between">
             <h4>Card</h4>
-            <span className="badge">Frame</span>
+            <span className="badge">frame</span>
           </div>
           <div className="panel-row">
             <label className="mini-field">
@@ -175,7 +175,7 @@ export function Canvas() {
           <button className="btn ghost icon sm" aria-label="Zoom out" onClick={() => setZoom(Math.max(25, zoom - 25))}>
             <Minus />
           </button>
-          <span className="num" style={{ width: 44, textAlign: "center", fontSize: 12 }}>
+          <span className="num" style={{ width: 44, textAlign: "center", fontSize: "var(--text-sm)" }}>
             {zoom}%
           </span>
           <button className="btn ghost icon sm" aria-label="Zoom in" onClick={() => setZoom(Math.min(400, zoom + 25))}>
