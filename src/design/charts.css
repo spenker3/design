@@ -1,0 +1,454 @@
+/*
+  Charts and graphs: data drawn as marks, and things drawn as nodes and links.
+  .bars           simple single-series bar chart in fg. .bars-axis labels its ends.
+  .chart          SVG chart (<LineChart> or hand-written): .chart-grid, .chart-axis, .chart-line,
+                  .chart-dot, .chart-cross, and an HTML .chart-tip tooltip.
+  .legend         series key: swatch + name. Present whenever there are 2+ series.
+  .spark          inline sparkline, sized to the text.
+  .heat           heatmap: cells mix fg into surface by --v (0 to 1). One hue, never a rainbow.
+  .force          Obsidian-style force graph (<ForceGraph>): .force-node dots, .force-link lines.
+  .nodes          node editor (<NodeEditor>) on a .canvas: .node cards, .node-port dots, .wire curves.
+                  Port color (--c) is the data type. A selected node's header inverts.
+  .diagram        Mermaid syntax rendered to SVG by Pele (<Diagram>). Maps --pele-* onto the tokens, so it
+                  follows the theme with no re-render, and shows syntax errors in place. For flowcharts,
+                  trees, networks, sequence, state, class, ER, gantt, git and mind maps.
+*/
+/* Bars: single series in fg, 2px gaps, flat baseline. Hover shows the value. */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 160px;
+  border-bottom: var(--border) solid var(--line-strong);
+}
+
+.bars > span {
+  position: relative;
+  flex: 1;
+  height: var(--h);
+  min-height: 1px;
+  background: var(--fg);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.bars > span:hover {
+  opacity: 0.7;
+}
+
+.bars > span::before {
+  content: "";
+  position: absolute;
+  inset: auto -1px 0;
+  height: 160px;
+}
+
+.bars-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  color: var(--faint);
+  font: 500 11px/1 var(--font-mono);
+}
+
+/* Node editor */
+.nodes {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  touch-action: none;
+}
+
+.nodes > .wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wire {
+  fill: none;
+  stroke: var(--c, var(--muted));
+  stroke-width: 1.5;
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  background: var(--bg);
+  border: var(--border) solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
+.node[aria-selected="true"] {
+  border-color: var(--fg);
+}
+
+.node-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-bottom: var(--border) solid var(--line);
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+  font-weight: var(--weight-bold);
+  cursor: grab;
+}
+
+.node-head:active {
+  cursor: grabbing;
+}
+
+.node-head svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+}
+
+.node[aria-selected="true"] .node-head {
+  background: var(--sel-bg);
+  border-bottom-color: var(--sel-bg);
+  color: var(--sel-fg);
+}
+
+.node[aria-selected="true"] .node-head svg {
+  color: inherit;
+}
+
+.node-body {
+  padding: var(--space-2) 0;
+}
+
+.node-port {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 24px;
+  padding: 0 var(--space-4);
+  color: var(--muted);
+}
+
+.node-port.out {
+  justify-content: flex-end;
+}
+
+.node-port::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -5px;
+  background: var(--bg);
+  border: 1.5px solid var(--c, var(--fg));
+  border-radius: var(--radius-round);
+}
+
+.node-port.in::before {
+  left: -5px;
+}
+
+.node-port.out::before {
+  right: -5px;
+}
+
+.node-port[data-linked]::before {
+  background: var(--c, var(--fg));
+}
+
+.node-value {
+  margin-left: auto;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+/* Charts (SVG) */
+.chart {
+  position: relative;
+  min-width: 0;
+}
+
+.chart > svg {
+  display: block;
+  width: 100%;
+  max-width: none;
+  overflow: visible;
+}
+
+.chart-grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.chart-base {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  fill: var(--faint);
+  font: 500 11px var(--font-mono);
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--c, var(--fg));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart-area {
+  fill: color-mix(in srgb, var(--c, var(--fg)) 12%, transparent);
+}
+
+.chart-dot {
+  fill: var(--c, var(--fg));
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+
+.chart-cross {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+.chart-end {
+  fill: var(--text);
+  font-size: var(--text-xs);
+  dominant-baseline: central;
+}
+
+.chart-tip {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  min-width: 140px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg);
+  border: var(--border) solid var(--overlay-border);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  pointer-events: none;
+}
+
+.chart-tip > b {
+  grid-column: 1 / -1;
+  font-weight: var(--weight-bold);
+}
+
+.chart-tip > .n {
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legend > span::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--c, var(--fg));
+  border-radius: var(--radius-sm);
+}
+
+/* Sparkline: inline, text height. */
+.spark {
+  display: inline-block;
+  width: 64px;
+  height: 1.2em;
+  vertical-align: -0.25em;
+  overflow: visible;
+}
+
+.spark > polyline {
+  fill: none;
+  stroke: var(--c, currentColor);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Heatmap: one hue (fg) into the surface. --v from 0 to 1. */
+.heat {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 7), 1fr);
+  gap: 2px;
+}
+
+.heat > span {
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--fg) calc(var(--v, 0) * 100%), var(--surface-2));
+  border-radius: var(--radius-sm);
+}
+
+.heat > span:hover {
+  outline: var(--border) solid var(--fg);
+  outline-offset: 1px;
+}
+
+.heat-scale {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--faint);
+  font: 500 11px/1 var(--font-mono);
+}
+
+.heat-scale > i {
+  width: 96px;
+  height: 8px;
+  background: linear-gradient(to right, var(--surface-2), var(--fg));
+  border-radius: var(--radius-sm);
+}
+
+/* Force graph (Obsidian-style). Dots in muted gray or a group color (--c); hover lights a
+   note and its neighbors, everything else drops back. A selected label inverts. */
+.force {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.force:active {
+  cursor: grabbing;
+}
+
+.force > svg {
+  display: block;
+  max-width: none;
+}
+
+.force-link {
+  stroke: var(--line-strong);
+  transition: opacity var(--dur) var(--ease);
+}
+
+.force-link[data-on] {
+  stroke: var(--fg);
+}
+
+.force-link[data-dim] {
+  opacity: 0.25;
+}
+
+.force-node {
+  cursor: pointer;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.force-node > circle {
+  fill: var(--c, var(--muted));
+}
+
+.force-node[data-orphan] > circle {
+  fill: var(--faint);
+}
+
+.force-node[data-on] > circle {
+  fill: var(--c, var(--fg));
+}
+
+.force-node[aria-selected="true"] > circle {
+  fill: var(--fg);
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+
+.force-node[data-dim] {
+  opacity: 0.2;
+}
+
+.force-node > text {
+  fill: var(--text);
+  font-family: var(--font-ui);
+  text-anchor: middle;
+  dominant-baseline: hanging;
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+/* Inverted label: the stroke becomes the block. */
+.force-node[aria-selected="true"] > text {
+  fill: var(--sel-fg);
+  stroke: var(--sel-bg);
+  stroke-width: 10px;
+}
+
+/* Pele diagrams. Tokens use light-dark(), so these follow the theme without a re-render. */
+.diagram {
+  --pele-bg: var(--bg);
+  --pele-fg: var(--text);
+  --pele-fg-on-light: #000000;
+  --pele-fg-on-dark: #ffffff;
+  --pele-muted: var(--muted);
+  --pele-line: var(--muted);
+  --pele-surface: var(--bg);
+  --pele-surface-alt: var(--surface);
+  --pele-border: var(--fg);
+  --pele-accent: var(--fg);
+  --pele-critical: var(--bad);
+  --pele-error: var(--bad);
+  --pele-font: var(--font-ui);
+  --pele-font-mono: var(--font-mono);
+  --pele-title-weight: var(--weight-bold);
+  --pele-heading-weight: var(--weight-bold);
+  --pele-bold-weight: var(--weight-bold);
+  --pele-radius: var(--radius);
+  --pele-series-1: var(--series-1);
+  --pele-series-2: var(--series-2);
+  --pele-series-3: var(--series-3);
+  --pele-series-4: var(--series-4);
+  --pele-series-5: var(--c-green);
+  --pele-series-6: var(--c-cyan);
+  --pele-series-7: var(--c-magenta);
+  --pele-series-8: var(--c-red);
+  min-width: 0;
+}
+
+.diagram .pele {
+  margin: 0 auto;
+}
+
+/* Subgraphs are grouping, not things: a quiet line, not the fg border. */
+.diagram .pele-cluster > rect {
+  stroke: var(--line-strong);
+}
+
+.diagram .pele-edge-label,
+.diagram .pele-cluster-label {
+  font-family: var(--font-mono);
+}

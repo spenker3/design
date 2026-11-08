@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in \"$CLAUDE_PROJECT_DIR\"/src/*) node \"$CLAUDE_PROJECT_DIR/scripts/skill.ts\" -q ;; esac 2>&1 || true",
+            "statusMessage": "Updating the design skill"
+          }
+        ]
+      }
+    ]
+  }
+}

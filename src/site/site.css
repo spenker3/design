@@ -1,0 +1,413 @@
+/* The showcase site itself. Not part of the design system. */
+.site {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  min-height: 100dvh;
+}
+
+.site-top {
+  grid-column: 1 / -1;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-menu {
+  display: none;
+}
+
+.site-side {
+  position: sticky;
+  top: 49px;
+  height: calc(100dvh - 49px);
+  overflow-y: auto;
+  padding: 0 var(--space-3) var(--space-6);
+  border-right: var(--border) solid var(--line);
+}
+
+.site-main {
+  min-width: 0;
+  padding: var(--space-7) var(--space-7) var(--space-10);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 960px;
+}
+
+.page-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.page-head h1 {
+  font-size: var(--text-2xl);
+}
+
+.lede {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: var(--text-md);
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.demo-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.demo-rules {
+  max-width: 68ch;
+  color: var(--muted);
+}
+
+.demo-rules ul {
+  padding-left: 1.2em;
+}
+
+.demo-rules li + li {
+  margin-top: 2px;
+}
+
+.demo-stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  min-width: 0;
+}
+
+.demo-stage.flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Swatches and specimens */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.swatch .chip {
+  height: 56px;
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+}
+
+.swatch code {
+  background: none;
+  padding: 0;
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.specimen {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-5);
+  padding: var(--space-3) 0;
+  border-bottom: var(--border) solid var(--line);
+}
+
+.specimen:last-child {
+  border-bottom: none;
+}
+
+.specimen code {
+  background: none;
+  padding: 0;
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+@media (max-width: 760px) {
+  .site {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-menu {
+    display: inline-flex;
+  }
+
+  .site-side {
+    display: none;
+    position: fixed;
+    inset: 49px 0 0 0;
+    z-index: 9;
+    height: auto;
+    background: var(--bg);
+    border-right: none;
+  }
+
+  .site-side.open {
+    display: block;
+  }
+
+  .site-main {
+    padding: var(--space-6) var(--space-4) var(--space-9);
+  }
+
+  .demo-stage {
+    padding: var(--space-4);
+  }
+
+  .specimen {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}
+
+.principles {
+  list-style: none;
+  border-top: var(--border) solid var(--line);
+}
+
+.principles li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-bottom: var(--border) solid var(--line);
+}
+
+.principles li > .mono {
+  padding-top: 3px;
+}
+
+.principles p {
+  max-width: 64ch;
+}
+
+.sel-sample {
+  padding: 4px 10px;
+  background: var(--sel-bg);
+  color: var(--sel-fg);
+}
+
+/* Floating bar over full-screen templates: back + theme. */
+.template-bar {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px;
+  background: var(--bg);
+  border: var(--border) solid var(--overlay-border);
+  border-radius: var(--radius);
+}
+
+.template-bar .segmented {
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.template-bar .segmented > button {
+  min-height: var(--control-sm);
+  padding: 0 var(--space-2);
+}
+
+/* Keep toasts clear of the template bar. */
+body:has(.template-bar) .toasts {
+  bottom: 60px;
+}
+
+body:has(.template-bar) .settings-save {
+  padding-right: 200px;
+}
+
+/* Image stand-in for templates. --tone tints it. */
+.media {
+  --tone: var(--muted);
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ratio, 16 / 9);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 11px, color-mix(in srgb, var(--tone) 10%, transparent) 11px 12px),
+    color-mix(in srgb, var(--tone) 16%, var(--surface));
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.media > .media-label {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  color: color-mix(in srgb, var(--tone) 70%, var(--text));
+  font: 500 11px/1 var(--font-mono);
+}
+
+/* Writing page */
+.w-elements {
+  border-top: var(--border) solid var(--line);
+}
+
+.w-element {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: var(--space-6);
+  padding: var(--space-5) 0;
+  border-bottom: var(--border) solid var(--line);
+  scroll-margin-top: 64px;
+}
+
+.w-spec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.w-rules {
+  padding-left: 1.1em;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.w-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  list-style: none;
+}
+
+.ex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  border-left: 2px solid var(--good);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.ex.bad {
+  border-left-color: var(--bad);
+  color: var(--muted);
+}
+
+.ex > svg {
+  align-self: center;
+  color: var(--good);
+}
+
+.ex.bad > svg {
+  color: var(--bad);
+}
+
+.ex-n {
+  color: var(--faint);
+  font: 500 11px/1 var(--font-mono);
+}
+
+.ex-n.over {
+  color: var(--bad);
+}
+
+.ex-issues {
+  flex-basis: 100%;
+  padding-left: 22px;
+  color: var(--bad);
+  font-size: var(--text-xs);
+}
+
+.ex-issues.warn {
+  color: var(--warn);
+}
+
+@media (max-width: 760px) {
+  .w-element {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+}
+
+/* The Skill link stays pinned above the scrolling nav. */
+.site-pin {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--space-3) 0;
+  background: var(--bg);
+  border-bottom: var(--border) solid var(--line);
+}
+
+/* Rendered skill files: the tabs scroll sideways, and so do wide tables. */
+.page > .tabs {
+  overflow-x: auto;
+}
+
+.skill-doc {
+  max-width: none;
+}
+
+.skill-doc > .skill-block {
+  max-width: var(--measure);
+}
+
+.skill-doc div.skill-block > * + * {
+  margin-top: 0.9em;
+}
+
+.skill-table {
+  overflow-x: auto;
+}
+
+/* Terminal mock for the TUI pages (Tty.tsx). Ink and paper stand in for the
+   terminal's default fg and bg, and named colors map to the palette. */
+.tty {
+  --tty-pad: var(--space-4);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: var(--tty-pad);
+  overflow-x: auto;
+  font: 13px/1.25 "GeistMono Nerd Font Mono", "GeistMono NFM", var(--font-mono);
+  font-variant-ligatures: none;
+  white-space: pre;
+  color: var(--text);
+  background: var(--bg);
+  border: var(--border) solid var(--line-strong);
+  border-radius: var(--radius);
+}
+.tty .b { font-weight: var(--weight-heavy); }
+.tty .dim { color: var(--muted); }
+.tty .dark { color: var(--faint); }
+.tty .rev { color: var(--bg); background: var(--fg); }
+.tty .u { text-decoration: underline; text-underline-offset: 2px; }
+.tty .i { font-style: italic; }
+.tty .red { color: var(--c-red); }
+.tty .yellow { color: var(--c-yellow); }
+.tty .green { color: var(--c-green); }
+.tty .cyan { color: var(--c-cyan); }
+.tty .blue { color: var(--c-blue); }
+.tty .magenta { color: var(--c-magenta); }
+.tty .rev.red, .tty .rev.green, .tty .rev.yellow, .tty .rev.blue { color: var(--bg); }
+.tty .rev.red { background: var(--c-red); }
+.tty .rev.green { background: var(--c-green); }
+.tty .rev.yellow { background: var(--c-yellow); }
+.tty .rev.blue { background: var(--c-blue); }

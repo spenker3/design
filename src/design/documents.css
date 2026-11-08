@@ -1,0 +1,361 @@
+/*
+  Documents: long-form content blocks. Prose itself is .prose (layout.css).
+  code            inline code: mono on surface-2 (in base.css). code.path drops the fill.
+  .codeblock      a block with an optional head (file name, language, copy).
+    .lines        line numbers in the gutter.
+    .line.hl      a highlighted line: fg bar in the gutter.
+    .line.add/.del  diff lines: tinted, with +/- in the gutter.
+  .codeblock.terminal  shell session: .prompt is faint and unselectable, output is muted.
+  .tk-*           syntax tokens: kw, str, num, fn, type, com, punct. Colors are --code-* tokens.
+  Code is never wrapped: blocks scroll sideways, so indentation stays honest.
+  .figure         numbered figure: content, then a figcaption that opens with .figure-num.
+                  .figure-row lays subfigures side by side. .figure-credit is the source line.
+                  .figure.framed for content with no edge of its own.
+  .equation       display math centered, its number (.eq-num) at the right. Math itself is <Tex>.
+  .theorem        definition / theorem / lemma: bold label, 2px rule at the left.
+                  .theorem.soft for definitions and remarks. .proof ends with a ∎.
+  .abstract       summary block at the top of a paper, titled with an h4.
+  .cite / .refs   inline citation [1] and the numbered reference list. A targeted ref inverts its number.
+*/
+.codeblock {
+  min-width: 0;
+  background: var(--code-bg);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.codeblock-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 34px;
+  padding: 0 var(--space-1) 0 var(--space-4);
+  border-bottom: var(--border) solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.codeblock-head .file {
+  font: 500 12px/1 var(--font-mono);
+  color: var(--text);
+}
+
+.codeblock-head .lang {
+  color: var(--faint);
+  font: 500 11px/1 var(--font-mono);
+  text-transform: lowercase;
+}
+
+.codeblock pre {
+  margin: 0;
+  padding: var(--space-4) 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font: 13px/1.65 var(--font-mono);
+  tab-size: 4;
+  overflow-x: auto;
+}
+
+.codeblock code {
+  display: block;
+  min-width: max-content;
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.codeblock .line {
+  display: block;
+  padding: 0 var(--space-5);
+  border-left: 2px solid transparent;
+}
+
+.codeblock .lines {
+  counter-reset: line;
+}
+
+.codeblock .lines .line {
+  padding-left: 0;
+}
+
+.codeblock .lines .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 4ch;
+  margin-right: var(--space-4);
+  padding-right: var(--space-2);
+  color: var(--faint);
+  text-align: right;
+  user-select: none;
+}
+
+.codeblock .line.hl {
+  background: var(--code-hl);
+  border-left-color: var(--fg);
+}
+
+.codeblock .line.add {
+  background: var(--code-add);
+}
+
+.codeblock .line.del {
+  background: var(--code-del);
+}
+
+.codeblock .line[data-mark]::before {
+  content: attr(data-mark);
+  display: inline-block;
+  width: 2ch;
+  margin-left: -2ch;
+  user-select: none;
+}
+
+.codeblock .lines .line[data-mark]::before {
+  content: counter(line) " " attr(data-mark);
+  width: calc(4ch + 2ch);
+  margin-left: 0;
+  margin-right: var(--space-2);
+}
+
+.codeblock .line.add[data-mark]::before {
+  color: var(--good);
+}
+
+.codeblock .line.del[data-mark]::before {
+  color: var(--bad);
+}
+
+.codeblock .line:empty::after {
+  content: " ";
+}
+
+/* Terminal */
+.codeblock.terminal {
+  background: var(--bg);
+}
+
+.codeblock.terminal .prompt {
+  color: var(--faint);
+  user-select: none;
+}
+
+.codeblock.terminal .out {
+  color: var(--muted);
+}
+
+/* Syntax tokens */
+.tk-kw {
+  color: var(--code-keyword);
+  font-weight: var(--weight-bold);
+}
+
+.tk-str {
+  color: var(--code-string);
+}
+
+.tk-num {
+  color: var(--code-number);
+}
+
+.tk-fn {
+  color: var(--code-function);
+}
+
+.tk-type {
+  color: var(--code-type);
+}
+
+.tk-com {
+  color: var(--code-comment);
+}
+
+.tk-punct {
+  color: var(--code-punct);
+}
+
+/* Inline code variants */
+code.path {
+  background: none;
+  padding: 0;
+  color: var(--text);
+}
+
+code.token {
+  color: var(--code-type);
+}
+
+/* Figures */
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.figure > figcaption {
+  max-width: var(--measure);
+  line-height: var(--leading);
+}
+
+.figure-num {
+  margin-right: 0.35em;
+  color: var(--text);
+  font-weight: var(--weight-bold);
+}
+
+.figure-credit {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--faint);
+  font-size: var(--text-xs);
+}
+
+/* Table caption, inside a .table-wrap */
+.table > caption {
+  padding: var(--space-2) var(--space-3);
+  border-top: var(--border) solid var(--line);
+}
+
+/* Framed: for content with no edge of its own (charts, diagrams, screenshots on bg). */
+.figure.framed > :first-child {
+  padding: var(--space-5);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+}
+
+.figure-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-4);
+}
+
+/* Math (KaTeX). Inherits color, so math inverts with selection like text. */
+.katex {
+  font-size: 1.1em;
+}
+
+.katex-display {
+  margin: 0;
+}
+
+.katex-error {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.equation {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+  overflow-x: auto;
+}
+
+.equation > .math {
+  grid-column: 2;
+}
+
+.eq-num {
+  grid-column: 3;
+  justify-self: end;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* Theorem-like blocks */
+.theorem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--fg);
+}
+
+.theorem.soft {
+  border-left-color: var(--line-strong);
+}
+
+.theorem-label {
+  font-weight: var(--weight-bold);
+}
+
+.theorem-label > span {
+  color: var(--muted);
+  font-weight: var(--weight-normal);
+}
+
+.proof {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.proof > :last-child::after {
+  content: "∎";
+  float: right;
+  margin-left: var(--space-3);
+}
+
+.abstract {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+}
+
+/* Citations and references */
+.cite {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
+.cite:hover {
+  color: var(--fg);
+}
+
+.refs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ref;
+  font-size: var(--text-sm);
+}
+
+.refs > li {
+  display: grid;
+  grid-template-columns: 3.2em minmax(0, 1fr);
+  counter-increment: ref;
+  scroll-margin-top: var(--space-9);
+}
+
+.refs > li::before {
+  content: "[" counter(ref) "]";
+  align-self: start;
+  justify-self: start;
+  padding: 0 var(--space-0);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.refs > li:target::before {
+  background: var(--sel-bg);
+  color: var(--sel-fg);
+}
+
+.refs i {
+  color: var(--text);
+}

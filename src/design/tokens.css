@@ -1,0 +1,159 @@
+/*
+  Design tokens. The whole language lives here, and components only reference these.
+
+  Colors use light-dark(LIGHT, DARK): both themes sit on one line, so a new
+  color is always set for both. Theme follows the system, and data-theme="light"
+  or "dark" on <html> forces one.
+
+  The main theme is black and white:
+  - fg/bg are pure black and white. Selection and primary actions invert them.
+  - Gray is for structure (surfaces, lines, muted text).
+  - Color is for meaning (status, data, emphasis), used wherever it helps.
+*/
+:root {
+  color-scheme: light dark;
+
+  /* Ground */
+  --bg: light-dark(#ffffff, #000000);
+  --fg: light-dark(#000000, #ffffff);
+  --surface: light-dark(#f7f7f7, #0d0d0d);
+  --surface-2: light-dark(#ececec, #1a1a1a);
+  --surface-3: light-dark(#e0e0e0, #262626);
+  --line: light-dark(#e2e2e2, #242424);
+  --line-strong: light-dark(#c0c0c0, #3a3a3a);
+
+  /* Text */
+  --text: light-dark(#111111, #ececec);
+  --muted: light-dark(#666666, #9a9a9a);
+  --faint: light-dark(#a0a0a0, #5c5c5c);
+
+  /* Selection: the inverted block. Nav, tabs, rows, text selection, focused cells. */
+  --sel-bg: var(--fg);
+  --sel-fg: var(--bg);
+
+  /* Interaction fills, as subtle grays */
+  --hover: light-dark(#f0f0f0, #141414);
+  --press: light-dark(#e4e4e4, #1f1f1f);
+
+  /* Meaning */
+  --good: light-dark(#1a7f37, #86d08b);
+  --warn: light-dark(#8a5a00, #e5b454);
+  --bad: light-dark(#c62828, #f08a75);
+  --info: light-dark(#1565c0, #7db8f0);
+  --good-tint: light-dark(#e8f5ec, #0d1f10);
+  --warn-tint: light-dark(#fbf3e2, #221a08);
+  --bad-tint: light-dark(#fcebea, #2a100c);
+  --info-tint: light-dark(#e7f0fb, #0b1824);
+
+  /* Categorical palette for data, charts, tags. Same order everywhere. */
+  --c-red: light-dark(#d1242f, #f47067);
+  --c-orange: light-dark(#d9620a, #f0883e);
+  --c-yellow: light-dark(#a87b00, #e5b454);
+  --c-green: light-dark(#1a7f37, #57c66a);
+  --c-cyan: light-dark(#0e7c86, #4fc1cc);
+  --c-blue: light-dark(#2563eb, #6ca4f8);
+  --c-violet: light-dark(#7c3aed, #b392f0);
+  --c-magenta: light-dark(#bf3989, #e275ad);
+
+  /* Chart series: palette hues in an order that stays apart under color blindness
+     (validated in both themes). One series uses fg, and a 5th+ folds into "Other" (--faint). */
+  --series-1: var(--c-blue);
+  --series-2: var(--c-orange);
+  --series-3: var(--c-violet);
+  --series-4: var(--c-yellow);
+
+  /* Code: monochrome first. Keywords get weight, and color marks literals and names. */
+  --code-bg: var(--surface);
+  --code-keyword: var(--fg);
+  --code-string: var(--c-green);
+  --code-number: var(--c-orange);
+  --code-function: var(--c-blue);
+  --code-type: var(--c-violet);
+  --code-comment: var(--faint);
+  --code-punct: var(--muted);
+  --code-hl: light-dark(#eeeeee, #1c1c1c);
+  --code-add: var(--good-tint);
+  --code-del: var(--bad-tint);
+
+  /* Overlays */
+  --scrim: light-dark(rgb(255 255 255 / 0.6), rgb(0 0 0 / 0.6));
+  --overlay-border: var(--fg);
+
+  /* Type: Helvetica for everything, Geist Mono for code, numbers in tables, keys. */
+  --font-ui: Helvetica, "Helvetica Neue", "Nimbus Sans", "TeX Gyre Heros", Arial, sans-serif;
+  --font-mono: "Geist Mono Variable", "GeistMono Nerd Font", ui-monospace, monospace;
+
+  --text-xs: 11px;
+  --text-sm: 12.5px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 26px;
+  --text-2xl: 36px;
+  --text-3xl: 56px;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-bold: 600;
+  --weight-heavy: 700;
+
+  --leading-tight: 1.15;
+  --leading: 1.5;
+  --leading-loose: 1.65;
+  --tracking-tight: -0.02em;
+
+  /* Space: 4px base, with 2 and 6 for tight UI */
+  --space-0: 2px;
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+  --space-9: 64px;
+  --space-10: 96px;
+
+  /* Shape: nearly square. Pills only for round things (avatars, dots). */
+  --radius: 4px;
+  --radius-sm: 2px;
+  --radius-round: 999px;
+  --border: 1px;
+
+  /* Sizing */
+  --control: 32px;
+  --control-sm: 26px;
+  --control-lg: 40px;
+  --measure: 68ch;
+  --page: 1120px;
+
+  /* Motion: almost none. Short fades for changes of state. */
+  --dur-fast: 80ms;
+  --dur: 140ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Touch: bigger targets. */
+@media (pointer: coarse) {
+  :root {
+    --control: 44px;
+    --control-sm: 36px;
+    --control-lg: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+  }
+}
