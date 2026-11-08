@@ -64,3 +64,7 @@ Don't edit `skill/` by hand, because everything in it is generated. The prose li
 | `src/site/` | The showcase site and templates, which aren't part of the system |
 | `scripts/skill.ts` | The skill generator |
 | `skill/` | The generated Claude skill |
+
+## License
+
+MIT. See [LICENSE](LICENSE).
