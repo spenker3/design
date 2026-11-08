@@ -132,14 +132,44 @@ Helvetica for everything, Geist Mono for code, keys, and numbers in table column
 | `--text-xl` | 26px |
 | `--text-2xl` | 36px |
 | `--text-3xl` | 56px |
+
+## Code blocks
+
+Mono reads larger, so blocks sit between sm and base.
+
+| Token | Value |
+| --- | --- |
+| `--text-code` | 13px |
 | `--weight-normal` | 400 |
 | `--weight-medium` | 500 |
 | `--weight-bold` | 600 |
 | `--weight-heavy` | 700 |
+
+## Leading
+
+display for 2xl and up, tight for big UI text, snug for headings and labels.
+
+| Token | Value |
+| --- | --- |
+| `--leading-display` | 1.05 |
 | `--leading-tight` | 1.15 |
+| `--leading-snug` | 1.3 |
 | `--leading` | 1.5 |
 | `--leading-loose` | 1.65 |
 | `--tracking-tight` | -0.02em |
+| `--tracking-display` | -0.03em |
+
+## Opacity
+
+the only fades. Disabled and empty recede; quiet is secondary text on an inverted or colored fill, where muted can't apply; dim is what hover pushes back.
+
+| Token | Value |
+| --- | --- |
+| `--opacity-hover` | 0.85 |
+| `--opacity-quiet` | 0.7 |
+| `--opacity-empty` | 0.5 |
+| `--opacity-disabled` | 0.45 |
+| `--opacity-dim` | 0.2 |
 
 ## Space
 
@@ -177,6 +207,7 @@ nearly square. Pills only for round things (avatars, dots).
 | `--control` | 32px |
 | `--control-sm` | 26px |
 | `--control-lg` | 40px |
+| `--topbar` | 48px |
 | `--measure` | 68ch |
 | `--page` | 1120px |
 

@@ -188,7 +188,7 @@ Exports `Segmented`, `Tabs`.
 Exports `CodeBlock`.
 
 - `CodeBlock`: Code block. Pass the code as a string.
-  - file / lang: shown in the head. No head when both are missing and copy is off.
+  - file / lang: shown as an unnumbered first row inside the code, at the gutter's left edge. The language takes its color. No head when both are missing.
   - lines: line numbers.  highlight: 1-based line numbers to mark.
   - diff: lines starting with "+" or "-" become add/del lines (the sign moves to the gutter).
   - terminal: lines starting with "$ " are commands, and the rest is output.

@@ -13,7 +13,8 @@ Each file's header, from [`src/design/`](https://github.com/spenker3/design/tree
 ```text
 Documents: long-form content blocks. Prose itself is .prose (layout.css).
 code            inline code: mono on surface-2 (in base.css). code.path drops the fill.
-.codeblock      a block with an optional head (file name, language, copy).
+.codeblock      a block whose optional head (file name, then language) is its first row, unnumbered, from the gutter's left edge.
+                The language name is colored by language (data-lang).
   .lines        line numbers in the gutter.
   .line.hl      a highlighted line: fg bar in the gutter.
   .line.add/.del  diff lines: tinted, with +/- in the gutter.
@@ -60,10 +61,10 @@ Long-form pieces reuse the prose type and add as little as possible.
 - **Prose**: Long text uses .prose: 16px, 1.65 leading, a 68ch measure. Links underline with a quiet line that darkens on hover. Quotes are marked with a solid fg rule, not italics.
 - **Code**:
   - 13px Geist Mono at 1.65 leading on a surface, 1px line, never wrapped: long lines scroll.
-  - The head names the file when there is one, then the language, then Copy. A bare pre is for short output with nothing to name.
+  - The head names the file when there is one, then the language in its own palette hue, as an unnumbered first row starting where the line numbers do: no divider, no buttons. A bare pre is for short output with nothing to name.
   - Syntax color is quiet: keywords are bold fg, and color only marks strings, numbers, functions and types.
   - Number lines when the text refers to them. Highlight a few lines at most, with a bar in the gutter.
-- **Diff and terminal**: Added lines get the good tint and a + in the gutter, removed lines the bad tint and a −. A terminal block starts commands with a faint, unselectable $ and mutes the output. Copy takes the result: no removed lines, no output.
+- **Diff and terminal**: Added lines get the good tint and a + in the gutter, removed lines the bad tint and a −. A terminal block starts commands with a faint, unselectable $ and mutes the output. The $ can't be selected, so a selected command pastes cleanly.
 - **Figures**:
   - Caption below, never above. Start with the bold number, then one sentence on what the reader should see, not what the image is. Credit goes on its own faint line.
   - Subfigures share one number. Label each (a), (b), (c) and keep the shared point in the figure's caption. Keep panels the same size so they compare.

@@ -37,7 +37,7 @@ Every visual decision fills one of these roles. Learn the roles rather than the 
 | Paper and ink | `--bg`, `--fg` | Pure white and black, the two poles. Everything else sits between them. |
 | Surface | `--surface`, `--surface-2`, `--surface-3` | A step toward ink for areas that are grouped, raised or nested: fields, cards, sidebars, code. One step per level. |
 | Edge | `--line`, `--line-strong` | 1px boundaries. `line-strong` when the edge must hold up beside a surface, for persistent floating chrome, and for the secondary button. |
-| Text | `--text`, `--muted`, `--faint` | Three levels of importance: content, secondary, and receding (placeholders, axis labels, group labels, disabled). |
+| Text | `--text`, `--muted`, `--faint` | Three levels of importance: content, secondary, and receding (placeholders, axis labels, disabled). |
 | Selection | `--sel-bg`, `--sel-fg` | The inverted block. Never an accent color. |
 | Interaction | `--hover`, `--press` | Faint gray fills. Things with a border darken the border to fg on hover instead. |
 | Meaning | `--good`, `--warn`, `--bad`, `--info`, each with `-tint` | Status. The tint is the background behind it. |
@@ -53,7 +53,7 @@ The catalog won't cover everything. For a new element, answer these in order and
 2. **Is it a boundary between things?** Draw a 1px line. Never a shadow, glow or gradient.
 3. **Does it float above the page?** A transient layer (menu, dialog, toast, popover, chart tooltip) is bg with a 1px fg border, plus `--scrim` when modal. A persistent one (toolbar, inspector, dock) is bg with `line-strong`.
 4. **Is it grouped or raised content?** Step to the next surface. Don't add a shadow or a colored panel.
-5. **Does color say something true about it?** For status, use a meaning color with its tint. For a category, use the palette in order. For a data series, use the series order. Otherwise it's gray. Color never identifies something alone, so pair it with a label, icon, position or end label.
+5. **Does color say something true about it?** For status, use a meaning color with its tint. For a category, use the palette in order. For a data series, use the series order. A language name in a code block's head takes that language's palette hue, never green or red, which mean good and bad. Otherwise it's gray. Color never identifies something alone, so pair it with a label, icon, position or end label.
 6. **Is it read by a machine, a key, or a number compared down a column (a table figure, a price)?** Set it in mono. Other numbers (counts, page and step numbers, axis labels, deltas, citations) stay in the sans with tabular figures and no leading zeros. Everything else uses the one sans, with hierarchy from size and weight only, never from a new face or from color alone.
 7. **Is it unavailable or empty?** Disabled drops to about 45% opacity, and empty or unused items to 50%. Don't use a new color.
 8. **Is it round by nature?** Avatars, status dots, radios and data points are round. Everything else gets 4px corners, or 2px for small parts inside a control.
@@ -90,10 +90,13 @@ Values as light / dark where they differ. Full tables with notes: `references/to
 - **Chart series**: series-1 #2563eb / #6ca4f8 · series-2 #d9620a / #f0883e · series-3 #7c3aed / #b392f0 · series-4 #a87b00 / #e5b454
 - **Code**: code-bg #f7f7f7 / #0d0d0d · code-keyword #000000 / #ffffff · code-string #1a7f37 / #57c66a · code-number #d9620a / #f0883e · code-function #2563eb / #6ca4f8 · code-type #7c3aed / #b392f0 · code-comment #a0a0a0 / #5c5c5c · code-punct #666666 / #9a9a9a · code-hl #eeeeee / #1c1c1c · code-add #e8f5ec / #0d1f10 · code-del #fcebea / #2a100c
 - **Overlays**: scrim rgb(255 255 255 / 0.6) / rgb(0 0 0 / 0.6) · overlay-border #000000 / #ffffff
-- **Type**: font-ui Helvetica, "Helvetica Neue", "Nimbus Sans", "TeX Gyre Heros", Arial, sans-serif · font-mono "Geist Mono Variable", "GeistMono Nerd Font", ui-monospace, monospace · text-xs 11px · text-sm 12.5px · text-base 14px · text-md 16px · text-lg 20px · text-xl 26px · text-2xl 36px · text-3xl 56px · weight-normal 400 · weight-medium 500 · weight-bold 600 · weight-heavy 700 · leading-tight 1.15 · leading 1.5 · leading-loose 1.65 · tracking-tight -0.02em
+- **Type**: font-ui Helvetica, "Helvetica Neue", "Nimbus Sans", "TeX Gyre Heros", Arial, sans-serif · font-mono "Geist Mono Variable", "GeistMono Nerd Font", ui-monospace, monospace · text-xs 11px · text-sm 12.5px · text-base 14px · text-md 16px · text-lg 20px · text-xl 26px · text-2xl 36px · text-3xl 56px
+- **Code blocks**: text-code 13px · weight-normal 400 · weight-medium 500 · weight-bold 600 · weight-heavy 700
+- **Leading**: leading-display 1.05 · leading-tight 1.15 · leading-snug 1.3 · leading 1.5 · leading-loose 1.65 · tracking-tight -0.02em · tracking-display -0.03em
+- **Opacity**: opacity-hover 0.85 · opacity-quiet 0.7 · opacity-empty 0.5 · opacity-disabled 0.45 · opacity-dim 0.2
 - **Space**: space-0 2px · space-1 4px · space-2 6px · space-3 8px · space-4 12px · space-5 16px · space-6 24px · space-7 32px · space-8 48px · space-9 64px · space-10 96px
 - **Shape**: radius 4px · radius-sm 2px · radius-round 999px · border 1px
-- **Sizing**: control 32px · control-sm 26px · control-lg 40px · measure 68ch · page 1120px
+- **Sizing**: control 32px · control-sm 26px · control-lg 40px · topbar 48px · measure 68ch · page 1120px
 - **Motion**: dur-fast 80ms · dur 140ms · ease cubic-bezier(0.2, 0, 0, 1)
 - **@media (pointer: coarse)**: control 44px · control-sm 36px · control-lg 48px
 - **@media (prefers-reduced-motion: reduce)**: dur-fast 0ms · dur 0ms
@@ -102,7 +105,7 @@ Values as light / dark where they differ. Full tables with notes: `references/to
 
 Screens repeat a few arrangements. `references/screens.md` lists 6 full examples, one per arrangement, with their source files. Read the closest one before building a new screen.
 
-- **App shell.** A sidebar on `--surface` (nav with the current item inverted, small faint group labels, counts on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
+- **App shell.** A sidebar on `--surface` (nav with the current item inverted, bold group labels in the text color, counts on the right) beside a main column. The main column starts with a 48px top bar: wordmark or title, tabs, a spacer, status text, then ghost icon actions. On phones the sidebar slides over the page.
 - **Reading.** One column at 68ch, 16px at 1.65 leading (`.prose`). A heavy, tightly tracked title, a muted dek, and figures captioned below with a bold number.
 - **Data.** A grid of stat cards (label, big tabular number, delta colored by direction), then a chart, then a dense table. Color appears only in badges, deltas and status dots.
 - **Work surface.** A dotted canvas with floating chrome: a tool rail, an inspector panel, and a page dock, all bg with `line-strong`. The pressed tool and the current page invert.

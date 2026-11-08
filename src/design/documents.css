@@ -1,7 +1,8 @@
 /*
   Documents: long-form content blocks. Prose itself is .prose (layout.css).
   code            inline code: mono on surface-2 (in base.css). code.path drops the fill.
-  .codeblock      a block with an optional head (file name, language, copy).
+  .codeblock      a block whose optional head (file name, then language) is its first row, unnumbered, from the gutter's left edge.
+                  The language name is colored by language (data-lang).
     .lines        line numbers in the gutter.
     .line.hl      a highlighted line: fg bar in the gutter.
     .line.add/.del  diff lines: tinted, with +/- in the gutter.
@@ -25,26 +26,27 @@
   overflow: hidden;
 }
 
-.codeblock-head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-height: 34px;
-  padding: 0 var(--space-1) 0 var(--space-4);
-  border-bottom: var(--border) solid var(--line);
-  font-size: var(--text-sm);
+.codeblock .codeblock-head {
+  margin-bottom: var(--space-1);
+  user-select: none;
 }
 
 .codeblock-head .file {
-  font: 500 12px/1 var(--font-mono);
   color: var(--text);
+  font-weight: 500;
 }
 
+/* The language name takes the language's own hue; shell and unknown ones stay faint.
+   Green and red never name a language: they mean good and bad. */
 .codeblock-head .lang {
   color: var(--faint);
-  font: 500 11px/1 var(--font-mono);
-  text-transform: lowercase;
 }
+.codeblock-head .lang:is([data-lang="rust"], [data-lang="html"], [data-lang="swift"]) { color: var(--c-orange); }
+.codeblock-head .lang:is([data-lang="ts"], [data-lang="tsx"], [data-lang="c"], [data-lang="cpp"], [data-lang="lua"], [data-lang="python"], [data-lang="py"]) { color: var(--c-blue); }
+.codeblock-head .lang:is([data-lang="js"], [data-lang="jsx"], [data-lang="json"]) { color: var(--c-yellow); }
+.codeblock-head .lang:is([data-lang="go"], [data-lang="toml"], [data-lang="yaml"], [data-lang="sql"]) { color: var(--c-cyan); }
+.codeblock-head .lang:is([data-lang="css"], [data-lang="qml"], [data-lang="mermaid"]) { color: var(--c-violet); }
+.codeblock-head .lang:is([data-lang="ruby"]) { color: var(--c-magenta); }
 
 .codeblock pre {
   margin: 0;
@@ -88,6 +90,15 @@
   color: var(--faint);
   text-align: right;
   user-select: none;
+}
+
+/* With line numbers the head starts where the widest number does (--digits, set by CodeBlock). */
+.codeblock .lines .codeblock-head {
+  padding-left: calc(4ch - var(--digits, 2) * 1ch - var(--space-2));
+}
+
+.codeblock .lines .codeblock-head::before {
+  content: none;
 }
 
 .codeblock .line.hl {

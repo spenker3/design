@@ -34,7 +34,7 @@ export function Documents() {
         spec={
           <ul>
             <li>13px Geist Mono at 1.65 leading on a surface, 1px line, never wrapped: long lines scroll.</li>
-            <li>The head names the file when there is one, then the language, then Copy. A bare pre is for short output with nothing to name.</li>
+            <li>The head names the file when there is one, then the language in its own palette hue, as an unnumbered first row starting where the line numbers do: no divider, no buttons. A bare pre is for short output with nothing to name.</li>
             <li>Syntax color is quiet: keywords are bold fg, and color only marks strings, numbers, functions and types.</li>
             <li>Number lines when the text refers to them. Highlight a few lines at most, with a bar in the gutter.</li>
           </ul>
@@ -61,14 +61,15 @@ impl<T: Ord> Heap<T> {
       </Demo>
       <Demo
         title="Diff and terminal"
-        rules="Copy takes the result, leaving out removed lines and command output."
-        spec="Added lines get the good tint and a + in the gutter, removed lines the bad tint and a −. A terminal block starts commands with a faint, unselectable $ and mutes the output. Copy takes the result: no removed lines, no output."
+        rules="The $ can't be selected, so a selected command pastes cleanly."
+        spec="Added lines get the good tint and a + in the gutter, removed lines the bad tint and a −. A terminal block starts commands with a faint, unselectable $ and mutes the output. The $ can't be selected, so a selected command pastes cleanly."
         bare
       >
         <CodeBlock
           file="Button.tsx"
           lang="tsx"
           diff
+          lines
           code={` export function Save({ busy }: Props) {
 -  return <button className="btn btn-blue">Save</button>;
 +  return <button className="btn primary" aria-busy={busy}>Save</button>;
