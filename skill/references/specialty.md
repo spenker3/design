@@ -1,12 +1,12 @@
 # Specialty
 
-<!-- Generated from ~/Projects/design by `npm run skill`. Edit the repo, not this file. -->
+<!-- Generated from https://github.com/spenker3/design by `npm run skill`. Edit the repo, not this file. -->
 
 Documents (prose, code, figures, math, papers) and charts and graphs (line, scatter and small charts, note graphs, node editors, Mermaid diagrams).
 
 ## Classes
 
-Each file's header, from `~/Projects/design/src/design/`. Read the file itself for exact values before porting a component.
+Each file's header, from [`src/design/`](https://github.com/spenker3/design/tree/main/src/design). Read the file itself for exact values before porting a component.
 
 ### documents.css
 
@@ -42,6 +42,7 @@ Charts and graphs: data drawn as marks, and things drawn as nodes and links.
 .heat           heatmap: cells mix fg into surface by --v (0 to 1). One hue, never a rainbow.
 .force          Obsidian-style force graph (<ForceGraph>): .force-node dots, .force-link lines.
 .nodes          node editor (<NodeEditor>) on a .canvas: .node cards, .node-port dots, .wire curves.
+                .nodes-view holds them and takes the pan/zoom transform.
                 Port color (--c) is the data type. A selected node's header inverts.
 .diagram        Mermaid syntax rendered to SVG by Pele (<Diagram>). Maps --pele-* onto the tokens, so it
                 follows the theme with no re-render, and shows syntax errors in place. For flowcharts,
@@ -91,10 +92,10 @@ Data drawn as marks, and things drawn as nodes and links. Thin marks, quiet axes
 - **Scatter**: 8px dots with a 2px bg ring so overlaps stay readable. A highlighted group uses a series color, and the rest stay fg at reduced opacity.
 - **Small charts**:
   - A sparkline is a trend without axes, inline at text height next to the number it explains. fg by default, colored only when the trend itself is a status.
-  - A heatmap is one hue, fg mixed into the surface by value. Never a rainbow. A scale shows what the ends mean, and hover names the cell's value.
   - Simple bars are one series in fg with 2px gaps and a flat baseline. Hover shows the value.
+- **Heatmap**: One hue, fg mixed into the surface by value. Never a rainbow. With one variable darker already reads as more, so it needs no scale; hover names the cell's value.
 - **Note graph**: Obsidian-style: a force layout where dots grow with their link count and unlinked notes are faint. Gray by default, colored only for a group the reader chose (folder, tag). Hover lights a note's neighborhood and dims the rest. The selected label inverts. Hubs are always labeled, and other labels appear on hover or once zoomed in.
-- **Node editor**: Cards on a dotted canvas, dragged by the header. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor.
+- **Node editor**: Cards on a dotted canvas, dragged by the header. Drag the background to pan and scroll to zoom, as in the note graph, so a large graph fits a small window. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor.
 - **Diagrams**:
   - Write diagrams in Mermaid syntax, rendered by Pele. Its --pele-* colors map onto the tokens, so diagrams follow the theme. Never set colors with style or classDef.
   - Nodes look like controls: bg fill, 1px fg border, 4px radius. Edges are muted and labels mono. Subgraphs get a quiet line and a surface fill.
@@ -105,7 +106,7 @@ Data drawn as marks, and things drawn as nodes and links. Thin marks, quiet axes
 
 ## React wrappers
 
-Only where behavior is needed; everything else is plain HTML with classes. In `~/Projects/design/src/components/`.
+Only where behavior is needed; everything else is plain HTML with classes. In [`src/components/`](https://github.com/spenker3/design/tree/main/src/components).
 
 ### Diagram.tsx
 
@@ -128,9 +129,10 @@ Exports `useWidth`, `LineChart`.
 
 ### NodeEditor.tsx
 
-Exports `NodeEditor`.
+Exports `canvasGrid`, `NodeEditor`.
 
-- `NodeEditor`: Node editor: drag a node by its header, click to select. Ports are rows, with an in port on the left edge, an out port on the right. `types` maps a port type to its color (wires take it too).
+- `canvasGrid`: Style for a pannable .canvas: the dot grid moves and scales with the content, so dots and nodes pan as one surface. (x, y) is where the content's origin sits on screen and k is the zoom. Zoomed out, the grid doubles its spacing rather than packing dots closer than 12px.
+- `NodeEditor`: Node editor: drag a node by its header, click to select. Drag the background to pan, scroll to zoom. Ports are rows, with an in port on the left edge, an out port on the right. `types` maps a port type to its color (wires take it too).
 
 ### Tex.tsx
 

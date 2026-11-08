@@ -1,8 +1,8 @@
 # Writing
 
-<!-- Generated from ~/Projects/design by `npm run skill`. Edit the repo, not this file. -->
+<!-- Generated from https://github.com/spenker3/design by `npm run skill`. Edit the repo, not this file. -->
 
-The house style for every kind of text, from `~/Projects/design/src/design/writing.ts`. Lengths are maximums, not targets: shorter is better. `check(text, element)` in that file tests length, case, ending punctuation, exclamation marks, filler words and `...`; it can't judge wording, so read the rules too.
+The house style for every kind of text, from [`src/design/writing.ts`](https://github.com/spenker3/design/blob/main/src/design/writing.ts). Lengths are maximums, not targets: shorter is better. `check(text, element)` in that file tests length, case, ending punctuation, exclamation marks, filler words and `...`; it can't judge wording, so read the rules too.
 
 
 ## Voice

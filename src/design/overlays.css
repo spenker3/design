@@ -11,7 +11,8 @@
   .toolbar        floating strip of icon buttons (.vertical for a rail). Pressed tool inverts.
   .panel          floating inspector with labeled sections.
   .dock           floating bar: .dock-page cells (current inverts), .dock-sep, tools.
-  .canvas         the dotted work surface that floating chrome sits over.
+  .canvas         the dotted work surface that floating chrome sits over. Its dots move with the content
+                  on pan and zoom (canvasGrid in NodeEditor.tsx), never stay fixed under it.
 */
 /* Toasts */
 .toasts {

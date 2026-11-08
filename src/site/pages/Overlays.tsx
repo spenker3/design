@@ -208,7 +208,7 @@ export function Overlays() {
         title="Floating chrome"
         rules={
           <ul>
-            <li>Work surfaces put their chrome over a dotted canvas: a tool rail, an inspector panel and a page dock. All are bg with line-strong, since they stay on screen.</li>
+            <li>Work surfaces put their chrome over a dotted canvas, whose dots pan and zoom with the content: a tool rail, an inspector panel and a page dock. All are bg with line-strong, since they stay on screen.</li>
             <li>The pressed tool and the current page invert. The panel splits into labeled sections divided by lines.</li>
           </ul>
         }

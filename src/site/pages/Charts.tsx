@@ -255,12 +255,11 @@ export function Charts() {
         rules={
           <ul>
             <li>A sparkline is a trend without axes, inline at text height next to the number it explains. fg by default, colored only when the trend itself is a status.</li>
-            <li>A heatmap is one hue, fg mixed into the surface by value. Never a rainbow. A scale shows what the ends mean, and hover names the cell's value.</li>
             <li>Simple bars are one series in fg with 2px gaps and a flat baseline. Hover shows the value.</li>
           </ul>
         }
       >
-        <div className="row wrap" style={gap("var(--space-7)")}>
+        <div className="row wrap" style={{ ...gap("var(--space-7)"), justifyContent: "space-between" }}>
           <span className="row" style={gap("var(--space-3)")}>
             <span className="mono">3,120</span>
             <Spark values={visits} />
@@ -269,16 +268,25 @@ export function Charts() {
             <span className="mono">99.2%</span>
             <Spark values={[99.9, 99.8, 99.9, 99.7, 99.1, 98.6, 99.2]} color="var(--bad)" />
           </span>
+          <span className="row" style={gap("var(--space-3)")}>
+            <span className="mono">48 ms</span>
+            <Spark values={[62, 58, 60, 55, 53, 50, 51, 48]} />
+          </span>
         </div>
-        <div className="stack" style={gap("var(--space-3)")}>
-          <div className="heat" style={{ "--cols": 26 } as React.CSSProperties}>
-            {days.map((v, i) => (
-              <span key={i} style={{ "--v": v } as React.CSSProperties} title={`${Math.round(v * 40)} commits`} />
-            ))}
-          </div>
-          <div className="heat-scale">
-            0 <i /> 40
-          </div>
+        <div className="bars" style={{ height: 64 }}>
+          {[12, 18, 15, 22, 27, 24, 31, 29, 35, 33, 38, 42].map((v, i) => (
+            <span key={i} style={{ "--h": `${(v / 42) * 100}%` } as React.CSSProperties} data-tip={`${v} orders`} />
+          ))}
+        </div>
+      </Demo>
+      <Demo
+        title="Heatmap"
+        rules="One hue, fg mixed into the surface by value. Never a rainbow. With one variable darker already reads as more, so it needs no scale; hover names the cell's value."
+      >
+        <div className="heat" style={{ "--cols": 26 } as React.CSSProperties}>
+          {days.map((v, i) => (
+            <span key={i} style={{ "--v": v } as React.CSSProperties} title={`${Math.round(v * 40)} commits`} />
+          ))}
         </div>
       </Demo>
       <Demo
@@ -296,7 +304,7 @@ export function Charts() {
       </Demo>
       <Demo
         title="Node editor"
-        rules="Cards on a dotted canvas, dragged by the header. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor."
+        rules="Cards on a dotted canvas, dragged by the header. Drag the background to pan and scroll to zoom, as in the note graph, so a large graph fits a small window. Nodes are drawn like controls, and a selected node's header inverts. Ports are rows: inputs on the left edge, outputs on the right, a filled dot when linked. Port and wire color is the data type, kept consistent across the editor."
         bare
       >
         <NodeEditor label="Material nodes" nodes={editorNodes} wires={editorWires} types={types} />

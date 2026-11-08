@@ -1,12 +1,12 @@
 # Foundations
 
-<!-- Generated from ~/Projects/design by `npm run skill`. Edit the repo, not this file. -->
+<!-- Generated from https://github.com/spenker3/design by `npm run skill`. Edit the repo, not this file. -->
 
 Element defaults, inline text and layout, plus the usage rules for color, type, space and shape.
 
 ## Classes
 
-Each file's header, from `~/Projects/design/src/design/`. Read the file itself for exact values before porting a component.
+Each file's header, from [`src/design/`](https://github.com/spenker3/design/tree/main/src/design). Read the file itself for exact values before porting a component.
 
 ### base.css
 

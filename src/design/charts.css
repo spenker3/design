@@ -8,6 +8,7 @@
   .heat           heatmap: cells mix fg into surface by --v (0 to 1). One hue, never a rainbow.
   .force          Obsidian-style force graph (<ForceGraph>): .force-node dots, .force-link lines.
   .nodes          node editor (<NodeEditor>) on a .canvas: .node cards, .node-port dots, .wire curves.
+                  .nodes-view holds them and takes the pan/zoom transform.
                   Port color (--c) is the data type. A selected node's header inverts.
   .diagram        Mermaid syntax rendered to SVG by Pele (<Diagram>). Maps --pele-* onto the tokens, so it
                   follows the theme with no re-render, and shows syntax errors in place. For flowcharts,
@@ -56,10 +57,21 @@
   height: 380px;
   overflow: hidden;
   border-radius: var(--radius);
+  cursor: grab;
   touch-action: none;
 }
 
-.nodes > .wires {
+.nodes:active {
+  cursor: grabbing;
+}
+
+.nodes-view {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+}
+
+.nodes-view > .wires {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -85,6 +97,7 @@
   border-radius: var(--radius);
   font-size: var(--text-sm);
   user-select: none;
+  cursor: default;
 }
 
 .node[aria-selected="true"] {
@@ -312,21 +325,6 @@
 .heat > span:hover {
   outline: var(--border) solid var(--fg);
   outline-offset: 1px;
-}
-
-.heat-scale {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--faint);
-  font: 500 11px/1 var(--font-mono);
-}
-
-.heat-scale > i {
-  width: 96px;
-  height: 8px;
-  background: linear-gradient(to right, var(--surface-2), var(--fg));
-  border-radius: var(--radius-sm);
 }
 
 /* Force graph (Obsidian-style). Dots in muted gray or a group color (--c); hover lights a

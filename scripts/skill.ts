@@ -12,14 +12,16 @@
   showcase pages, writing.ts, routes.ts and the templates, and the comments in src/components.
 */
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { check, elements, mechanics, voice } from "../src/design/writing.ts";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel: string) => readFileSync(join(root, rel), "utf8");
-const repo = root.replace(homedir(), "~");
+/* The repo on GitHub, from package.json's "repository" ("github:owner/name"). The skill links
+   there instead of to a local path, so it works on any machine. Paths ending in / are folders. */
+const repo = `https://github.com/${JSON.parse(read("package.json")).repository.replace(/^github:/, "")}`;
+const link = (path: string) => `[\`${path}\`](${repo}/${path.endsWith("/") ? "tree" : "blob"}/main/${path.replace(/\/$/, "")})`;
 const quiet = process.argv.includes("-q");
 const warnings: string[] = [];
 const changed: string[] = [];
@@ -219,7 +221,7 @@ function tokensMd() {
 function tokensJson() {
   const theme = (t: "light" | "dark") =>
     Object.fromEntries(tok.sections.flatMap((s) => s.tokens).map((x) => [x.name.slice(2), tok.resolveIn(x[t], t)]));
-  return JSON.stringify({ source: `${repo}/src/design/tokens.css`, light: theme("light"), dark: theme("dark"), media: tok.media }, null, 2) + "\n";
+  return JSON.stringify({ source: `${repo}/blob/main/src/design/tokens.css`, light: theme("light"), dark: theme("dark"), media: tok.media }, null, 2) + "\n";
 }
 
 /* ---------- pages, CSS and components by group ---------- */
@@ -287,7 +289,7 @@ function groupMd(group: string, title: string, about: string) {
   let md = banner(title, about);
   const css = cssFiles.filter((f) => (cssGroup[f] ?? "Components") === group);
   if (css.length) {
-    md += `\n## Classes\n\nEach file's header, from \`${repo}/src/design/\`. Read the file itself for exact values before porting a component.\n`;
+    md += `\n## Classes\n\nEach file's header, from ${link("src/design/")}. Read the file itself for exact values before porting a component.\n`;
     for (const f of css) md += `\n### ${f}\n\n\`\`\`text\n${header(read(`src/design/${f}`))}\n\`\`\`\n`;
   }
   const ps = pages.filter((p) => p.group === group);
@@ -303,7 +305,7 @@ function groupMd(group: string, title: string, about: string) {
     }
   }
   if (group === "Components" || group === "Specialty") {
-    md += `\n## React wrappers\n\nOnly where behavior is needed; everything else is plain HTML with classes. In \`${repo}/src/components/\`.\n`;
+    md += `\n## React wrappers\n\nOnly where behavior is needed; everything else is plain HTML with classes. In ${link("src/components/")}.\n`;
     md += componentsMd(group === "Specialty");
   }
   return md;
@@ -341,7 +343,7 @@ function screensMd() {
     const wrappers = [...src.matchAll(/import \{([^}]+)\} from "\.\.\/\.\.\/components\/\w+"/g)].flatMap((m) =>
       m[1].split(",").map((s) => s.trim()),
     );
-    md += `| ${label} | \`#/${path}\` | ${cell(about)} | ${[...used, ...wrappers.map((w) => `<${w}>`)].join(" ")} | \`${repo}/${file}\` |\n`;
+    md += `| ${label} | \`#/${path}\` | ${cell(about)} | ${[...used, ...wrappers.map((w) => `<${w}>`)].join(" ")} | ${link(file)} |\n`;
   }
   return md;
 }
@@ -351,7 +353,7 @@ function screensMd() {
 function writingMd() {
   let md = banner(
     "Writing",
-    `The house style for every kind of text, from \`${repo}/src/design/writing.ts\`. Lengths are maximums, not targets: shorter is better. \`check(text, element)\` in that file tests length, case, ending punctuation, exclamation marks, filler words and \`...\`; it can't judge wording, so read the rules too.\n`,
+    `The house style for every kind of text, from ${link("src/design/writing.ts")}. Lengths are maximums, not targets: shorter is better. \`check(text, element)\` in that file tests length, case, ending punctuation, exclamation marks, filler words and \`...\`; it can't judge wording, so read the rules too.\n`,
   );
   md += "\n## Voice\n\n" + voice.map(([t, b], i) => `${i + 1}. **${t}.** ${b}`).join("\n") + "\n";
   md += "\n## Mechanics\n\n| Topic | Rule | Example |\n| --- | --- | --- |\n";
@@ -410,7 +412,8 @@ function voiceBlock() {
      {{series}}        the palette names behind --series-1..N, in order
      {{mono-package}}  the @fontsource package in package.json
      {{screens}}       how many templates there are
-     {{repo}}          this repo's path, with the home folder as ~
+     {{repo}}          the repo's GitHub URL
+     {{repo:PATH}}     a link to PATH in the repo (end folders with /)
    An unknown placeholder, or a themed token, stops the build. */
 function renderSkill() {
   const all = tok.sections.flatMap((s) => s.tokens);
@@ -432,8 +435,12 @@ function renderSkill() {
     repo,
   };
   const source = read("src/design/skill.md");
-  const body = source.replace(/\{\{([\w.-]+)\}\}/g, (m, key: string) => {
+  const body = source.replace(/\{\{([\w.-]+(?::[\w./-]+)?)\}\}/g, (m, key: string) => {
     if (key in values) return values[key];
+    if (key.startsWith("repo:")) {
+      if (!existsSync(join(root, key.slice(5)))) throw new Error(`src/design/skill.md: ${m} names a missing path`);
+      return link(key.slice(5));
+    }
     if (key.startsWith("touch.")) {
       const v = tok.media["pointer: coarse"]?.[key.slice(6)];
       if (v) return v;
@@ -447,7 +454,7 @@ function renderSkill() {
     throw new Error(`src/design/skill.md: unknown placeholder ${m}`);
   });
   const end = body.indexOf("\n---\n", 4) + 5;
-  return `${body.slice(0, end)}\n<!-- Generated from ${repo}/src/design/skill.md by \`npm run skill\`. Edit that file, not this one. -->\n${body.slice(end)}`;
+  return `${body.slice(0, end)}\n<!-- Generated from ${repo}/blob/main/src/design/skill.md by \`npm run skill\`. Edit that file, not this one. -->\n${body.slice(end)}`;
 }
 
 /* ---------- write ---------- */

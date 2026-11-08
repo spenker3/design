@@ -1,6 +1,6 @@
 # TUI
 
-<!-- Generated from ~/Projects/design by `npm run skill`. Edit the repo, not this file. -->
+<!-- Generated from https://github.com/spenker3/design by `npm run skill`. Edit the repo, not this file. -->
 
 The language in a terminal: how each role maps to cells and attributes, the glyph set, the components rebuilt in cells, and full-terminal layouts and keys.
 

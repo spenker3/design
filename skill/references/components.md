@@ -1,12 +1,12 @@
 # Components
 
-<!-- Generated from ~/Projects/design by `npm run skill`. Edit the repo, not this file. -->
+<!-- Generated from https://github.com/spenker3/design by `npm run skill`. Edit the repo, not this file. -->
 
 Every component class and the rules for using it, in four families: controls, navigation, content, and overlays (including floating chrome).
 
 ## Classes
 
-Each file's header, from `~/Projects/design/src/design/`. Read the file itself for exact values before porting a component.
+Each file's header, from [`src/design/`](https://github.com/spenker3/design/tree/main/src/design). Read the file itself for exact values before porting a component.
 
 ### controls.css
 
@@ -80,7 +80,8 @@ Persistent floating chrome is bg with line-strong:
 .toolbar        floating strip of icon buttons (.vertical for a rail). Pressed tool inverts.
 .panel          floating inspector with labeled sections.
 .dock           floating bar: .dock-page cells (current inverts), .dock-sep, tools.
-.canvas         the dotted work surface that floating chrome sits over.
+.canvas         the dotted work surface that floating chrome sits over. Its dots move with the content
+                on pan and zoom (canvasGrid in NodeEditor.tsx), never stay fixed under it.
 ```
 
 ## Usage rules
@@ -168,12 +169,12 @@ Everything that floats above the page, with no shadow anywhere. Transient layers
   - Toasts sit bottom right (full width on phones), four at most, gone after 4s. A dot gives the tone. Offer Undo instead of asking to confirm.
   - Tooltips are for icon-only buttons and truncated text. Inverted, small, after a short delay. Never put anything needed only in a tooltip.
 - **Floating chrome**:
-  - Work surfaces put their chrome over a dotted canvas: a tool rail, an inspector panel and a page dock. All are bg with line-strong, since they stay on screen.
+  - Work surfaces put their chrome over a dotted canvas, whose dots pan and zoom with the content: a tool rail, an inspector panel and a page dock. All are bg with line-strong, since they stay on screen.
   - The pressed tool and the current page invert. The panel splits into labeled sections divided by lines.
 
 ## React wrappers
 
-Only where behavior is needed; everything else is plain HTML with classes. In `~/Projects/design/src/components/`.
+Only where behavior is needed; everything else is plain HTML with classes. In [`src/components/`](https://github.com/spenker3/design/tree/main/src/components).
 
 ### Choice.tsx
 

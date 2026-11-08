@@ -3,11 +3,11 @@ name: design
 description: The user's personal design language. Monochrome, Helvetica with Geist Mono, nearly square corners, 1px lines instead of shadows, gray for structure, color only for meaning, and the inverted block (fg and bg swapped) as the one signal for the current, chosen or primary thing. Includes the house style for interface text. Use whenever building, restyling or reviewing any interface or visual output for the user's own projects, such as web pages and apps, React components, HTML artifacts, native GUIs (GPUI, Qt/QML), TUIs, charts, diagrams, dashboards and docs sites, and whenever writing the labels, buttons, errors and other text inside them. Skip it when a project already follows a different design system or brand.
 ---
 
-<!-- Generated from ~/Projects/design/src/design/skill.md by `npm run skill`. Edit that file, not this one. -->
+<!-- Generated from https://github.com/spenker3/design/blob/main/src/design/skill.md by `npm run skill`. Edit that file, not this one. -->
 
 # Design
 
-The user's design language, distilled from their living style guide at `~/Projects/design`. That repo is the source of truth. `src/design/` is the reference implementation, and the showcase runs at `http://localhost:5180` while the user's dev server is up. This file and everything in `references/` are generated from the repo whenever it changes, with every value filled in from the tokens. To change the language, change the repo, not this skill.
+The user's design language, distilled from their living style guide at https://github.com/spenker3/design. That repo is the source of truth. `src/design/` is the reference implementation, and the showcase runs at `http://localhost:5180` while the user's dev server is up. This file and everything in `references/` are generated from the repo whenever it changes, with every value filled in from the tokens. To change the language, change the repo, not this skill.
 
 ## The idea
 
@@ -160,7 +160,7 @@ The language doesn't depend on any framework. Build it with whatever the project
 - **Sizes are logical pixels.** Token values are points, not device pixels. Keep sizes like 12.5px where fractional sizes work, otherwise round to the nearest whole pixel.
 - **Touch is bigger.** On touch-first targets, controls grow from 32px / 26px / 40px to 44px / 36px / 48px (`@media (pointer: coarse)`).
 - **Motion follows the OS.** State changes animate in 80ms–140ms, and not at all when the OS asks for reduced motion.
-- **Measure, don't guess.** For heights, paddings and gaps, read the matching component in `~/Projects/design/src/design/`, whatever you're building with.
+- **Measure, don't guess.** For heights, paddings and gaps, read the matching component in [`src/design/`](https://github.com/spenker3/design/tree/main/src/design), whatever you're building with.
 
 ### Where the medium can't follow
 
@@ -171,9 +171,9 @@ Check the result in both appearances next to the matching showcase page. Selecti
 
 ### On the web
 
-The CSS in `~/Projects/design/src/design/` is a ready-made implementation, so on the web you can use it instead of rebuilding the ideas.
+The CSS in [`src/design/`](https://github.com/spenker3/design/tree/main/src/design) is a ready-made implementation, so on the web you can use it instead of rebuilding the ideas.
 
-- **A project that can take plain CSS** (React, Vite, plain HTML, most frameworks): copy `~/Projects/design/src/design/` into the project and import `index.css` once. `tokens.css` holds the language, the other files hold the components, and each file's header lists its classes. Install `@fontsource-variable/geist-mono`. Drop the `katex` import unless the project shows math. React projects can also copy wrappers from `~/Projects/design/src/components/`: `Dialog`, `Menu`, `Toast`, `Choice` (Segmented, Tabs), `CodeBlock` with `highlight.tsx`, and for specialty work `Tex`, `NodeEditor`, `ForceGraph`, `LineChart` and `Diagram`. Then use semantic HTML, the classes, and ARIA for state.
+- **A project that can take plain CSS** (React, Vite, plain HTML, most frameworks): copy [`src/design/`](https://github.com/spenker3/design/tree/main/src/design) into the project (`git clone --depth 1 https://github.com/spenker3/design` to get it) and import `index.css` once. `tokens.css` holds the language, the other files hold the components, and each file's header lists its classes. Install `@fontsource-variable/geist-mono`. Drop the `katex` import unless the project shows math. React projects can also copy wrappers from [`src/components/`](https://github.com/spenker3/design/tree/main/src/components): `Dialog`, `Menu`, `Toast`, `Choice` (Segmented, Tabs), `CodeBlock` with `highlight.tsx`, and for specialty work `Tex`, `NodeEditor`, `ForceGraph`, `LineChart` and `Diagram`. Then use semantic HTML, the classes, and ARIA for state.
 - **A project with its own styling approach** (Tailwind, CSS-in-JS, a component library): don't paste a second system on top. Put the tokens in its theme, using `references/tokens.json` for resolved light and dark values, and rebuild the roles and rules with its tools.
 - **A single-file page** (an HTML artifact, a quick prototype): inline `tokens.css` and only the component CSS the page uses. Load Geist Mono from Google Fonts, and keep the system `--font-ui` stack for the sans.
 - **Theme**: colors use `light-dark()`, so the page follows the system. Set `data-theme="light"` or `"dark"` on `<html>` to force one, and offer a System / Light / Dark segmented control when the app has settings.
@@ -190,7 +190,7 @@ Read `references/specialty.md`. In short:
 
 ## References
 
-Read the one that matches the job before writing code. For anything visual, also open the real CSS for the classes in use in `~/Projects/design/src/design/`.
+Read the one that matches the job before writing code. For anything visual, also open the real CSS for the classes in use in [`src/design/`](https://github.com/spenker3/design/tree/main/src/design).
 
 | File | Read it when |
 | --- | --- |
@@ -205,4 +205,4 @@ Read the one that matches the job before writing code. For anything visual, also
 
 ## Changing the language
 
-This skill follows the repo. If the user corrects the style while working in another project, apply the correction there and suggest bringing it back to `~/Projects/design` so it reaches every project. In that repo, the prose of this file lives in `src/design/skill.md`, and `npm run skill` rebuilds the skill from it and the rest of the repo. It also runs on its own from the dev server, after Claude edits files in `src/`, and on `npm run build`.
+This skill follows the repo. If the user corrects the style while working in another project, apply the correction there and suggest bringing it back to https://github.com/spenker3/design so it reaches every project. In that repo, the prose of this file lives in `src/design/skill.md`, and `npm run skill` rebuilds the skill from it and the rest of the repo. It also runs on its own from the dev server, after Claude edits files in `src/`, and on `npm run build`.

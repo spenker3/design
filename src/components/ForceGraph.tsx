@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { canvasGrid } from "./NodeEditor";
 import {
   forceCenter,
   forceCollide,
@@ -124,7 +125,14 @@ export function ForceGraph({
   const w = box.current?.clientWidth ?? 600;
 
   return (
-    <div className="force canvas" ref={box} style={{ height }} onPointerDown={(e) => down(e)} onPointerMove={move} onPointerUp={up}>
+    <div
+      className="force canvas"
+      ref={box}
+      style={{ height, ...canvasGrid(w / 2 + view.x, height / 2 + view.y, view.k) }}
+      onPointerDown={(e) => down(e)}
+      onPointerMove={move}
+      onPointerUp={up}
+    >
       <svg role="img" aria-label={label} width="100%" height="100%">
         <g transform={`translate(${w / 2 + view.x} ${height / 2 + view.y}) scale(${view.k})`}>
           {links.map((l, i) => {

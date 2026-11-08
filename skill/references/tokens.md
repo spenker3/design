@@ -1,6 +1,6 @@
 # Tokens
 
-<!-- Generated from ~/Projects/design by `npm run skill`. Edit the repo, not this file. -->
+<!-- Generated from https://github.com/spenker3/design by `npm run skill`. Edit the repo, not this file. -->
 
 Every token in `src/design/tokens.css`, the whole language in one file. Colors are `light-dark(LIGHT, DARK)`; a reference like `--fg` → #000000 shows what it resolves to. Machine-readable values for both themes are in `tokens.json`.
 
