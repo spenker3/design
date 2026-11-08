@@ -25,16 +25,16 @@ The main theme is black and white:
 | `--surface` | #f7f7f7 | #0d0d0d |
 | `--surface-2` | #ececec | #1a1a1a |
 | `--surface-3` | #e0e0e0 | #262626 |
-| `--line` | #e2e2e2 | #242424 |
-| `--line-strong` | #c0c0c0 | #3a3a3a |
+| `--line` | #cacaca | #383838 |
+| `--line-strong` | #909090 | #5a5a5a |
 
 ## Text
 
 | Token | Light | Dark |
 | --- | --- | --- |
-| `--text` | #111111 | #ececec |
-| `--muted` | #666666 | #9a9a9a |
-| `--faint` | #a0a0a0 | #5c5c5c |
+| `--text` | #0a0a0a | #f2f2f2 |
+| `--muted` | #383838 | #c4c4c4 |
+| `--faint` | #5e5e5e | #8e8e8e |
 
 ## Selection
 
@@ -103,8 +103,8 @@ monochrome first. Keywords get weight, and color marks literals and names.
 | `--code-number` | `--c-orange` → #d9620a | `--c-orange` → #f0883e |
 | `--code-function` | `--c-blue` → #2563eb | `--c-blue` → #6ca4f8 |
 | `--code-type` | `--c-violet` → #7c3aed | `--c-violet` → #b392f0 |
-| `--code-comment` | `--faint` → #a0a0a0 | `--faint` → #5c5c5c |
-| `--code-punct` | `--muted` → #666666 | `--muted` → #9a9a9a |
+| `--code-comment` | `--faint` → #5e5e5e | `--faint` → #8e8e8e |
+| `--code-punct` | `--muted` → #383838 | `--muted` → #c4c4c4 |
 | `--code-hl` | #eeeeee | #1c1c1c |
 | `--code-add` | `--good-tint` → #e8f5ec | `--good-tint` → #0d1f10 |
 | `--code-del` | `--bad-tint` → #fcebea | `--bad-tint` → #2a100c |

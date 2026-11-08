@@ -19,13 +19,13 @@
   --surface: light-dark(#f7f7f7, #0d0d0d);
   --surface-2: light-dark(#ececec, #1a1a1a);
   --surface-3: light-dark(#e0e0e0, #262626);
-  --line: light-dark(#e2e2e2, #242424);
-  --line-strong: light-dark(#c0c0c0, #3a3a3a);
+  --line: light-dark(#cacaca, #383838);
+  --line-strong: light-dark(#909090, #5a5a5a);
 
   /* Text */
-  --text: light-dark(#111111, #ececec);
-  --muted: light-dark(#666666, #9a9a9a);
-  --faint: light-dark(#a0a0a0, #5c5c5c);
+  --text: light-dark(#0a0a0a, #f2f2f2);
+  --muted: light-dark(#383838, #c4c4c4);
+  --faint: light-dark(#5e5e5e, #8e8e8e);
 
   /* Selection: the inverted block. Nav, tabs, rows, text selection, focused cells. */
   --sel-bg: var(--fg);

@@ -91,14 +91,14 @@ Quickly made interfaces share a few tells that the rules above don't already pre
 
 Values as light / dark where they differ. Full tables with notes: `references/tokens.md`.
 
-- **Ground**: bg #ffffff / #000000 · fg #000000 / #ffffff · surface #f7f7f7 / #0d0d0d · surface-2 #ececec / #1a1a1a · surface-3 #e0e0e0 / #262626 · line #e2e2e2 / #242424 · line-strong #c0c0c0 / #3a3a3a
-- **Text**: text #111111 / #ececec · muted #666666 / #9a9a9a · faint #a0a0a0 / #5c5c5c
+- **Ground**: bg #ffffff / #000000 · fg #000000 / #ffffff · surface #f7f7f7 / #0d0d0d · surface-2 #ececec / #1a1a1a · surface-3 #e0e0e0 / #262626 · line #cacaca / #383838 · line-strong #909090 / #5a5a5a
+- **Text**: text #0a0a0a / #f2f2f2 · muted #383838 / #c4c4c4 · faint #5e5e5e / #8e8e8e
 - **Selection**: sel-bg #000000 / #ffffff · sel-fg #ffffff / #000000
 - **Interaction fills, as subtle grays**: hover #f0f0f0 / #141414 · press #e4e4e4 / #1f1f1f
 - **Meaning**: good #1a7f37 / #86d08b · warn #8a5a00 / #e5b454 · bad #c62828 / #f08a75 · info #1565c0 / #7db8f0 · good-tint #e8f5ec / #0d1f10 · warn-tint #fbf3e2 / #221a08 · bad-tint #fcebea / #2a100c · info-tint #e7f0fb / #0b1824
 - **Categorical palette for data, charts, tags**: c-red #d1242f / #f47067 · c-orange #d9620a / #f0883e · c-yellow #a87b00 / #e5b454 · c-green #1a7f37 / #57c66a · c-cyan #0e7c86 / #4fc1cc · c-blue #2563eb / #6ca4f8 · c-violet #7c3aed / #b392f0 · c-magenta #bf3989 / #e275ad
 - **Chart series**: series-1 #2563eb / #6ca4f8 · series-2 #d9620a / #f0883e · series-3 #7c3aed / #b392f0 · series-4 #a87b00 / #e5b454
-- **Code**: code-bg #f7f7f7 / #0d0d0d · code-keyword #000000 / #ffffff · code-string #1a7f37 / #57c66a · code-number #d9620a / #f0883e · code-function #2563eb / #6ca4f8 · code-type #7c3aed / #b392f0 · code-comment #a0a0a0 / #5c5c5c · code-punct #666666 / #9a9a9a · code-hl #eeeeee / #1c1c1c · code-add #e8f5ec / #0d1f10 · code-del #fcebea / #2a100c
+- **Code**: code-bg #f7f7f7 / #0d0d0d · code-keyword #000000 / #ffffff · code-string #1a7f37 / #57c66a · code-number #d9620a / #f0883e · code-function #2563eb / #6ca4f8 · code-type #7c3aed / #b392f0 · code-comment #5e5e5e / #8e8e8e · code-punct #383838 / #c4c4c4 · code-hl #eeeeee / #1c1c1c · code-add #e8f5ec / #0d1f10 · code-del #fcebea / #2a100c
 - **Overlays**: scrim rgb(255 255 255 / 0.6) / rgb(0 0 0 / 0.6) · overlay-border #000000 / #ffffff
 - **Type**: font-ui Helvetica, "Helvetica Neue", "Nimbus Sans", "TeX Gyre Heros", Arial, sans-serif · font-mono "Geist Mono Variable", "GeistMono Nerd Font", ui-monospace, monospace · text-xs 11px · text-sm 12.5px · text-base 14px · text-md 16px · text-lg 20px · text-xl 26px · text-2xl 36px · text-3xl 56px
 - **Code blocks**: text-code 13px · weight-normal 400 · weight-medium 500 · weight-bold 600 · weight-heavy 700
